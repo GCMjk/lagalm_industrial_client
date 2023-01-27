@@ -13,6 +13,9 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
 import { TopComponent } from './components/top/top.component';
+import { IndexEmployeeComponent } from './components/employee/index-employee/index-employee.component';
+import { CreateEmployeeComponent } from './components/employee/create-employee/create-employee.component';
+import { EditEmployeeComponent } from './components/employee/edit-employee/edit-employee.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { TopComponent } from './components/top/top.component';
     SidebarComponent,
     FooterComponent,
     LoginComponent,
-    TopComponent
+    TopComponent,
+    IndexEmployeeComponent,
+    CreateEmployeeComponent,
+    EditEmployeeComponent
   ],
   imports: [
     BrowserModule,

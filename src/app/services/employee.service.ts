@@ -14,6 +14,11 @@ export class EmployeeService {
     private _http: HttpClient
   ) { }
 
+  registerEmployee(data: any): Observable<any> {
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this._http.post(this.url + 'employee', data, { headers: headers })
+  }
+
   login(data: any): Observable<any> {
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this._http.post(this.url + 'login', data, { headers: headers })
