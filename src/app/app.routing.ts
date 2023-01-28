@@ -11,7 +11,7 @@ import { LoginComponent } from "./components/login/login.component";
 const appRoutes: Routes = [
     { path: 'dashboard', component: DashboardComponent },
 
-    { path: 'employee', component: IndexEmployeeComponent },
+    { path: 'employees/:page', component: IndexEmployeeComponent },
     { path: 'employee/create', component: CreateEmployeeComponent },
     { path: 'employee/:id', component: EditEmployeeComponent },
 

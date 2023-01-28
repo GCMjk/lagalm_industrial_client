@@ -35,6 +35,9 @@ export class CreateEmployeeComponent {
     }
   }
 
+  public btnRegister = false;
+  public token: any = localStorage.getItem('token');
+
   constructor(
     private _employeeService: EmployeeService,
     private _router: Router
@@ -44,7 +47,8 @@ export class CreateEmployeeComponent {
 
   register(registerForm: any) {
     if (registerForm.valid) {
-      this._employeeService.registerEmployee(this.employee).subscribe(
+      this.btnRegister = true;
+      this._employeeService.registerEmployee(this.employee, this.token).subscribe(
         response => {
           console.log(response)
           if (response.employee === undefined) {
@@ -62,7 +66,9 @@ export class CreateEmployeeComponent {
                 exit: 'animated ' + 'bounce'
               }
             });
+            this.btnRegister = false;
           } else {
+            this.btnRegister = false;
             $.notify(response.message, {
               type: 'success',
               spacing: 10,

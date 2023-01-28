@@ -42,7 +42,7 @@
                                     </span>
                                 </h3>
                                 <div class="card-toolbar">
-                                    <a class="btn btn-primary" [routerLink]="['/employee']">Regresar</a>
+                                    <a class="btn btn-primary" [routerLink]="['/employees/1']">Regresar</a>
                                 </div>
                             </div>
                             <div class="card-body p-0">
@@ -500,16 +500,17 @@
                                                         <div class="mr-2">
                                                             <a class="btn btn-light-primary font-weight-bolder px-9 py-4"
                                                                 data-wizard-type="action-prev"
-                                                                [routerLink]="['/employee']">
+                                                                [routerLink]="['/employees/1']">
                                                                 Regresar
                                                             </a>
                                                         </div>
                                                         <div>
-                                                            <button type="submit"
-                                                                class="btn btn-success font-weight-bolder px-9 py-4">
+                                                            <button class="btn btn-success" type="submit">
+                                                                <span *ngIf="btnRegister"
+                                                                    class="spinner-border spinner-border-sm mr-2"
+                                                                    role="status" aria-hidden="true"></span>
                                                                 Registrar empleado
                                                             </button>
-
                                                         </div>
                                                     </div>
                                                     <!--end::Wizard Actions-->
