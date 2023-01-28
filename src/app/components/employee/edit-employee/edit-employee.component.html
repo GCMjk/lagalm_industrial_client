@@ -1,1 +1,581 @@
-<p>edit-employee works!</p>
+<div class="d-flex flex-column flex-root">
+    <div class="d-flex flex-row flex-column-fluid page">
+        <app-sidebar></app-sidebar>
+        <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+            <app-top></app-top>
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Subheader-->
+                <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
+                    <div
+                        class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+                        <!--begin::Info-->
+                        <div class="d-flex align-items-center flex-wrap mr-2">
+                            <!--begin::Page Title-->
+                            <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Dashboard</h5>
+                            <!--end::Page Title-->
+                            <!--begin::Actions-->
+                            <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
+                            <span class="text-muted font-weight-bold mr-4">#XRS-45670</span>
+                            <a href="#" class="btn btn-light-warning font-weight-bolder btn-sm">Add New</a>
+                            <!--end::Actions-->
+                        </div>
+                        <!--end::Info-->
+
+                    </div>
+                </div>
+                <!--end::Subheader-->
+                <!--begin::Entry-->
+                <div class="d-flex flex-column-fluid">
+                    <!--begin::Container-->
+                    <div class="container">
+
+                        <div *ngIf="loadData" class="card card-custom card-shadowless rounded-top-0 mb-7">
+                            <div class="card-body p-0">
+                                <div class="d-flex justify-content-center mt-7 mb-7">
+                                    <div class="spinner-grow" style="width: 3rem; height: 3rem;" role="status">
+                                        <span class="visually-hidden"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <ng-container *ngIf="!loadData">
+
+                            <ng-container *ngIf="data">
+                                <div class="card card-custom card-shadowless rounded-top-0">
+                                    <!--begin::Body-->
+                                    <div class="card-header border-0 pt-5">
+                                        <h3 class="card-title align-items-start flex-column">
+                                            <span class="card-label font-weight-bolder text-dark">
+                                                Nuevo empleado
+                                            </span>
+                                            <span class="text-muted mt-3 font-weight-bold font-size-sm">
+                                                Formulario de un nuevo trabajador
+                                            </span>
+                                        </h3>
+                                        <div class="card-toolbar">
+                                            <a class="btn btn-primary" [routerLink]="['/employees/1']">Regresar</a>
+                                        </div>
+                                    </div>
+                                    <div class="card-body p-0">
+                                        <div class="row justify-content-center py-8 px-8 py-lg-15 px-lg-10">
+                                            <div class="col-xl-12 col-xxl-10">
+                                                <!--begin::Wizard Form-->
+                                                <form class="form" id="kt_form" #editForm="ngForm"
+                                                    (ngSubmit)="edit(editForm)">
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-xl-9">
+
+                                                            <!-- Datos personales -->
+                                                            <div class="my-5 step" data-wizard-type="step-content"
+                                                                data-wizard-state="current">
+                                                                <h5 class="text-dark font-weight-bold mb-10">
+                                                                    Datos personales:
+                                                                </h5>
+
+                                                                <div class="form-group row ">
+                                                                    <div class="col-6">
+                                                                        <input required
+                                                                            class="form-control form-control-solid form-control-lg"
+                                                                            name="name" [(ngModel)]="employee.name"
+                                                                            type="text" placeholder="Nombre" />
+                                                                    </div>
+                                                                    <div class="col-6">
+                                                                        <input required
+                                                                            class="form-control form-control-solid form-control-lg"
+                                                                            name="lastname"
+                                                                            [(ngModel)]="employee.lastname" type="text"
+                                                                            placeholder="Apellidos" />
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="form-group row">
+                                                                    <div class="col-12">
+                                                                        <input required
+                                                                            class="form-control form-control-solid form-control-lg"
+                                                                            name="birthday"
+                                                                            [(ngModel)]="employee.birthday" type="text"
+                                                                            placeholder="Fecha de nacimiento dd/mm/yyyy" />
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group row">
+
+                                                                    <div class="col-6">
+                                                                        <select required name="gender"
+                                                                            [(ngModel)]="employee.gender"
+                                                                            class="form-control form-control-solid form-control-lg">
+                                                                            <option value="" selected disabled>
+                                                                                Seleccionar un genero
+                                                                            </option>
+                                                                            <option value="Masculino">Masculino</option>
+                                                                            <option value="Femenino">Femenino</option>
+                                                                        </select>
+                                                                    </div>
+
+                                                                    <div class="col-6">
+                                                                        <select required name="maritalStatus"
+                                                                            [(ngModel)]="employee.maritalStatus"
+                                                                            class="form-control form-control-solid form-control-lg">
+                                                                            <option value="" selected disabled>
+                                                                                Seleccionar un estado civil
+                                                                            </option>
+                                                                            <option value="Soltero">Soltero</option>
+                                                                            <option value="Casado">Casado</option>
+                                                                            <option value="Divorciado">Divorciado
+                                                                            </option>
+                                                                            <option value="Viudo">Viudo</option>
+                                                                        </select>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="form-group row">
+                                                                    <div class="col-12">
+                                                                        <input required
+                                                                            class="form-control form-control-solid form-control-lg"
+                                                                            name="curp" [(ngModel)]="employee.curp"
+                                                                            type="text" placeholder="CURP" />
+                                                                    </div>
+                                                                </div>
+
+                                                                <h6 class="text-muted font-weight-bold mb-4">
+                                                                    Direccion:
+                                                                </h6>
+
+                                                                <div class="form-group row">
+
+                                                                    <div class="col-5">
+                                                                        <input required
+                                                                            class="form-control form-control-solid form-control-lg"
+                                                                            name="address.street"
+                                                                            [(ngModel)]="employee.address.street"
+                                                                            type="text" placeholder="Calle" />
+                                                                    </div>
+
+                                                                    <div class="col-3">
+                                                                        <input required
+                                                                            class="form-control form-control-solid form-control-lg"
+                                                                            name="address.exterior"
+                                                                            [(ngModel)]="employee.address.exterior"
+                                                                            type="text" placeholder="No. exterior" />
+                                                                    </div>
+
+                                                                    <div class="col-4">
+                                                                        <input
+                                                                            class="form-control form-control-solid form-control-lg"
+                                                                            name="address.interior"
+                                                                            [(ngModel)]="employee.address.interior"
+                                                                            type="text"
+                                                                            placeholder="No. interior (opcional)" />
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="form-group row">
+
+                                                                    <div class="col-6">
+                                                                        <input required
+                                                                            class="form-control form-control-solid form-control-lg"
+                                                                            name="address.neighborhood"
+                                                                            [(ngModel)]="employee.address.neighborhood"
+                                                                            type="text" placeholder="Colonia" />
+                                                                    </div>
+
+                                                                    <div class="col-6">
+                                                                        <input required
+                                                                            class="form-control form-control-solid form-control-lg"
+                                                                            name="address.city"
+                                                                            [(ngModel)]="employee.address.city"
+                                                                            type="text" placeholder="Ciudad" />
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="form-group row">
+
+                                                                    <div class="col-6">
+                                                                        <input required
+                                                                            class="form-control form-control-solid form-control-lg"
+                                                                            name="address.municiplaity"
+                                                                            [(ngModel)]="employee.address.municiplaity"
+                                                                            type="text" placeholder="Municipio" />
+                                                                    </div>
+
+                                                                    <div class="col-6">
+                                                                        <select required name="address.state"
+                                                                            [(ngModel)]="employee.address.state"
+                                                                            class="form-control form-control-solid form-control-lg">
+                                                                            <option value="" selected disabled>
+                                                                                Seleccionar un estado...
+                                                                            </option>
+                                                                            <option value="Aguascalientes">
+                                                                                Aguascalientes
+                                                                            </option>
+                                                                            <option value="Baja California">Baja
+                                                                                California
+                                                                            </option>
+                                                                            <option value="Baja California Sur">Baja
+                                                                                California
+                                                                                Sur</option>
+                                                                            <option value="Campeche">Campeche</option>
+                                                                            <option value="Chiapas">Chiapas</option>
+                                                                            <option value="Chihuahua">Chihuahua</option>
+                                                                            <option value="CDMX">Ciudad de México
+                                                                            </option>
+                                                                            <option value="Coahuila">Coahuila</option>
+                                                                            <option value="Colima">Colima</option>
+                                                                            <option value="Durango">Durango</option>
+                                                                            <option value="Estado de México">Estado de
+                                                                                México
+                                                                            </option>
+                                                                            <option value="Guanajuato">Guanajuato
+                                                                            </option>
+                                                                            <option value="Guerrero">Guerrero</option>
+                                                                            <option value="Hidalgo">Hidalgo</option>
+                                                                            <option value="Jalisco">Jalisco</option>
+                                                                            <option value="Michoacán">Michoacán</option>
+                                                                            <option value="Morelos">Morelos</option>
+                                                                            <option value="Nayarit">Nayarit</option>
+                                                                            <option value="Nuevo León">Nuevo León
+                                                                            </option>
+                                                                            <option value="Oaxaca">Oaxaca</option>
+                                                                            <option value="Puebla">Puebla</option>
+                                                                            <option value="Querétaro">Querétaro</option>
+                                                                            <option value="Quintana Roo">Quintana Roo
+                                                                            </option>
+                                                                            <option value="San Luis Potosí">San Luis
+                                                                                Potosí
+                                                                            </option>
+                                                                            <option value="Sinaloa">Sinaloa</option>
+                                                                            <option value="Sonora">Sonora</option>
+                                                                            <option value="Tabasco">Tabasco</option>
+                                                                            <option value="Tamaulipas">Tamaulipas
+                                                                            </option>
+                                                                            <option value="Tlaxcala">Tlaxcala</option>
+                                                                            <option value="Veracruz">Veracruz</option>
+                                                                            <option value="Yucatán">Yucatán</option>
+                                                                            <option value="Zacatecas">Zacatecas</option>
+                                                                        </select>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="form-group row">
+
+                                                                    <div class="col-8">
+                                                                        <input required
+                                                                            class="form-control form-control-solid form-control-lg"
+                                                                            name="address.country"
+                                                                            [(ngModel)]="employee.address.country"
+                                                                            type="text" placeholder="País"
+                                                                            value="México" disabled />
+                                                                    </div>
+
+                                                                    <div class="col-4">
+                                                                        <input required
+                                                                            class="form-control form-control-solid form-control-lg"
+                                                                            name="address.zip"
+                                                                            [(ngModel)]="employee.address.zip"
+                                                                            type="text" placeholder="Codigo postal" />
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="form-group row">
+
+                                                                    <div class="col-6">
+                                                                        <input
+                                                                            class="form-control form-control-solid form-control-lg"
+                                                                            name="address.streets.a"
+                                                                            [(ngModel)]="employee.address.streets.a"
+                                                                            type="text"
+                                                                            placeholder="Entre calle (opcional)" />
+                                                                    </div>
+
+                                                                    <div class="col-6">
+                                                                        <input
+                                                                            class="form-control form-control-solid form-control-lg"
+                                                                            name="address.streets.b"
+                                                                            [(ngModel)]="employee.address.streets.b"
+                                                                            type="text"
+                                                                            placeholder="y calle (opcional)" />
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </div>
+                                                            <!-- Datos personales -->
+
+                                                            <!-- Cuenta -->
+                                                            <div class="my-5 step" data-wizard-type="step-content"
+                                                                data-wizard-state="current">
+                                                                <h5 class="text-dark font-weight-bold mb-10">
+                                                                    Cuenta:
+                                                                </h5>
+
+                                                                <div class="form-group row">
+                                                                    <label class="col-xl-3 col-lg-3 col-form-label">
+                                                                        Correo eletrónico
+                                                                    </label>
+                                                                    <div class="col-lg-9 col-xl-9">
+                                                                        <input required
+                                                                            class="form-control form-control-solid form-control-lg"
+                                                                            name="email" [(ngModel)]="employee.email"
+                                                                            type="email"
+                                                                            placeholder="Dirección de correo eletrónico" />
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group row">
+                                                                    <label class="col-xl-3 col-lg-3 col-form-label">
+                                                                        Telefono
+                                                                    </label>
+                                                                    <div class="col-lg-9 col-xl-9">
+                                                                        <div
+                                                                            class="input-group input-group-solid input-group-lg">
+                                                                            <div class="input-group-prepend">
+                                                                                <span class="input-group-text">
+                                                                                    <i class="la la-phone"></i>
+                                                                                </span>
+                                                                            </div>
+                                                                            <input required type="text"
+                                                                                class="form-control form-control-solid form-control-lg"
+                                                                                name="phone"
+                                                                                [(ngModel)]="employee.phone"
+                                                                                placeholder="Telefono" />
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group row">
+                                                                    <label class="col-xl-3 col-lg-3 col-form-label">
+                                                                        Rol de cuenta
+                                                                    </label>
+                                                                    <div class="col-lg-9 col-xl-9">
+                                                                        <select required name="role"
+                                                                            [(ngModel)]="employee.role"
+                                                                            class="form-control form-control-solid form-control-lg">
+                                                                            <option value="" selected disabled>
+                                                                                Seleccionar un rol
+                                                                            </option>
+                                                                            <option value="Administrador" disabled>
+                                                                                Administrador
+                                                                            </option>
+                                                                            <option value="Usuario">
+                                                                                Usuario
+                                                                            </option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <!--Cuenta-->
+
+                                                            <!-- Datos laborales -->
+                                                            <div class="my-5 step" data-wizard-type="step-content"
+                                                                data-wizard-state="current">
+                                                                <h5 class="text-dark font-weight-bold mb-10">
+                                                                    Datos laborales:
+                                                                </h5>
+
+                                                                <div class="form-group row">
+                                                                    <div class="col-12">
+                                                                        <input required
+                                                                            class="form-control form-control-solid form-control-lg"
+                                                                            name="job.employeeNumber"
+                                                                            [(ngModel)]="employee.job.employeeNumber"
+                                                                            type="text"
+                                                                            placeholder="Numero de empleado" />
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group row">
+
+                                                                    <div class="col-6">
+                                                                        <input required
+                                                                            class="form-control form-control-solid form-control-lg"
+                                                                            name="job.rfc"
+                                                                            [(ngModel)]="employee.job.rfc" type="text"
+                                                                            placeholder="RFC" />
+                                                                    </div>
+
+                                                                    <div class="col-6">
+                                                                        <select required name="job.schooling"
+                                                                            [(ngModel)]="employee.job.schooling"
+                                                                            class="form-control form-control-solid form-control-lg">
+                                                                            <option value="" selected disabled>
+                                                                                Selecciona un grado de escolaridad
+                                                                            </option>
+                                                                            <option value="Preescolar o primaria">
+                                                                                Preescolar o primaria
+                                                                            </option>
+                                                                            <option value="Secundaria">
+                                                                                Secundaria
+                                                                            </option>
+                                                                            <option value="Preparatoria">
+                                                                                Preparatoria
+                                                                            </option>
+                                                                            <option value="Carrera tecnica">
+                                                                                Carrera tecnica
+                                                                            </option>
+                                                                            <option value="Licenciatura">
+                                                                                Licenciatura
+                                                                            </option>
+                                                                            <option value="Maestria">
+                                                                                Maestria
+                                                                            </option>
+                                                                            <option value="Doctorado">
+                                                                                Doctorado
+                                                                            </option>
+                                                                            <option value="No especificado">
+                                                                                No especificado
+                                                                            </option>
+                                                                        </select>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="form-group row">
+                                                                    <div class="col-12">
+                                                                        <input required
+                                                                            class="form-control form-control-solid form-control-lg"
+                                                                            name="job.nss"
+                                                                            [(ngModel)]="employee.job.nss" type="text"
+                                                                            placeholder="Numero de seguridad social" />
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group row">
+
+                                                                    <div class="col-6">
+                                                                        <select required name="job.workAreaId"
+                                                                            [(ngModel)]="employee.job.workAreaId"
+                                                                            class="form-control form-control-solid form-control-lg">
+                                                                            <option value="" selected disabled>
+                                                                                Selecciona un area de trabajo
+                                                                            </option>
+                                                                            <option value="IT">IT</option>
+                                                                        </select>
+                                                                    </div>
+
+                                                                    <div class="col-6">
+                                                                        <select required name="job.range"
+                                                                            [(ngModel)]="employee.job.range"
+                                                                            class="form-control form-control-solid form-control-lg">
+                                                                            <option value="" selected disabled>
+                                                                                Selecciona un rango
+                                                                            </option>
+                                                                            <option value="Gerente">Gerente</option>
+                                                                        </select>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="form-group row">
+                                                                    <div class="col-12">
+                                                                        <input required
+                                                                            class="form-control form-control-solid form-control-lg"
+                                                                            name="job.description"
+                                                                            [(ngModel)]="employee.job.description"
+                                                                            type="text"
+                                                                            placeholder="Descripción del puesto" />
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group row">
+
+                                                                    <div class="col-6">
+                                                                        <input required
+                                                                            class="form-control form-control-solid form-control-lg"
+                                                                            name="job.schedule.start"
+                                                                            [(ngModel)]="employee.job.schedule.start"
+                                                                            type="text"
+                                                                            placeholder="Inicio de jornada laboral (hh:mm)" />
+                                                                    </div>
+
+                                                                    <div class="col-6">
+                                                                        <input required
+                                                                            class="form-control form-control-solid form-control-lg"
+                                                                            name="job.schedule.end"
+                                                                            [(ngModel)]="employee.job.schedule.end"
+                                                                            type="text"
+                                                                            placeholder="Termino de jornada laboral (hh:mm)" />
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="form-group row">
+
+                                                                    <div class="col-6">
+                                                                        <input required
+                                                                            class="form-control form-control-solid form-control-lg"
+                                                                            name="job.salary"
+                                                                            [(ngModel)]="employee.job.salary"
+                                                                            type="text" placeholder="Salario en MXN" />
+                                                                    </div>
+
+                                                                    <div class="col-6">
+                                                                        <input required
+                                                                            class="form-control form-control-solid form-control-lg"
+                                                                            name="job.accountNumber"
+                                                                            [(ngModel)]="employee.job.accountNumber"
+                                                                            type="text"
+                                                                            placeholder="Número de cuenta bancaria" />
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </div>
+                                                            <!--Datos laborales-->
+
+                                                            <!--begin::Wizard Actions-->
+                                                            <div
+                                                                class="d-flex justify-content-between border-top pt-10 mt-15">
+                                                                <div class="mr-2">
+                                                                    <a class="btn btn-light-primary font-weight-bolder px-9 py-4"
+                                                                        data-wizard-type="action-prev"
+                                                                        [routerLink]="['/employees/1']">
+                                                                        Regresar
+                                                                    </a>
+                                                                </div>
+                                                                <div>
+                                                                    <button class="btn btn-success" type="submit">
+                                                                        <span *ngIf="btnEdit"
+                                                                            class="spinner-border spinner-border-sm mr-2"
+                                                                            role="status" aria-hidden="true"></span>
+                                                                        Actualizar empleado
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                            <!--end::Wizard Actions-->
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                <!--end::Wizard Form-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end::Body-->
+                                </div>
+                            </ng-container>
+
+                            <ng-container *ngIf="!data">
+                                <app-not-found></app-not-found>
+                            </ng-container>
+
+                        </ng-container>
+
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Entry-->
+            </div>
+            <!--end::Content-->
+            <!-- <app-footer></app-footer> -->
+        </div>
+    </div>
+</div>

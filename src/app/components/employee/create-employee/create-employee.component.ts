@@ -50,7 +50,6 @@ export class CreateEmployeeComponent {
       this.btnRegister = true;
       this._employeeService.registerEmployee(this.employee, this.token).subscribe(
         response => {
-          console.log(response)
           if (response.employee === undefined) {
             $.notify(response.message, {
               type: 'danger',
@@ -83,7 +82,7 @@ export class CreateEmployeeComponent {
                 exit: 'animated ' + 'bounce'
               }
             });
-            this._router.navigate(['/employee']);
+            this._router.navigate(['/employees/1']);
           }
         }
       )
