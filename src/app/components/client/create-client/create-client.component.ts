@@ -1,59 +1,66 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { EmployeeService } from 'src/app/services/employee.service';
+import { ClientService } from 'src/app/services/client.service';
 
 declare var $: any;
 
 @Component({
-  selector: 'app-create-employee',
-  templateUrl: './create-employee.component.html',
-  styleUrls: ['./create-employee.component.scss']
+  selector: 'app-create-client',
+  templateUrl: './create-client.component.html',
+  styleUrls: ['./create-client.component.scss']
 })
-export class CreateEmployeeComponent {
+export class CreateClientComponent {
 
-  public employee: any = {
-    gender: '',
-    maritalStatus: '',
+  public client: any = {
+    legalName: '',
+    bussinessActivity: {
+      activity: '',
+      description: ''
+    },
+    taxId: '',
+    taxSystem: '',
+    taxEmail: '',
+    contact: {
+      email: '',
+      phone: '',
+      web: ''
+    },
     address: {
-      state: 'MEX',
+      street: '',
+      exterior: '',
+      interior: '',
+      neighborhood: '',
+      city: '',
+      municipality: '',
+      state: '',
+      country: '',
+      zip: '',
       streets: {
         a: '',
         b: ''
       },
-      country: 'México'
     },
-    role: 'USER',
-    avatar: 'a', // *
-    job: {
-      schooling: '',
-      workArea: {
-        area: '',
-        range: '',
-      },
-      schedule: {
-        start: '',
-        end: ''
-      }
-    }
+    type: '',
   }
 
   public btnRegister = false;
   public token: any = localStorage.getItem('token');
 
   constructor(
-    private _employeeService: EmployeeService,
+    private _clientService: ClientService,
     private _router: Router
   ) {
 
   }
 
   register(registerForm: any) {
-
+    console.log(registerForm)
     if (registerForm.valid) {
       this.btnRegister = true;
-      this._employeeService.registerEmployee(this.employee, this.token).subscribe(
+      this._clientService.registerClient(this.client, this.token).subscribe(
         response => {
-          if (response.employee === undefined) {
+          console.log(this.client)
+          if (response.client === undefined) {
             $.notify(response.message, {
               type: 'danger',
               spacing: 10,
@@ -85,7 +92,7 @@ export class CreateEmployeeComponent {
                 exit: 'animated ' + 'bounce'
               }
             });
-            this._router.navigate(['/employees/1']);
+            this._router.navigate(['/clients/1']);
           }
         }
       )
@@ -106,5 +113,4 @@ export class CreateEmployeeComponent {
       });
     }
   }
-
 }

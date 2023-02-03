@@ -1,41 +1,47 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { EmployeeService } from 'src/app/services/employee.service';
+import { ClientService } from 'src/app/services/client.service';
 
 declare var $: any;
 
 @Component({
-  selector: 'app-edit-employee',
-  templateUrl: './edit-employee.component.html',
-  styleUrls: ['./edit-employee.component.scss']
+  selector: 'app-edit-client',
+  templateUrl: './edit-client.component.html',
+  styleUrls: ['./edit-client.component.scss']
 })
-export class EditEmployeeComponent implements OnInit {
+export class EditClientComponent implements OnInit {
 
   public id = '';
-  public employee: any = {
-    gender: '',
-    maritalStatus: '',
+  public client: any = {
+    legalName: '',
+    bussinessActivity: {
+      activity: '',
+      description: ''
+    },
+    taxId: '',
+    taxSystem: '',
+    taxEmail: '',
+    contact: {
+      email: '',
+      phone: '',
+      web: ''
+    },
     address: {
+      street: '',
+      exterior: '',
+      interior: '',
+      neighborhood: '',
+      city: '',
+      municipality: '',
       state: '',
+      country: '',
+      zip: '',
       streets: {
         a: '',
         b: ''
       },
-      country: ''
     },
-    role: '',
-    avatar: '', // *
-    job: {
-      schooling: '',
-      workArea: {
-        area: '',
-        range: '',
-      },
-      schedule: {
-        start: '',
-        end: ''
-      }
-    }
+    type: '',
   }
 
   public btnEdit = false;
@@ -44,7 +50,7 @@ export class EditEmployeeComponent implements OnInit {
   public data = false;
 
   constructor(
-    private _employeeService: EmployeeService,
+    private _clientService: ClientService,
     private _router: Router,
     private _route: ActivatedRoute
   ) {
@@ -56,10 +62,10 @@ export class EditEmployeeComponent implements OnInit {
       params => {
         this.id = params['id'];
         this.loadData = true;
-        this._employeeService.getEmployee(this.id, this.token).subscribe(
+        this._clientService.getClient(this.id, this.token).subscribe(
           response => {
-            if (response.employee != undefined) {
-              this.employee = response.employee;
+            if (response.client != undefined) {
+              this.client = response.client;
               this.data = true;
               this.loadData = false;
             } else {
@@ -75,9 +81,9 @@ export class EditEmployeeComponent implements OnInit {
   edit(editForm: any) {
     if (editForm.valid) {
       this.btnEdit = true;
-      this._employeeService.editEmployee(this.id, this.employee, this.token).subscribe(
+      this._clientService.editClient(this.id, this.client, this.token).subscribe(
         response => {
-          if (response.employee === undefined) {
+          if (response.client === undefined) {
             $.notify(response.message, {
               type: 'danger',
               spacing: 10,
@@ -109,7 +115,7 @@ export class EditEmployeeComponent implements OnInit {
                 exit: 'animated ' + 'bounce'
               }
             });
-            this._router.navigate(['/employees/1']);
+            this._router.navigate(['/clients/1']);
           }
         }
       )

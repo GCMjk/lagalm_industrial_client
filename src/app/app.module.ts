@@ -17,6 +17,9 @@ import { IndexEmployeeComponent } from './components/employee/index-employee/ind
 import { CreateEmployeeComponent } from './components/employee/create-employee/create-employee.component';
 import { EditEmployeeComponent } from './components/employee/edit-employee/edit-employee.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { CreateClientComponent } from './components/client/create-client/create-client.component';
+import { EditClientComponent } from './components/client/edit-client/edit-client.component';
+import { IndexClientComponent } from './components/client/index-client/index-client.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,10 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     IndexEmployeeComponent,
     CreateEmployeeComponent,
     EditEmployeeComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    CreateClientComponent,
+    EditClientComponent,
+    IndexClientComponent
   ],
   imports: [
     BrowserModule,

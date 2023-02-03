@@ -57,7 +57,7 @@
                                                     <!-- Datos personales -->
                                                     <div class="my-5 step" data-wizard-type="step-content"
                                                         data-wizard-state="current">
-                                                        <h5 class="text-dark font-weight-bold mb-10">
+                                                        <h5 class="text-dark font-weight-bold my-10">
                                                             Datos personales:
                                                         </h5>
 
@@ -82,8 +82,7 @@
                                                                 <input required
                                                                     class="form-control form-control-solid form-control-lg"
                                                                     name="birthday" [(ngModel)]="employee.birthday"
-                                                                    type="text"
-                                                                    placeholder="Fecha de nacimiento dd/mm/yyyy" />
+                                                                    type="date" />
                                                             </div>
                                                         </div>
 
@@ -96,8 +95,8 @@
                                                                     <option value="" selected disabled>
                                                                         Seleccionar un genero
                                                                     </option>
-                                                                    <option value="Masculino">Masculino</option>
-                                                                    <option value="Femenino">Femenino</option>
+                                                                    <option value="MALE">Masculino</option>
+                                                                    <option value="FEMALE">Femenino</option>
                                                                 </select>
                                                             </div>
 
@@ -108,10 +107,10 @@
                                                                     <option value="" selected disabled>
                                                                         Seleccionar un estado civil
                                                                     </option>
-                                                                    <option value="Soltero">Soltero</option>
-                                                                    <option value="Casado">Casado</option>
-                                                                    <option value="Divorciado">Divorciado</option>
-                                                                    <option value="Viudo">Viudo</option>
+                                                                    <option value="SINGLE">Soltero</option>
+                                                                    <option value="MARRIED">Casado</option>
+                                                                    <option value="DIVORCED">Divorciado</option>
+                                                                    <option value="WIDOW">Viudo</option>
                                                                 </select>
                                                             </div>
 
@@ -126,7 +125,7 @@
                                                             </div>
                                                         </div>
 
-                                                        <h6 class="text-muted font-weight-bold mb-4">
+                                                        <h6 class="text-muted font-weight-bold my-10">
                                                             Direccion:
                                                         </h6>
 
@@ -183,8 +182,8 @@
                                                             <div class="col-6">
                                                                 <input required
                                                                     class="form-control form-control-solid form-control-lg"
-                                                                    name="address.municiplaity"
-                                                                    [(ngModel)]="employee.address.municiplaity"
+                                                                    name="address.municipality"
+                                                                    [(ngModel)]="employee.address.municipality"
                                                                     type="text" placeholder="Municipio" />
                                                             </div>
 
@@ -195,43 +194,43 @@
                                                                     <option value="" selected disabled>
                                                                         Seleccionar un estado...
                                                                     </option>
-                                                                    <option value="Aguascalientes">Aguascalientes
+                                                                    <option value="AGU">Aguascalientes
                                                                     </option>
-                                                                    <option value="Baja California">Baja California
+                                                                    <option value="BCN">Baja California
                                                                     </option>
-                                                                    <option value="Baja California Sur">Baja California
+                                                                    <option value="BCS">Baja California
                                                                         Sur</option>
-                                                                    <option value="Campeche">Campeche</option>
-                                                                    <option value="Chiapas">Chiapas</option>
-                                                                    <option value="Chihuahua">Chihuahua</option>
-                                                                    <option value="CDMX">Ciudad de México</option>
-                                                                    <option value="Coahuila">Coahuila</option>
-                                                                    <option value="Colima">Colima</option>
-                                                                    <option value="Durango">Durango</option>
-                                                                    <option value="Estado de México">Estado de México
+                                                                    <option value="CAM">Campeche</option>
+                                                                    <option value="CHP">Chiapas</option>
+                                                                    <option value="CHH">Chihuahua</option>
+                                                                    <option value="DIF">Ciudad de México</option>
+                                                                    <option value="COA">Coahuila</option>
+                                                                    <option value="COL">Colima</option>
+                                                                    <option value="DUR">Durango</option>
+                                                                    <option value="MEX">Estado de México
                                                                     </option>
-                                                                    <option value="Guanajuato">Guanajuato</option>
-                                                                    <option value="Guerrero">Guerrero</option>
-                                                                    <option value="Hidalgo">Hidalgo</option>
-                                                                    <option value="Jalisco">Jalisco</option>
-                                                                    <option value="Michoacán">Michoacán</option>
-                                                                    <option value="Morelos">Morelos</option>
-                                                                    <option value="Nayarit">Nayarit</option>
-                                                                    <option value="Nuevo León">Nuevo León</option>
-                                                                    <option value="Oaxaca">Oaxaca</option>
-                                                                    <option value="Puebla">Puebla</option>
-                                                                    <option value="Querétaro">Querétaro</option>
-                                                                    <option value="Quintana Roo">Quintana Roo</option>
-                                                                    <option value="San Luis Potosí">San Luis Potosí
+                                                                    <option value="GUA">Guanajuato</option>
+                                                                    <option value="GRO">Guerrero</option>
+                                                                    <option value="HID">Hidalgo</option>
+                                                                    <option value="JAL">Jalisco</option>
+                                                                    <option value="MIC">Michoacán</option>
+                                                                    <option value="MOR">Morelos</option>
+                                                                    <option value="NAY">Nayarit</option>
+                                                                    <option value="NLE">Nuevo León</option>
+                                                                    <option value="OAX">Oaxaca</option>
+                                                                    <option value="PUE">Puebla</option>
+                                                                    <option value="QUE">Querétaro</option>
+                                                                    <option value="ROO">Quintana Roo</option>
+                                                                    <option value="SLP">San Luis Potosí
                                                                     </option>
-                                                                    <option value="Sinaloa">Sinaloa</option>
-                                                                    <option value="Sonora">Sonora</option>
-                                                                    <option value="Tabasco">Tabasco</option>
-                                                                    <option value="Tamaulipas">Tamaulipas</option>
-                                                                    <option value="Tlaxcala">Tlaxcala</option>
-                                                                    <option value="Veracruz">Veracruz</option>
-                                                                    <option value="Yucatán">Yucatán</option>
-                                                                    <option value="Zacatecas">Zacatecas</option>
+                                                                    <option value="SIN">Sinaloa</option>
+                                                                    <option value="SON">Sonora</option>
+                                                                    <option value="TAB">Tabasco</option>
+                                                                    <option value="TAM">Tamaulipas</option>
+                                                                    <option value="TLA">Tlaxcala</option>
+                                                                    <option value="VER">Veracruz</option>
+                                                                    <option value="YUC">Yucatán</option>
+                                                                    <option value="ZAC">Zacatecas</option>
                                                                 </select>
                                                             </div>
 
@@ -283,7 +282,7 @@
                                                     <!-- Cuenta -->
                                                     <div class="my-5 step" data-wizard-type="step-content"
                                                         data-wizard-state="current">
-                                                        <h5 class="text-dark font-weight-bold mb-10">
+                                                        <h5 class="text-dark font-weight-bold my-10">
                                                             Cuenta:
                                                         </h5>
 
@@ -331,10 +330,10 @@
                                                                     <option value="" selected disabled>
                                                                         Seleccionar un rol
                                                                     </option>
-                                                                    <option value="Administrador" disabled>
+                                                                    <option value="ADMIN" disabled>
                                                                         Administrador
                                                                     </option>
-                                                                    <option value="Usuario">
+                                                                    <option value="USER">
                                                                         Usuario
                                                                     </option>
                                                                 </select>
@@ -347,7 +346,7 @@
                                                     <!-- Datos laborales -->
                                                     <div class="my-5 step" data-wizard-type="step-content"
                                                         data-wizard-state="current">
-                                                        <h5 class="text-dark font-weight-bold mb-10">
+                                                        <h5 class="text-dark font-weight-bold my-10">
                                                             Datos laborales:
                                                         </h5>
 
@@ -377,28 +376,31 @@
                                                                     <option value="" selected disabled>
                                                                         Selecciona un grado de escolaridad
                                                                     </option>
-                                                                    <option value="Preescolar o primaria">
+                                                                    <option value="PRESCHOOL">
                                                                         Preescolar o primaria
                                                                     </option>
-                                                                    <option value="Secundaria">
+                                                                    <option value="MIDDLE SCHOOL">
                                                                         Secundaria
                                                                     </option>
-                                                                    <option value="Preparatoria">
+                                                                    <option value="HIGH SCHOOL">
                                                                         Preparatoria
                                                                     </option>
-                                                                    <option value="Carrera tecnica">
+                                                                    <option value="CAREER TECH">
                                                                         Carrera tecnica
                                                                     </option>
-                                                                    <option value="Licenciatura">
+                                                                    <option value="COLLEGE DEGREE">
                                                                         Licenciatura
                                                                     </option>
-                                                                    <option value="Maestria">
+                                                                    <option value="ENGINEERING">
+                                                                        Ingeniería
+                                                                    </option>
+                                                                    <option value="MASTERS DEGREE">
                                                                         Maestria
                                                                     </option>
-                                                                    <option value="Doctorado">
+                                                                    <option value="DOCTORAL DEGREE">
                                                                         Doctorado
                                                                     </option>
-                                                                    <option value="No especificado">
+                                                                    <option value="UNSPECIFIED">
                                                                         No especificado
                                                                     </option>
                                                                 </select>
@@ -419,24 +421,39 @@
                                                         <div class="form-group row">
 
                                                             <div class="col-6">
-                                                                <select required name="job.workAreaId"
-                                                                    [(ngModel)]="employee.job.workAreaId"
+                                                                <select required name="job.workArea.area"
+                                                                    [(ngModel)]="employee.job.workArea.area"
                                                                     class="form-control form-control-solid form-control-lg">
                                                                     <option value="" selected disabled>
                                                                         Selecciona un area de trabajo
                                                                     </option>
+                                                                    <option value="DIRECTION">Dirección</option>
+                                                                    <option value="PURCHASES">Compras</option>
+                                                                    <option value="SALES">Ventas</option>
+                                                                    <option value="QUALITY">Calidad</option>
+                                                                    <option value="CUSTOMER SERVICE">Atención al cliente
+                                                                    </option>
+                                                                    <option value="PRODUCTION">Produccion</option>
                                                                     <option value="IT">IT</option>
                                                                 </select>
                                                             </div>
 
                                                             <div class="col-6">
-                                                                <select required name="job.range"
-                                                                    [(ngModel)]="employee.job.range"
+                                                                <select required name="job.workArea.range"
+                                                                    [(ngModel)]="employee.job.workArea.range"
                                                                     class="form-control form-control-solid form-control-lg">
                                                                     <option value="" selected disabled>
                                                                         Selecciona un rango
                                                                     </option>
-                                                                    <option value="Gerente">Gerente</option>
+                                                                    <option value="MANAGER">Gerente</option>
+                                                                    <option value="ASSISTANT MANAGER">Sub Director
+                                                                    </option>
+                                                                    <option value="ASSISTANT">Asistente</option>
+                                                                    <option value="AUXILIARY">Auxiliar</option>
+                                                                    <option value="SHIFT LEADER">Jefe de turno</option>
+                                                                    <option value="GENERAL ASSISTANT">Ayudante general
+                                                                    </option>
+                                                                    <option value="OPERATOR">Operador</option>
                                                                 </select>
                                                             </div>
 
@@ -483,7 +500,7 @@
                                                             </div>
 
                                                             <div class="col-6">
-                                                                <input required
+                                                                <input type="tel" pattern="\d*"
                                                                     class="form-control form-control-solid form-control-lg"
                                                                     name="job.accountNumber"
                                                                     [(ngModel)]="employee.job.accountNumber" type="text"

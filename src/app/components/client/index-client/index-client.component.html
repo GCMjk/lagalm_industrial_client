@@ -34,17 +34,17 @@
                             <div class="card-header flex-wrap border-0 pt-6 pb-0">
                                 <div class="card-title">
                                     <h3 class="card-label">
-                                        Empleados
+                                        Clientes
                                         <span class="text-muted pt-2 font-size-sm d-block">
-                                            Listado de todos los empleados
+                                            Listado de todos los clientes
                                         </span>
                                     </h3>
                                 </div>
                                 <div class="card-toolbar">
                                     <!--begin::Button-->
 
-                                    <a class="btn btn-info" [routerLink]="['/employee/create']">
-                                        Nuevo empleado
+                                    <a class="btn btn-info" [routerLink]="['/client/create']">
+                                        Nuevo cliente
                                     </a>
 
                                     <!--end::Button-->
@@ -60,7 +60,7 @@
                                                 <div class="col-md-6 my-2 my-md-0">
                                                     <div class="input-group">
                                                         <input type="text" class="form-control"
-                                                            placeholder="Buscar un empleado..." name="filter"
+                                                            placeholder="Buscar un cliente..." name="filter"
                                                             [(ngModel)]="filter">
                                                         <div class="input-group-append">
                                                             <button class="btn btn-primary" type="button"
@@ -84,11 +84,11 @@
                                                 <thead>
                                                     <tr class="text-left text-uppercase">
                                                         <th style="min-width: 250px" class="pl-7">
-                                                            <span class="text-dark-75">Nombres</span>
+                                                            <span class="text-dark-75">Nombre</span>
                                                         </th>
-                                                        <th style="min-width: 100px">Correo</th>
-                                                        <th style="min-width: 100px">Ultima sesión</th>
-                                                        <th style="min-width: 100px">Area</th>
+                                                        <th style="min-width: 100px">Giro</th>
+                                                        <th style="min-width: 100px">Contacto</th>
+                                                        <th style="min-width: 100px">Facturación</th>
 
                                                         <th style="min-width: 80px"></th>
                                                     </tr>
@@ -107,85 +107,60 @@
                                                     </tbody>
                                                 </ng-container>
                                                 <ng-container *ngIf="!loadData">
-                                                    <tbody *ngIf="employees.length >= 1">
-                                                        <tr *ngFor="let employee of employees">
+                                                    <tbody *ngIf="clients.length >= 1">
+                                                        <tr *ngFor="let client of clients">
                                                             <td class="pl-0 py-5">
                                                                 <div class="d-flex align-items-center">
                                                                     <div
                                                                         class="symbol symbol-40 flex-shrink-0 symbol-success mr-3">
                                                                         <div class="symbol-label">
-                                                                            {{employee.name.substr(0,1)}}{{employee.lastname.substr(0,1)}}
+                                                                            {{client.legalName.substr(0,1)}}
                                                                         </div>
                                                                     </div>
                                                                     <div>
-                                                                        <a [routerLink]="['/employee', employee._id]"
+                                                                        <a [routerLink]="['/client', client._id]"
                                                                             class="text-primary font-weight-bolder text-hover-primary mb-1 font-size-lg">
-                                                                            {{employee.fullnames}}
+                                                                            {{client.legalName}}
                                                                         </a>
                                                                         <span
                                                                             class="text-muted font-weight-bold d-block">
-                                                                            # {{employee.job.employeeNumber}}
+                                                                            {{client.type === 'PROSPECT' ? 'Prospecto' :
+                                                                            'Cliente'}} - <span
+                                                                                [ngClass]="{'text-success': client.status, 'text-danger': !client.status}">{{client.status
+                                                                                ? 'Activo' :
+                                                                                'Inactivo'}}</span>
                                                                         </span>
                                                                     </div>
                                                                 </div>
                                                             </td>
                                                             <td>
                                                                 <span
-                                                                    class="text-dark-75 font-weight-bolder d-block font-size-lg">{{employee.email}}</span>
-                                                                <span class="text-muted font-weight-bold">Correo</span>
+                                                                    class="text-dark-75 font-weight-bolder d-block font-size-lg">{{client.bussinessActivity.activity
+                                                                    === 'INDUSTRIAL' ? 'INDUSTRIAL' :
+                                                                    client.bussinessActivity.activity === 'COMMERCIAL' ?
+                                                                    'COMERCIAL' : 'DE SERVICIOS'}}</span>
+                                                                <span
+                                                                    class="text-muted font-weight-bold">{{client.bussinessActivity.description}}</span>
                                                             </td>
                                                             <td>
                                                                 <span
-                                                                    class="text-dark-75 font-weight-bolder d-block font-size-lg">
-                                                                    {{employee.lastSession === '' ? 'No ha iniciado
-                                                                    sesión':
-                                                                    employee.lastSession}}
-                                                                </span>
+                                                                    class="text-dark-75 font-weight-bolder d-block font-size-lg">{{client.contact.email}}</span>
                                                                 <span
-                                                                    [ngClass]="{'text-success': employee.status, 'text-danger': !employee.status}"
-                                                                    class="font-weight-bold">
-                                                                    {{employee.status ? 'Activo': 'Inactivo'}}
-                                                                </span>
+                                                                    class="text-muted font-weight-bold">{{client.contact.phone
+                                                                    ? client.contact.phone : 'No hay registro de
+                                                                    telefono'}}</span>
                                                             </td>
                                                             <td>
                                                                 <span
-                                                                    class="text-dark-75 font-weight-bolder d-block font-size-lg">{{
-                                                                    employee.job.workArea[0].area === 'DIRECTION'
-                                                                    ? 'DIRECCION'
-                                                                    : employee.job.workArea[0].area === 'PURCHASES'
-                                                                    ? 'COMPRAS'
-                                                                    : employee.job.workArea[0].area === 'SALES'
-                                                                    ? 'VENTAS'
-                                                                    : employee.job.workArea[0].area === 'QUALITY'
-                                                                    ? 'CALIDAS'
-                                                                    : employee.job.workArea[0].area === 'CUSTOMER
-                                                                    SERVICE'
-                                                                    ? 'ATENCION AL CLIENTE'
-                                                                    : employee.job.workArea[0].area === 'PRODUCTION'
-                                                                    ? 'PRODUCCION'
-                                                                    : employee.job.workArea[0].area === 'IT'
-                                                                    ? 'IT'
-                                                                    : 'OTRO'
-                                                                    }}</span>
-                                                                <span class="text-muted font-weight-bold">{{
-                                                                    employee.job.workArea[0].range === 'MANAGER'
-                                                                    ? 'GERENTE'
-                                                                    : employee.job.workArea[0].range === 'ASSISTANT
-                                                                    MANAGER'
-                                                                    ? 'SUBGERENTE'
-                                                                    : employee.job.workArea[0].range === 'ASSISTANT'
-                                                                    ? 'ASISTENTE'
-                                                                    : employee.job.workArea[0].range === 'AUXILIARY'
-                                                                    ? 'AUXILIAR'
-                                                                    : employee.job.workArea[0].range === 'SHIFT LEADER'
-                                                                    ? 'JEFE DE TURNO'
-                                                                    : employee.job.workArea[0].range === 'GENERAL
-                                                                    ASSISTANT'
-                                                                    ? 'ASISTENTE GENERAL'
-                                                                    : employee.job.workArea[0].range === 'OPERATOR'
-                                                                    ? 'OPERADOR'
-                                                                    : 'OTRO'
-                                                                    }}</span>
+                                                                    class="text-dark-75 font-weight-bolder d-block font-size-lg">{{client.type
+                                                                    === 'CLIENT'
+                                                                    ? client.taxId : 'No hay informacion de
+                                                                    facturación'}}</span>
+                                                                <span class="text-muted font-weight-bold">{{client.type
+                                                                    === 'CLIENT' ?
+                                                                    client.address.city
+                                                                    + ' ' + client.address.country : 'Es un
+                                                                    prospecto'}}</span>
                                                             </td>
 
 
@@ -200,36 +175,23 @@
                                                                     </button>
                                                                     <div class="dropdown-menu">
                                                                         <a class="dropdown-item"
-                                                                            [routerLink]="['/employee', employee._id]">
+                                                                            [routerLink]="['/client', client._id]">
                                                                             <i
                                                                                 class="icon-1x text-info flaticon-edit"></i>
                                                                             &nbsp; Editar
                                                                         </a>
                                                                         <a class="dropdown-item"
-                                                                            style="cursor: pointer;"
-                                                                            *ngIf="employee.status" data-toggle="modal"
-                                                                            [attr.data-target]="'#delete-'+employee._id">
-                                                                            <i
-                                                                                class="icon-1x text-danger flaticon2-cross"></i>
-                                                                            &nbsp; Desactivar
+                                                                            style="cursor: pointer;" data-toggle="modal"
+                                                                            [attr.data-target]="'#delete-'+client._id">
+                                                                            <i class="icon-1x"
+                                                                                [ngClass]="{'text-danger flaticon2-cross': client.status, 'text-success flaticon2-check-mark': !client.status}"></i>
+                                                                            &nbsp; {{ client.status ? 'Desactivar' :
+                                                                            'Activar'}}
                                                                         </a>
-                                                                        <a class="dropdown-item"
-                                                                            style="cursor: pointer;"
-                                                                            *ngIf="!employee.status" data-toggle="modal"
-                                                                            [attr.data-target]="'#delete-'+employee._id">
-                                                                            <i
-                                                                                class="icon-1x text-success flaticon2-check-mark"></i>
-                                                                            &nbsp; Activar
-                                                                        </a>
-                                                                        <!-- <a class="dropdown-item">
-                                                                                                                            <i
-                                                                                                                                class="icon-1x text-dark-50 flaticon-edit"></i>
-                                                                                                                            &nbsp; Item 2
-                                                                                                                        </a> -->
                                                                     </div>
                                                                 </div>
 
-                                                                <div class="modal fade" id="delete-{{employee._id}}"
+                                                                <div class="modal fade" id="delete-{{client._id}}"
                                                                     tabindex="-1" role="dialog"
                                                                     aria-labelledby="exampleModalLabel"
                                                                     aria-hidden="true">
@@ -238,7 +200,7 @@
                                                                             <div class="modal-header">
                                                                                 <h5 class="modal-title"
                                                                                     id="exampleModalLabel">
-                                                                                    Cambiar estado del empleado
+                                                                                    Cambiar estado del cliente
                                                                                 </h5>
                                                                                 <button type="button" class="close"
                                                                                     data-dismiss="modal"
@@ -253,10 +215,10 @@
                                                                                     desea
                                                                                     cambiar el estado
                                                                                     del
-                                                                                    empleado?</p>
+                                                                                    cliente?</p>
                                                                                 <p class="text-muted">Esta accion
                                                                                     impedira
-                                                                                    que el empleado
+                                                                                    que el cliente
                                                                                     logre acceder a la plataforma, no se
                                                                                     borraran sus datos.</p>
                                                                             </div>
@@ -266,10 +228,10 @@
                                                                                     data-dismiss="modal">Cerrar</button>
                                                                                 <button type="button"
                                                                                     *ngIf="!loadStatus"
-                                                                                    (click)="setStatus(employee._id, employee.status)"
+                                                                                    (click)="setStatus(client._id, client.status)"
                                                                                     class="btn font-weight-bold"
-                                                                                    [ngClass]="{'btn-danger': employee.status, 'btn-success': !employee.status}">
-                                                                                    {{employee.status ? 'Desactivar' :
+                                                                                    [ngClass]="{'btn-danger': client.status, 'btn-success': !client.status}">
+                                                                                    {{client.status ? 'Desactivar' :
                                                                                     'Activar'}}
                                                                                 </button>
 
@@ -289,9 +251,8 @@
 
                                                             </td>
                                                         </tr>
-
                                                     </tbody>
-                                                    <tbody *ngIf="employees.length == 0">
+                                                    <tbody *ngIf="clients.length == 0">
                                                         <tr>
                                                             <td class="text-center" colspan="5">
                                                                 <p
@@ -321,12 +282,12 @@
                                 <div class="col align-self-end">
                                     <ul class="pagination justify-content-end">
                                         <li class="page-item mr-2" [ngClass]="{disabled: page === 1}">
-                                            <a class="page-link" [routerLink]="['/employees', prevPage]">
+                                            <a class="page-link" [routerLink]="['/clients', prevPage]">
                                                 Previous
                                             </a>
                                         </li>
                                         <li class="page-item ml-2" [ngClass]="{disabled: page === pages}">
-                                            <a class="page-link" [routerLink]="['/employees', nextPage]">
+                                            <a class="page-link" [routerLink]="['/clients', nextPage]">
                                                 Next
                                             </a>
                                         </li>

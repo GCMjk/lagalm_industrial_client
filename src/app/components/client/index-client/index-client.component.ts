@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { EmployeeService } from 'src/app/services/employee.service';
+import { ClientService } from 'src/app/services/client.service';
 declare var $: any;
 
 @Component({
-  selector: 'app-index-employee',
-  templateUrl: './index-employee.component.html',
-  styleUrls: ['./index-employee.component.scss']
+  selector: 'app-index-client',
+  templateUrl: './index-client.component.html',
+  styleUrls: ['./index-client.component.scss']
 })
-export class IndexEmployeeComponent implements OnInit {
+export class IndexClientComponent implements OnInit {
 
   public token = localStorage.getItem('token');
-  public employees: Array<any> = [];
-  public employeesSearch: Array<any> = [];
+  public clients: Array<any> = [];
+  public clientsSearch: Array<any> = [];
 
   public itemsPerPage = 1;
   public total = 1;
@@ -26,7 +26,7 @@ export class IndexEmployeeComponent implements OnInit {
   public loadData = false;
 
   constructor(
-    private _employeeService: EmployeeService,
+    private _clientService: ClientService,
     private _route: ActivatedRoute
   ) {
 
@@ -36,10 +36,10 @@ export class IndexEmployeeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getEmployees();
+    this.getClients();
   }
 
-  getEmployees() {
+  getClients() {
     this._route.params.forEach((params: Params) => {
       let page = +params['page'];
       this.page = page;
@@ -54,13 +54,13 @@ export class IndexEmployeeComponent implements OnInit {
         }
       }
 
-      this._employeeService.getEmployees(this.token, page).subscribe(
+      this._clientService.getClients(this.token, page).subscribe(
         response => {
           this.itemsPerPage = response.itemsPerPage;
           this.total = response.total;
           this.pages = response.pages;
-          this.employees = response.employees;
-          this.employeesSearch = this.employees;
+          this.clients = response.clients;
+          this.clientsSearch = this.clients;
         }
       )
 
@@ -71,20 +71,20 @@ export class IndexEmployeeComponent implements OnInit {
     if (this.filter) {
       this.loadData = true;
       const term = new RegExp(this.filter, 'i');
-      this.employees = this.employeesSearch.filter(employee => term.test(employee.fullnames) || term.test(employee.job.employeeNumber) || term.test(employee.email) || term.test(employee.job.workAreaId));
+      this.clients = this.clientsSearch.filter(client => term.test(client.legalName) || term.test(client.bussinessActivity.activity) || term.test(client.email) || term.test(client.contact.email) || term.test(client.taxId));
       this.loadData = false;
     } else {
-      this.employees = this.employeesSearch;
+      this.clients = this.clientsSearch;
     }
   }
 
   setStatus(id: any, status: any) {
     this.loadStatus = true;
-    this._employeeService.editStatusEmployee(id, { status }, this.token).subscribe(
+    this._clientService.editStatusClient(id, { status }, this.token).subscribe(
       response => {
         this.loadStatus = false;
         $('#delete-' + id).modal('hide');
-        this.getEmployees();
+        this.getClients();
       }
     );
   }

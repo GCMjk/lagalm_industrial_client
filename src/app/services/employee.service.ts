@@ -34,6 +34,11 @@ export class EmployeeService {
     return this._http.get(this.url + 'employees/' + page, { headers: headers })
   }
 
+  getEmployeesById(token: any, filter: any, page: number): Observable<any> {
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': token });
+    return this._http.get(this.url + 'employees/search/' + filter + '/' + page, { headers: headers })
+  }
+
   editStatusEmployee(id: any, status: any, token: any): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': token });
     return this._http.put(this.url + 'employee/status/' + id, status, { headers: headers })
