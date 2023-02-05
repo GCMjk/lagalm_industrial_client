@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { EmployeeService } from '../../../core/services/employee.service';
+import { EmployeeService } from 'src/app/@erp/core/services/employee.service';
 declare var $: any;
 
 @Component({

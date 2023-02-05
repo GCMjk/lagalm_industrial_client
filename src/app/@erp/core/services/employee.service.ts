@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { GLOBAL } from "../../../constants/global";
+import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
 
-  public url = GLOBAL.url;
+  public url = environment.url;
 
   constructor(
     private _http: HttpClient

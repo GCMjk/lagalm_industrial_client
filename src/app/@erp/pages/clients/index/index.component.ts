@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { ClientService } from 'src/app/services/client.service';
+import { ClientService } from 'src/app/@erp/core/services/client.service';
 declare var $: any;
 
 @Component({
-  selector: 'app-index-client',
-  templateUrl: './index-client.component.html',
-  styleUrls: ['./index-client.component.scss']
+  selector: 'app-index',
+  templateUrl: './index.component.html',
+  styleUrls: ['./index.component.scss']
 })
-export class IndexClientComponent implements OnInit {
+export class IndexComponent implements OnInit {
 
   public token = localStorage.getItem('token');
   public clients: Array<any> = [];

@@ -1,16 +1,17 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { ClientService } from 'src/app/services/client.service';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ClientService } from 'src/app/@erp/core/services/client.service';
 
 declare var $: any;
 
 @Component({
-  selector: 'app-create-client',
-  templateUrl: './create-client.component.html',
-  styleUrls: ['./create-client.component.scss']
+  selector: 'app-edit',
+  templateUrl: './edit.component.html',
+  styleUrls: ['./edit.component.scss']
 })
-export class CreateClientComponent {
+export class EditComponent implements OnInit {
 
+  public id = '';
   public client: any = {
     legalName: '',
     bussinessActivity: {
@@ -43,23 +44,45 @@ export class CreateClientComponent {
     type: '',
   }
 
-  public btnRegister = false;
+  public btnEdit = false;
   public token: any = localStorage.getItem('token');
+  public loadData = false;
+  public data = false;
 
   constructor(
     private _clientService: ClientService,
-    private _router: Router
+    private _router: Router,
+    private _route: ActivatedRoute
   ) {
 
   }
 
-  register(registerForm: any) {
-    console.log(registerForm)
-    if (registerForm.valid) {
-      this.btnRegister = true;
-      this._clientService.registerClient(this.client, this.token).subscribe(
+  ngOnInit(): void {
+    this._route.params.subscribe(
+      params => {
+        this.id = params['id'];
+        this.loadData = true;
+        this._clientService.getClient(this.id, this.token).subscribe(
+          response => {
+            if (response.client != undefined) {
+              this.client = response.client;
+              this.data = true;
+              this.loadData = false;
+            } else {
+              this.data = false;
+              this.loadData = false;
+            }
+          }
+        )
+      }
+    )
+  }
+
+  edit(editForm: any) {
+    if (editForm.valid) {
+      this.btnEdit = true;
+      this._clientService.editClient(this.id, this.client, this.token).subscribe(
         response => {
-          console.log(this.client)
           if (response.client === undefined) {
             $.notify(response.message, {
               type: 'danger',
@@ -75,9 +98,9 @@ export class CreateClientComponent {
                 exit: 'animated ' + 'bounce'
               }
             });
-            this.btnRegister = false;
+            this.btnEdit = false;
           } else {
-            this.btnRegister = false;
+            this.btnEdit = false;
             $.notify(response.message, {
               type: 'success',
               spacing: 10,
@@ -113,4 +136,5 @@ export class CreateClientComponent {
       });
     }
   }
+
 }

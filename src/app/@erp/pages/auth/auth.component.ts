@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
-import { EmployeeService } from 'src/app/services/employee.service';
+import { EmployeeService } from 'src/app/@erp/core/services/employee.service';
 declare var $: any;
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-auth',
+  templateUrl: './auth.component.html',
+  styleUrls: ['./auth.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class AuthComponent implements OnInit {
 
   public user: any = {
     email: '',
