@@ -1,0 +1,27 @@
+<div class="d-flex flex-column flex-root">
+    <div class="d-flex flex-row flex-column-fluid page">
+
+        <app-side-bar></app-side-bar>
+
+        <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+            
+            <app-navigation></app-navigation>
+            
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                
+                <app-header [title]="'A'"></app-header>
+
+                <div class="d-flex flex-column-fluid">
+                    <div class="container">
+
+                        <router-outlet></router-outlet>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- <app-footer></app-footer> -->
+            
+        </div>
+    </div>
+</div>

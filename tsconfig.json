@@ -4,6 +4,20 @@
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
+    "paths": {
+      "@erp/*": [
+        "src/app/@erp/*"
+      ],
+      "@erp-core/*": [
+        "src/app/@erp/core/*"
+      ],
+      "@erp-modules/*": [
+        "src/app/@erp/modules/*"
+      ],
+      "@erp-shared/*": [
+        "src/app/@erp/shared/*"
+      ],
+    },
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitOverride": true,

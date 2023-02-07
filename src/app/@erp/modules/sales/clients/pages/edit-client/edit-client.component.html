@@ -1,0 +1,380 @@
+<ng-container *ngIf="!loadData">
+    <ng-container *ngIf="data">
+        <div class="card card-custom card-shadowless rounded-top-0">
+            <!--begin::Body-->
+            <div class="card-header border-0 pt-5">
+                <h3 class="card-title align-items-start flex-column">
+                    <span class="card-label font-weight-bolder text-dark">
+                        Editar cliente
+                    </span>
+                    <span class="text-muted mt-3 font-weight-bold font-size-sm">
+                        Formulario de un cliente / prospecto.
+                    </span>
+                </h3>
+                <div class="card-toolbar">
+                    <a class="btn btn-primary" [routerLink]="['../..', '1']">Regresar</a>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <div class="row justify-content-center py-8 px-8 py-lg-15 px-lg-10">
+                    <div class="col-xl-12 col-xxl-10">
+                        <!--begin::Wizard Form-->
+                        <form class="form" id="kt_form" #editForm="ngForm"
+                            (ngSubmit)="edit(editForm)">
+                            <div class="row justify-content-center">
+                                <div class="col-xl-9">
+
+                                    <!-- Datos de la empresa -->
+                                    <div class="my-5 step" data-wizard-type="step-content"
+                                        data-wizard-state="current">
+                                        <h5 class="text-dark font-weight-bold my-8">
+                                            Datos de la empresa:
+                                        </h5>
+
+                                        <div class="form-group row ">
+
+                                            <div class="col-8">
+                                                <input required
+                                                    class="form-control form-control-solid form-control-lg"
+                                                    name="legalName"
+                                                    [(ngModel)]="client.legalName" type="text"
+                                                    placeholder="Nombre de la empresa" />
+                                            </div>
+
+                                            <div class="col-4">
+                                                <select required name="type"
+                                                    [(ngModel)]="client.type"
+                                                    class="form-control form-control-solid form-control-lg">
+                                                    <option value="" selected disabled>
+                                                        Estado
+                                                    </option>
+                                                    <option value="PROSPECT">Prospecto</option>
+                                                    <option value="CLIENT">Cliente</option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group row">
+
+                                            <div class="col-5">
+                                                <select required
+                                                    name="bussinessActivity.activity"
+                                                    [(ngModel)]="client.bussinessActivity.activity"
+                                                    class="form-control form-control-solid form-control-lg">
+                                                    <option value="" selected disabled>
+                                                        Selecciona un giro empresarial
+                                                    </option>
+                                                    <option value="INDUSTRIAL">Industrial
+                                                    </option>
+                                                    <option value="COMMERCIAL">Comercial
+                                                    </option>
+                                                    <option value="SERVICE">De Servicios
+                                                    </option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-7">
+                                                <input required
+                                                    class="form-control form-control-solid form-control-lg"
+                                                    name="bussinessActivity.description"
+                                                    [(ngModel)]="client.bussinessActivity.description"
+                                                    type="text"
+                                                    placeholder="Descripción del giro" />
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-12">
+                                                <input required
+                                                    class="form-control form-control-solid form-control-lg"
+                                                    name="contact.email"
+                                                    [(ngModel)]="client.contact.email"
+                                                    type="text" placeholder="Correo" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-6">
+                                                <input
+                                                    class="form-control form-control-solid form-control-lg"
+                                                    name="contact.phone"
+                                                    [(ngModel)]="client.contact.phone"
+                                                    type="text" placeholder="Teléfono" />
+                                            </div>
+                                            <div class="col-6">
+                                                <input
+                                                    class="form-control form-control-solid form-control-lg"
+                                                    name="contact.web"
+                                                    [(ngModel)]="client.contact.web" type="text"
+                                                    placeholder="URL de página web (opcional)" />
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-- Datos de la empresa -->
+                                    <!-- Información de facturación -->
+                                    <div class="my-5 step" data-wizard-type="step-content"
+                                        data-wizard-state="current"
+                                        *ngIf="client.type === 'CLIENT'">
+                                        <h5 class="text-dark font-weight-bold my-8">
+                                            Datos de facturación:
+                                        </h5>
+
+                                        <div class="form-group row">
+
+                                            <div class="col-5">
+                                                <input
+                                                    class="form-control form-control-solid form-control-lg"
+                                                    name="taxId" [(ngModel)]="client.taxId"
+                                                    type="text" placeholder="RFC / Tax ID" />
+                                            </div>
+
+                                            <div class="col-7">
+                                                <select name="taxSystem"
+                                                    [(ngModel)]="client.taxSystem"
+                                                    class="form-control form-control-solid form-control-lg">
+                                                    <option value="" selected>
+                                                        Seleccionar un regimen fiscal (Para
+                                                        clientes
+                                                        nacionales)
+                                                    </option>
+                                                    <option value="601">601 - General de Ley
+                                                        Personas
+                                                        Morales</option>
+                                                    <option value="603">603 - Personas Morales
+                                                        con Fines
+                                                        no Lucrativos</option>
+                                                    <option value="605">605 - Sueldos y Salarios
+                                                        e
+                                                        Ingresos Asimilados a Salarios</option>
+                                                    <option value="606">606 - Arrendamiento
+                                                    </option>
+                                                    <option value="607">607 - Régimen de
+                                                        Enajenación o
+                                                        Adquisición de Bienes</option>
+                                                    <option value="608">608 - Demás ingresos
+                                                    </option>
+                                                    <option value="610">610 - Residentes en el
+                                                        Extranjero sin Establecimiento
+                                                        Permanente en
+                                                        México</option>
+                                                    <option value="611">611 - Ingresos por
+                                                        Dividendos
+                                                        (socios y accionistas)</option>
+                                                    <option value="612">612 - Personas Físicas
+                                                        con
+                                                        Actividades Empresariales y
+                                                        Profesionales
+                                                    </option>
+                                                    <option value="614">614 - Ingresos por
+                                                        intereses
+                                                    </option>
+                                                    <option value="615">615 - Régimen de los
+                                                        ingresos
+                                                        por obtención de premios</option>
+                                                    <option value="616">616 - Sin obligaciones
+                                                        fiscales
+                                                    </option>
+                                                    <option value="620">620 - Sociedades
+                                                        Cooperativas de
+                                                        Producción que optan por diferir sus
+                                                        ingresos
+                                                    </option>
+                                                    <option value="621">621 - Incorporación
+                                                        Fiscal
+                                                    </option>
+                                                    <option value="622">622 - Actividades
+                                                        Agrícolas,
+                                                        Ganaderas, Silvícolas y Pesqueras
+                                                    </option>
+                                                    <option value="623">623 - Opcional para
+                                                        Grupos de
+                                                        Sociedades</option>
+                                                    <option value="624">624 - Coordinados
+                                                    </option>
+                                                    <option value="625">625 - Régimen de las
+                                                        Actividades
+                                                        Empresariales con ingresos a través de
+                                                        Plataformas Tecnológicas</option>
+                                                    <option value="626">626 - Régimen
+                                                        Simplificado de
+                                                        Confianza</option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-12">
+                                                <input
+                                                    class="form-control form-control-solid form-control-lg"
+                                                    name="taxEmail"
+                                                    [(ngModel)]="client.taxEmail" type="text"
+                                                    placeholder="Correo para facturación" />
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-- Información de facturación -->
+                                    <!-- Dirección -->
+                                    <div class="my-5 step" data-wizard-type="step-content"
+                                        data-wizard-state="current"
+                                        *ngIf="client.type === 'CLIENT'">
+                                        <h5 class=" text-dark font-weight-bold my-8">
+                                            Dirección:
+                                        </h5>
+
+                                        <div class="form-group row">
+
+                                            <div class="col-5">
+                                                <input
+                                                    class="form-control form-control-solid form-control-lg"
+                                                    name="address.street"
+                                                    [(ngModel)]="client.address!.street"
+                                                    type="text" placeholder="Calle" />
+                                            </div>
+
+                                            <div class="col-3">
+                                                <input
+                                                    class="form-control form-control-solid form-control-lg"
+                                                    name="address.exterior"
+                                                    [(ngModel)]="client.address!.exterior"
+                                                    type="text" placeholder="No. exterior" />
+                                            </div>
+
+                                            <div class="col-4">
+                                                <input
+                                                    class="form-control form-control-solid form-control-lg"
+                                                    name="address.interior"
+                                                    [(ngModel)]="client.address!.interior"
+                                                    type="text"
+                                                    placeholder="No. interior (opcional)" />
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group row">
+
+                                            <div class="col-6">
+                                                <input
+                                                    class="form-control form-control-solid form-control-lg"
+                                                    name="address.neighborhood"
+                                                    [(ngModel)]="client.address!.neighborhood"
+                                                    type="text" placeholder="Colonia" />
+                                            </div>
+
+                                            <div class="col-6">
+                                                <input
+                                                    class="form-control form-control-solid form-control-lg"
+                                                    name="address.city"
+                                                    [(ngModel)]="client.address!.city"
+                                                    type="text" placeholder="Ciudad" />
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group row">
+
+                                            <div class="col-6">
+                                                <input
+                                                    class="form-control form-control-solid form-control-lg"
+                                                    name="address.municipality"
+                                                    [(ngModel)]="client.address!.municipality"
+                                                    type="text" placeholder="Municipio" />
+                                            </div>
+
+                                            <div class="col-6">
+                                                <input
+                                                    class="form-control form-control-solid form-control-lg"
+                                                    name="address.state"
+                                                    [(ngModel)]="client.address!.state"
+                                                    type="text" placeholder="Estado" />
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group row">
+
+                                            <div class="col-8">
+                                                <input
+                                                    class="form-control form-control-solid form-control-lg"
+                                                    name="address.country"
+                                                    [(ngModel)]="client.address!.country"
+                                                    type="text" placeholder="País" value="" />
+                                            </div>
+
+                                            <div class="col-4">
+                                                <input
+                                                    class="form-control form-control-solid form-control-lg"
+                                                    name="address.zip"
+                                                    [(ngModel)]="client.address!.zip" type="text"
+                                                    placeholder="Codigo postal" />
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group row">
+
+                                            <div class="col-6">
+                                                <input
+                                                    class="form-control form-control-solid form-control-lg"
+                                                    name="address.streets.a"
+                                                    [(ngModel)]="client.address!.streets.a"
+                                                    type="text"
+                                                    placeholder="Entre calle (opcional)" />
+                                            </div>
+
+                                            <div class="col-6">
+                                                <input
+                                                    class="form-control form-control-solid form-control-lg"
+                                                    name="address.streets.b"
+                                                    [(ngModel)]="client.address!.streets.b"
+                                                    type="text"
+                                                    placeholder="y calle (opcional)" />
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <!-- Dirección -->
+
+
+
+                                    <!--begin::Wizard Actions-->
+                                    <div
+                                        class="d-flex justify-content-between border-top pt-10 mt-15">
+                                        <div class="mr-2">
+                                            <a class="btn btn-light-primary font-weight-bolder px-9 py-4"
+                                                data-wizard-type="action-prev"
+                                                [routerLink]="['../..', '1']">
+                                                Regresar
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <button class="btn btn-success" type="submit">
+                                                <span *ngIf="btnEdit"
+                                                    class="spinner-border spinner-border-sm mr-2"
+                                                    role="status" aria-hidden="true"></span>
+                                                Registrar cliente
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!--end::Wizard Actions-->
+                                </div>
+                            </div>
+                        </form>
+                        <!--end::Wizard Form-->
+                    </div>
+                </div>
+            </div>
+            <!--end::Body-->
+        </div>
+    </ng-container>
+    <ng-container *ngIf="!data">
+        <div class="col-12">
+            <!-- <app-not-found></app-not-found> -->
+        </div>
+    </ng-container>
+</ng-container>

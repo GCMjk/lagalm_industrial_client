@@ -7,7 +7,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { ErpModule } from './@erp/pages/erp.module';
+import { ErpModule } from '@erp/erp.module';
 import { PublicModule } from './@public/pages/public.module';
 
 @NgModule({
