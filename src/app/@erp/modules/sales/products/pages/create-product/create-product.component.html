@@ -1,1 +1,171 @@
-<p>create-product works!</p>
+<div class="card card-custom card-shadowless rounded-top-0">
+    <!--begin::Body-->
+    <div class="card-header border-0 pt-5">
+        <h3 class="card-title align-items-start flex-column">
+            <span class="card-label font-weight-bolder text-dark">
+                Nuevo producto
+            </span>
+            <span class="text-muted mt-3 font-weight-bold font-size-sm">
+                Formulario de un nuevo producto.
+            </span>
+        </h3>
+        <div class="card-toolbar">
+            <a class="btn btn-primary" [routerLink]="['../..', '1']">Regresar</a>
+        </div>
+    </div>
+    <div class="card-body p-0">
+        <div class="row justify-content-center py-8 px-8 py-lg-15 px-lg-10">
+            <div class="col-xl-12 col-xxl-10">
+                <!--begin::Wizard Form-->
+                <form class="form" id="kt_form" #registerForm="ngForm"
+                    (ngSubmit)="register(registerForm)">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-9">
+
+                            <!-- Datos del producto -->
+                            <div class="my-5 step" data-wizard-type="step-content"
+                                data-wizard-state="current">
+                                <h5 class="text-dark font-weight-bold my-8">
+                                    Datos del producto:
+                                </h5>
+
+                                <div class="form-group row">
+
+                                    <div class="col-8">
+                                        <input required
+                                            class="form-control form-control-solid form-control-lg"
+                                            name="description" [(ngModel)]="product.description"
+                                            type="text" placeholder="Nombre del producto" />
+                                    </div>
+
+                                    <div class="col-4">
+                                        <input required
+                                            class="form-control form-control-solid form-control-lg"
+                                            name="sku" [(ngModel)]="product.sku"
+                                            type="text" placeholder="SKU" />
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-6">
+                                        <input required
+                                            class="form-control form-control-solid form-control-lg"
+                                            name="client" [(ngModel)]="product.client"
+                                            type="text" placeholder="Cliente" />
+                                    </div>
+
+                                    <div class="col-6">
+                                        <input required
+                                            class="form-control form-control-solid form-control-lg"
+                                            name="customerPart" [(ngModel)]="product.customerPart"
+                                            type="text" placeholder="Numero de parte" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-7">
+                                        <input
+                                            required
+                                            class="form-control form-control-solid form-control-lg"
+                                            name="price.price"
+                                            [(ngModel)]="product.price.price" type="text"
+                                            placeholder="Precio" />
+                                    </div>
+                                    <div class="col-5">
+                                        <select required name="price.currency"
+                                            [(ngModel)]="product.price.currency"
+                                            class="form-control form-control-solid form-control-lg">
+                                            <option value="" selected disabled>
+                                                Selecciona una moneda
+                                            </option>
+                                            <option value="USD">USD - Dolares Estadounidenses</option>
+                                            <option value="MXN">MXN - Pesos Mexicanos</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-6">
+                                        <select required name="productKey"
+                                            [(ngModel)]="product.productKey"
+                                            class="form-control form-control-solid form-control-lg">
+                                            <option value="" selected disabled>
+                                                Selecciona una clave de producto
+                                            </option>
+                                            <option value="31141501">31141501 - Molduras por inyección de plástico</option>
+                                            <option value="84111506">84111506 - Servicios de facturación</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <select required name="taxability"
+                                            [(ngModel)]="product.taxability"
+                                            class="form-control form-control-solid form-control-lg">
+                                            <option value="" selected disabled>
+                                                Selecciona un codigo de servicio
+                                            </option>
+                                            <option value="01">01 - No objeto de impuesto</option>
+                                            <option value="02">02 - Sí objeto de impuesto</option>
+                                            <option value="03">03 - Sí objeto de impuesto, pero no obligado a desglose</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-6">
+                                        <select required name="unitKey"
+                                            [(ngModel)]="product.unitKey"
+                                            class="form-control form-control-solid form-control-lg">
+                                            <option value="" selected disabled>
+                                                Selecciona la unidad de medida
+                                            </option>
+                                            <option value="EA">EA - Elemento</option>
+                                            <option value="H87">H87 - Pieza</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <input
+                                            required
+                                            class="form-control form-control-solid form-control-lg"
+                                            name="unitName"
+                                            [(ngModel)]="product.unitName" type="text"
+                                            placeholder="Nombre de la unidad" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    Asignado
+                                    <input required type="checkbox" name="assigned" [(ngModel)]="product.assigned"  >
+                                </div>
+
+                            </div>
+    
+                            <!--begin::Wizard Actions-->
+                            <div class="d-flex justify-content-between border-top pt-10 mt-15">
+                                <div class="mr-2">
+                                    <a class="btn btn-light-primary font-weight-bolder px-9 py-4"
+                                        data-wizard-type="action-prev"
+                                        [routerLink]="['../..', '1']">
+                                        Regresar
+                                    </a>
+                                </div>
+                                <div>
+                                    <button class="btn btn-success" type="submit">
+                                        <span *ngIf="btnRegister"
+                                            class="spinner-border spinner-border-sm mr-2"
+                                            role="status" aria-hidden="true"></span>
+                                        Registrar producto
+                                    </button>
+                                </div>
+                            </div>
+                            <!--end::Wizard Actions-->
+                        </div>
+                    </div>
+                </form>
+                <!--end::Wizard Form-->
+            </div>
+        </div>
+    </div>
+    <!--end::Body-->
+</div>

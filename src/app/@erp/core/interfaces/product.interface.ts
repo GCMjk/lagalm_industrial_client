@@ -5,15 +5,15 @@ export interface IProduct {
     customerPart: string;
     productKey?: string;
     price: {
-        currency: "USD" | "MXN";
+        currency: "" | "USD" | "MXN";
         price: number;
     },
     taxIncluded?: boolean;
-    taxability?: "01" | "02" | "03";
+    taxability?: "" | "01" | "02" | "03";
     unitKey?: string;
     unitName?: string;
     sku: string;
     assigned: boolean;
     client: string;
-    status: boolean;
+    status?: boolean;
 }
