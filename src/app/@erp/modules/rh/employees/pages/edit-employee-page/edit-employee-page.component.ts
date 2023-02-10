@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmployeeService } from '@erp-core/services/employee.service';
 import { IEmployee } from '@erp-core/interfaces/employee.interface';
-declare var $: any;
+
+import { SwalService } from '@erp-core/services/swal.service';
 
 @Component({
   selector: 'app-edit-employee-page',
@@ -62,7 +63,8 @@ export class EditEmployeePageComponent implements OnInit {
   constructor(
     private _employeeService: EmployeeService,
     private _router: Router,
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private _swal: SwalService
   ) {
 
   }
@@ -94,56 +96,17 @@ export class EditEmployeePageComponent implements OnInit {
       this._employeeService.editEmployee(this.id, this.employee, this.token).subscribe(
         response => {
           if (response.employee === undefined) {
-            $.notify(response.message, {
-              type: 'danger',
-              spacing: 10,
-              timer: 2000,
-              placement: {
-                from: 'top',
-                align: 'right'
-              },
-              delay: 1000,
-              animate: {
-                enter: 'animated ' + 'bounce',
-                exit: 'animated ' + 'bounce'
-              }
-            });
+            this._swal.toast({ text: response.message, icon: 'error'});
             this.btnEdit = false;
           } else {
             this.btnEdit = false;
-            $.notify(response.message, {
-              type: 'success',
-              spacing: 10,
-              timer: 2000,
-              placement: {
-                from: 'top',
-                align: 'right'
-              },
-              delay: 1000,
-              animate: {
-                enter: 'animated ' + 'bounce',
-                exit: 'animated ' + 'bounce'
-              }
-            });
+            this._swal.toast({ text: response.message, icon: 'success'});
             this._router.navigate(['/employees/1']);
           }
         }
       )
     } else {
-      $.notify('Complete el formulario.', {
-        type: 'danger',
-        spacing: 10,
-        timer: 2000,
-        placement: {
-          from: 'top',
-          align: 'right'
-        },
-        delay: 1000,
-        animate: {
-          enter: 'animated ' + 'bounce',
-          exit: 'animated ' + 'bounce'
-        }
-      });
+      this._swal.toast({ text: 'Completa el formulario', icon: 'info'});
     }
   }
 

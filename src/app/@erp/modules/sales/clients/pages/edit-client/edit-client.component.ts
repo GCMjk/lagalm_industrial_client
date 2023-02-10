@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClientService } from '@erp-core/services/client.service';
 import { IClients } from '@erp-core/interfaces/clients.interface';
-declare var $: any;
+
+import { SwalService } from '@erp-core/services/swal.service';
 
 @Component({
   selector: 'app-edit-client',
@@ -52,7 +53,8 @@ export class EditClientComponent implements OnInit {
   constructor(
     private _clientService: ClientService,
     private _router: Router,
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private _swal: SwalService
   ) {
 
   }
@@ -84,56 +86,17 @@ export class EditClientComponent implements OnInit {
       this._clientService.editClient(this.id, this.client, this.token).subscribe(
         response => {
           if (response.client === undefined) {
-            $.notify(response.message, {
-              type: 'danger',
-              spacing: 10,
-              timer: 2000,
-              placement: {
-                from: 'top',
-                align: 'right'
-              },
-              delay: 1000,
-              animate: {
-                enter: 'animated ' + 'bounce',
-                exit: 'animated ' + 'bounce'
-              }
-            });
+            this._swal.toast({ text: response.message, icon: 'error' })
             this.btnEdit = false;
           } else {
             this.btnEdit = false;
-            $.notify(response.message, {
-              type: 'success',
-              spacing: 10,
-              timer: 2000,
-              placement: {
-                from: 'top',
-                align: 'right'
-              },
-              delay: 1000,
-              animate: {
-                enter: 'animated ' + 'bounce',
-                exit: 'animated ' + 'bounce'
-              }
-            });
+            this._swal.toast({ text: response.message, icon: 'success' })
             this._router.navigate(['/clients/1']);
           }
         }
       )
     } else {
-      $.notify('Complete el formulario.', {
-        type: 'danger',
-        spacing: 10,
-        timer: 2000,
-        placement: {
-          from: 'top',
-          align: 'right'
-        },
-        delay: 1000,
-        animate: {
-          enter: 'animated ' + 'bounce',
-          exit: 'animated ' + 'bounce'
-        }
-      });
+      this._swal.toast({ text: 'Completa el formulario' , icon: 'info' })
     }
   }
 

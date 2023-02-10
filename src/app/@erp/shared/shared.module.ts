@@ -6,7 +6,7 @@ import { SideBarComponent } from '@erp-shared/components/side-bar/side-bar.compo
 import { NavigationComponent } from '@erp-shared/components/navigation/navigation.component';
 import { HeaderComponent } from '@erp-shared/components/header/header.component';
 import { FooterComponent } from '@erp-shared/components/footer/footer.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
+import { NotFoundComponent } from '@erp-shared/components/not-found/not-found.component';
 
 @NgModule({
   declarations: [

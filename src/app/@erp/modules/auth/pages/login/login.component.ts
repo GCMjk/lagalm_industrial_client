@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EmployeeService } from '@erp-core/services/employee.service';
-declare var $: any;
+
+import { SwalService } from '@erp-core/services/swal.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private _employeeService: EmployeeService,
-    private _router: Router
+    private _router: Router,
+    private _swal: SwalService
   ) { }
 
   ngOnInit(): void {
@@ -33,21 +35,9 @@ export class LoginComponent implements OnInit {
       this._employeeService.login(this.user).subscribe(
         response => {
           if (response.employee === undefined) {
-            $.notify(response.message, {
-              type: 'danger',
-              spacing: 10,
-              timer: 2000,
-              placement: {
-                from: 'top',
-                align: 'right'
-              },
-              delay: 1000,
-              animate: {
-                enter: 'animated ' + 'bounce',
-                exit: 'animated ' + 'bounce'
-              }
-            });
+            this._swal.toast({ text: response.message, icon: 'error' });
           } else {
+            this._swal.toast({ text: response.message, icon: 'success' })
             localStorage.setItem('token', response.token);
             localStorage.setItem('user', JSON.stringify(response.employee));
             localStorage.setItem('_id', response.employee._id);
@@ -56,20 +46,7 @@ export class LoginComponent implements OnInit {
         }
       )
     } else {
-      $.notify('Ingrese todos sus datos.', {
-        type: 'danger',
-        spacing: 10,
-        timer: 2000,
-        placement: {
-          from: 'top',
-          align: 'right'
-        },
-        delay: 1000,
-        animate: {
-          enter: 'animated ' + 'bounce',
-          exit: 'animated ' + 'bounce'
-        }
-      });
+      this._swal.toast({ text: 'Ingrese sus datos', icon: 'info' })
     }
 
   }

@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { EmployeeService } from '@erp-core/services/employee.service';
 import { IEmployee } from '@erp-core/interfaces/employee.interface';
-declare var $: any;
+
+import { SwalService } from '@erp-core/services/swal.service';
 
 @Component({
   selector: 'app-create-employee-page',
@@ -62,7 +63,8 @@ export class CreateEmployeePageComponent {
 
   constructor(
     private _employeeService: EmployeeService,
-    private _router: Router
+    private _router: Router,
+    private _swal: SwalService
   ) {
 
   }
@@ -74,56 +76,17 @@ export class CreateEmployeePageComponent {
       this._employeeService.registerEmployee(this.employee, this.token).subscribe(
         response => {
           if (response.employee === undefined) {
-            $.notify(response.message, {
-              type: 'danger',
-              spacing: 10,
-              timer: 2000,
-              placement: {
-                from: 'top',
-                align: 'right'
-              },
-              delay: 1000,
-              animate: {
-                enter: 'animated ' + 'bounce',
-                exit: 'animated ' + 'bounce'
-              }
-            });
+            this._swal.toast({ text: response.message, icon: 'error' });
             this.btnRegister = false;
           } else {
             this.btnRegister = false;
-            $.notify(response.message, {
-              type: 'success',
-              spacing: 10,
-              timer: 2000,
-              placement: {
-                from: 'top',
-                align: 'right'
-              },
-              delay: 1000,
-              animate: {
-                enter: 'animated ' + 'bounce',
-                exit: 'animated ' + 'bounce'
-              }
-            });
+            this._swal.toast({ text: response.message, icon: 'success' });
             this._router.navigate(['/employees/1']);
           }
         }
       )
     } else {
-      $.notify('Complete el formulario.', {
-        type: 'danger',
-        spacing: 10,
-        timer: 2000,
-        placement: {
-          from: 'top',
-          align: 'right'
-        },
-        delay: 1000,
-        animate: {
-          enter: 'animated ' + 'bounce',
-          exit: 'animated ' + 'bounce'
-        }
-      });
+      this._swal.toast({ text: 'Completa el formulario', icon: 'info' });
     }
   }
 
