@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ClientService } from '@erp-core/services/client.service';
-import { IClients } from '@erp-core/interfaces/clients.interface';
+import { IClient } from '@erp-core/interfaces/client.interface';
 declare var $: any;
 
 import { SwalService } from '@erp/core/services/swal.service';
@@ -13,7 +13,7 @@ import { SwalService } from '@erp/core/services/swal.service';
 })
 export class CreateClientComponent {
 
-  public client: IClients = {
+  public client: IClient = {
     legalName: '',
     bussinessActivity: {
       activity: '',

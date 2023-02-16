@@ -26,7 +26,37 @@ export class CreateProductComponent {
     unitName: '',
     sku: '',
     assigned: false,
-    client: ''
+    client: {
+      legalName: '',
+      bussinessActivity: {
+        activity: '',
+        description: ''
+      },
+      taxId: '',
+      taxSystem: '',
+      taxEmail: '',
+      contact: {
+        email: '',
+        phone: '',
+        web: ''
+      },
+      address: {
+        street: '',
+        exterior: '',
+        interior: '',
+        neighborhood: '',
+        city: '',
+        municipality: '',
+        state: '',
+        country: '',
+        zip: '',
+        streets: {
+          a: '',
+          b: ''
+        },
+      },
+      type: ''
+    }
   }
 
   public btnRegister = false;

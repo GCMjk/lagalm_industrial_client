@@ -63,6 +63,7 @@ export class ProductsPageComponent implements OnInit {
           this.pages = response.pages;
           this.products = response.data;
           this.productsSearch = this.products;
+          console.log(this.products)
         }
       )
 

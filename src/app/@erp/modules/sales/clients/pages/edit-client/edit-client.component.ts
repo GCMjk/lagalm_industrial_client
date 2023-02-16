@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClientService } from '@erp-core/services/client.service';
-import { IClients } from '@erp-core/interfaces/clients.interface';
+import { IClient } from '@erp-core/interfaces/client.interface';
 
 import { SwalService } from '@erp-core/services/swal.service';
 
@@ -13,7 +13,7 @@ import { SwalService } from '@erp-core/services/swal.service';
 export class EditClientComponent implements OnInit {
 
   public id = '';
-  public client: IClients = {
+  public client: IClient = {
     legalName: '',
     bussinessActivity: {
       activity: '',

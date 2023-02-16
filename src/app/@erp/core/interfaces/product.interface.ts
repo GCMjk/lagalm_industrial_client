@@ -1,3 +1,5 @@
+import { IClient } from '@erp-core/interfaces/client.interface';
+
 export interface IProduct {
     _id?: string;
     facturapiId?: string;
@@ -14,6 +16,6 @@ export interface IProduct {
     unitName?: string;
     sku: string;
     assigned: boolean;
-    client: string;
+    client: IClient;
     status?: boolean;
 }

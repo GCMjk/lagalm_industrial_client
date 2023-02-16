@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ClientService } from '@erp-core/services/client.service';
-import { IClients } from '@erp-core/interfaces/clients.interface';
+import { IClient } from '@erp-core/interfaces/client.interface';
 import { IResponse } from '@erp-core/interfaces/response.interface';
 declare var $: any;
 
@@ -13,8 +13,8 @@ declare var $: any;
 export class ClientsPageComponent implements OnInit {
 
   public token = localStorage.getItem('token');
-  public clients: Array<IClients> = [];
-  public clientsSearch: Array<IClients> = [];
+  public clients: Array<IClient> = [];
+  public clientsSearch: Array<IClient> = [];
 
   public itemsPerPage = 1;
   public total = 1;

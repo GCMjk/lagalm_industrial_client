@@ -1,6 +1,6 @@
 import { IAddress } from "./address.interface";
 
-export interface IClients {
+export interface IClient {
     _id?: string;
     facturapiId?: string;
     legalName: string;
