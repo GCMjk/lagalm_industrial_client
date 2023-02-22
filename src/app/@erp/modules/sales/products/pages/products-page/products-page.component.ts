@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ProductService } from '@erp-core/services/product.service';
 import { IProduct } from '@erp-core/interfaces/product.interface';
-import { IResponse } from '@erp-core/interfaces/response.interface';
+import { IResult } from '@erp-core/interfaces/common/result.interface';
 declare var $: any;
 
 @Component({
@@ -57,13 +57,13 @@ export class ProductsPageComponent implements OnInit {
       }
 
       this._productService.getProducts(this.token, page).subscribe(
-        (response: IResponse) => {
-          this.itemsPerPage = response.itemsPerPage;
+        (response: IResult) => {
+          /* this.itemsPerPage = response.itemsPerPage;
           this.total = response.total;
           this.pages = response.pages;
           this.products = response.data;
           this.productsSearch = this.products;
-          console.log(this.products)
+          console.log(this.products) */
         }
       )
 

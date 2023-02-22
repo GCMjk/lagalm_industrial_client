@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmployeeService } from '@erp-core/services/employee.service';
-import { IEmployee } from '@erp-core/interfaces/employee.interface';
+import { IEmployee } from '@erp/core/interfaces/rrhh/employee.interface';
 
 import { SwalService } from '@erp-core/services/swal.service';
 
@@ -17,8 +17,8 @@ export class EditEmployeePageComponent implements OnInit {
     name: '',
     lastname: '',
     birthday: '',
-    gender: '',
-    maritalStatus: '',
+    gender: 'MALE',
+    maritalStatus: 'DIVORCED',
     curp: '',
     address: {
       street: '',
@@ -31,20 +31,20 @@ export class EditEmployeePageComponent implements OnInit {
       country: '',
       zip: '',
       streets: {
-          a: '',
-          b: '',
+        a: '',
+        b: '',
       }
     },
     email: '',
-    role: '',
+    role: 'USER',
     job: {
       employeeNumber: '',
       rfc: '',
-      schooling: '',
+      schooling: 'CAREER TECH',
       nss: '',
       workArea: [{
-        area: '',
-        range: '',
+        area: 'CUSTOME SERVICE',
+        range: 'ASSISTANT',
       }],
       description: '',
       schedule: {
@@ -52,7 +52,9 @@ export class EditEmployeePageComponent implements OnInit {
         end: ''
       },
       accountNumber: ''
-    }
+    },
+    lastSession: '',
+    status: false
   }
 
   public btnEdit = false;

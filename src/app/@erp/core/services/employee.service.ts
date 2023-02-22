@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from "src/environments/environment";
+import { IEmployee, ILogin, ILogged } from '@erp-core/interfaces/rrhh/employee.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -14,39 +15,40 @@ export class EmployeeService {
     private _http: HttpClient
   ) { }
 
-  registerEmployee(data: any, token: any): Observable<any> {
+  registerEmployee(data: IEmployee, token: ILogged['token']): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': token });
-    return this._http.post(this.url + 'employee', data, { headers: headers })
+    return this._http.post(this.url + 'employee', data, { headers })
   }
 
-  editEmployee(id: any, data: any, token: any): Observable<any> {
+  editEmployee(id: IEmployee['_id'], data: IEmployee, token: ILogged['token']): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': token });
-    return this._http.put(this.url + 'employee/' + id, data, { headers: headers })
+    return this._http.put(this.url + 'employee/' + id, data, { headers })
   }
 
-  getEmployee(id: any, token: any): Observable<any> {
+  getEmployee(id: IEmployee['_id'], token: ILogged['token']): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': token });
-    return this._http.get(this.url + 'employee/' + id, { headers: headers })
+    return this._http.get(this.url + 'employee/' + id, { headers })
   }
 
-  getEmployees(token: any, page: number): Observable<any> {
+  getEmployees(token: ILogged['token'], page: number): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': token });
-    return this._http.get(this.url + 'employees/' + page, { headers: headers })
+    return this._http.get(this.url + 'employees/' + page, { headers })
   }
 
-  getEmployeesById(token: any, filter: any, page: number): Observable<any> {
+  getEmployeesById(token: ILogged['token'], filter: any, page: number): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': token });
-    return this._http.get(this.url + 'employees/search/' + filter + '/' + page, { headers: headers })
+    return this._http.get(this.url + 'employees/search/' + filter + '/' + page, { headers })
   }
 
-  editStatusEmployee(id: any, status: any, token: any): Observable<any> {
+  editStatusEmployee(id: IEmployee['_id'], status: IEmployee['status'], token: ILogged['token']): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': token });
-    return this._http.put(this.url + 'employee/status/' + id, status, { headers: headers })
+    console.log(status)
+    return this._http.put(this.url + 'employee/status/' + id, { status }, { headers })
   }
 
-  login(data: any): Observable<any> {
+  login(data: ILogin): Observable<any> {
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this._http.post(this.url + 'login', data, { headers: headers })
+    return this._http.post(this.url + 'login', data, { headers })
   }
 
 }

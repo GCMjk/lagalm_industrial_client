@@ -1,4 +1,4 @@
-import { IAddress } from "./address.interface";
+import { IAddress } from "./common/address.interface";
 
 export interface IClient {
     _id?: string;

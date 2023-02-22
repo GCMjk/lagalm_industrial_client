@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import Swal from 'sweetalert2';
-import { ISwal } from '@erp-core/interfaces/swal.interface';
+import { ISwal } from '@erp/core/interfaces/common/swal.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -27,12 +27,36 @@ export class SwalService {
   }
 
   modal(params: ISwal) {
-    Swal.fire({
+    const swalWithButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    });
+    swalWithButtons.fire({
       title: params.title,
       text: params.text,
       icon: params.icon,
-      confirmButtonText: 'Cool'
-    });
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        swalWithButtons.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        swalWithButtons.fire(
+          'Cancelled',
+          'Your imaginary file is safe :)',
+          'error'
+        )
+      }
+    })
   }
   
 }

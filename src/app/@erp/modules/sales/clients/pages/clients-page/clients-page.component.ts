@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ClientService } from '@erp-core/services/client.service';
 import { IClient } from '@erp-core/interfaces/client.interface';
-import { IResponse } from '@erp-core/interfaces/response.interface';
+import { IResult } from '@erp-core/interfaces/common/result.interface';
 declare var $: any;
 
 @Component({
@@ -57,13 +57,13 @@ export class ClientsPageComponent implements OnInit {
       }
 
       this._clientService.getClients(this.token, page).subscribe(
-        (response: IResponse) => {
+        (response: IResult) => {
           console.log(response)
-          this.itemsPerPage = response.itemsPerPage;
+          /* this.itemsPerPage = response.itemsPerPage;
           this.total = response.total;
           this.pages = response.pages;
           this.clients = response.data;
-          this.clientsSearch = this.clients;
+          this.clientsSearch = this.clients; */
         }
       )
 

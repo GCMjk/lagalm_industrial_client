@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { EmployeeService } from '@erp-core/services/employee.service';
-import { IEmployee } from '@erp-core/interfaces/employee.interface';
-import { IResponse } from '@erp/core/interfaces/response.interface';
+import { SwalService } from '@erp-core/services/swal.service';
+import { IEmployee } from '@erp-core/interfaces/rrhh/employee.interface';
+import { IResult } from '@erp-core/interfaces/common/result.interface';
 declare var $: any;
 
 @Component({
@@ -12,14 +13,14 @@ declare var $: any;
 })
 export class EmployeesPageComponent implements OnInit  {
 
-  public token = localStorage.getItem('token');
+  public token: string = localStorage.getItem('token')!;
   public employees: Array<IEmployee> = [];
   public employeesSearch: Array<IEmployee> = [];
 
-  public itemsPerPage = 1;
-  public total = 1;
-  public pages = 1;
-  public page = 1;
+  public itemsPerPage: number = 1;
+  public total: number = 1;
+  public pages: number = 1;
+  public page: number = 1;
   public nextPage;
   public prevPage;
 
@@ -29,6 +30,7 @@ export class EmployeesPageComponent implements OnInit  {
 
   constructor(
     private _employeeService: EmployeeService,
+    private _swal: SwalService,
     private _route: ActivatedRoute
   ) {
 
@@ -57,12 +59,11 @@ export class EmployeesPageComponent implements OnInit  {
       }
 
       this._employeeService.getEmployees(this.token, page).subscribe(
-        (response: IResponse) => {
-          console.log(response)
-          this.itemsPerPage = response.itemsPerPage;
-          this.total = response.total;
-          this.pages = response.pages;
-          this.employees = response.data;
+        ({ data, itemsPerPage, total, pages }: IResult) => {
+          this.itemsPerPage = itemsPerPage as number;
+          this.total = total as number;
+          this.pages = pages as number;
+          this.employees = data;
           this.employeesSearch = this.employees;
         }
       )
@@ -74,20 +75,31 @@ export class EmployeesPageComponent implements OnInit  {
     if (this.filter) {
       this.loadData = true;
       const term = new RegExp(this.filter, 'i');
-      this.employees = this.employeesSearch.filter(employee => term.test(employee.fullnames!) || term.test(employee.job.employeeNumber) || term.test(employee.email) || term.test(employee.job.workArea[0].area));
+      this.employees = this.employeesSearch.filter(
+        (employee: IEmployee) => {
+          term.test(employee.fullnames as string) 
+          || term.test(employee.job.employeeNumber) 
+          || term.test(employee.email) 
+          || term.test(employee.job.workArea[0].area)
+      });
       this.loadData = false;
     } else {
       this.employees = this.employeesSearch;
     }
   }
 
-  setStatus(id: any, status: any) {
+  setStatus(id: IEmployee['_id'], status: IEmployee['status']) {
+    console.log(status)
     this.loadStatus = true;
-    this._employeeService.editStatusEmployee(id, { status }, this.token).subscribe(
-      () => {
+    this._employeeService.editStatusEmployee(id, status, this.token).subscribe(
+      ({ message }: IResult) => {
         this.loadStatus = false;
         $('#delete-' + id).modal('hide');
         this.getEmployees();
+        this._swal.toast({ text: message, icon: 'success' })
+      },
+      ({ error: { message } }) => {
+        this._swal.toast({ text: message, icon: 'error' })
       }
     );
   }

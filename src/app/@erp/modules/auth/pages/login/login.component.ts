@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EmployeeService } from '@erp-core/services/employee.service';
-
 import { SwalService } from '@erp-core/services/swal.service';
+
+import { ILogged, ILogin } from '@erp-core/interfaces/rrhh/employee.interface';
 
 @Component({
   selector: 'app-login',
@@ -11,11 +12,11 @@ import { SwalService } from '@erp-core/services/swal.service';
 })
 export class LoginComponent implements OnInit {
 
-  public user: any = {
+  public user: ILogin = {
     email: '',
     password: ''
   }
-  public token: any = localStorage.getItem('token');
+  public token: string = localStorage.getItem('token')!;
 
   constructor(
     private _employeeService: EmployeeService,
@@ -25,7 +26,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.token) {
-      this._router.navigate(['/app']);
+      this._router.navigate(['app', 'dashboard']);
     }
   }
 
@@ -33,16 +34,15 @@ export class LoginComponent implements OnInit {
 
     if (LoginForm.valid) {
       this._employeeService.login(this.user).subscribe(
-        response => {
-          if (response.employee === undefined) {
-            this._swal.toast({ text: response.message, icon: 'error' });
-          } else {
-            this._swal.toast({ text: response.message, icon: 'success' })
-            localStorage.setItem('token', response.token);
-            localStorage.setItem('user', JSON.stringify(response.employee));
-            localStorage.setItem('_id', response.employee._id);
-            this._router.navigate(['/dashboard']);
-          }
+        ({ message, token, data }: ILogged) => {
+          this._swal.toast({ text: message, icon: 'success' });
+          localStorage.setItem('token', token);
+          localStorage.setItem('user', JSON.stringify(data));
+          localStorage.setItem('_id', data._id!);
+          this._router.navigate(['app', 'dashboard']);
+        },
+        ({ error: { message } }) => {
+          this._swal.toast({ text: message, icon: 'error' })
         }
       )
     } else {

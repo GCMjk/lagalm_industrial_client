@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { EmployeeService } from '@erp-core/services/employee.service';
-import { IEmployee } from '@erp-core/interfaces/employee.interface';
+import { IEmployee } from '@erp/core/interfaces/rrhh/employee.interface';
 
 import { SwalService } from '@erp-core/services/swal.service';
 
@@ -16,8 +16,8 @@ export class CreateEmployeePageComponent {
     name: '',
     lastname: '',
     birthday: '',
-    gender: '',
-    maritalStatus: '',
+    gender: 'FEMALE',
+    maritalStatus: 'DIVORCED',
     curp: '',
     address: {
       street: '',
@@ -30,8 +30,8 @@ export class CreateEmployeePageComponent {
       country: 'México',
       zip: '',
       streets: {
-          a: '',
-          b: '',
+        a: '',
+        b: '',
       }
     },
     email: '',
@@ -40,12 +40,12 @@ export class CreateEmployeePageComponent {
     job: {
       employeeNumber: '',
       rfc: '',
-      schooling: '',
+      schooling: 'CAREER TECH',
       nss: '',
       infonavitCredit: true,
       workArea: [{
-        area: '',
-        range: '',
+        area: 'CUSTOME SERVICE',
+        range: 'ASSISTANT',
       }],
       description: '',
       schedule: {
@@ -55,7 +55,8 @@ export class CreateEmployeePageComponent {
       salary: 0,
       accountNumber: ''
     },
-    status: true
+    status: true,
+    lastSession: ''
   }
 
   public btnRegister = false;
