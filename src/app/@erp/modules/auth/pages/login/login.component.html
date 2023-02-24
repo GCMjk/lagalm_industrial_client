@@ -6,34 +6,49 @@
                 style="min-width: 380px !important;">
                 <!--begin::Login Header-->
                 <div class="d-flex flex-center mb-15">
-                    <a href="#">
-                        <img src="assets/media/logos/logo-letter-9.png" class="max-h-100px" alt="" />
-                    </a>
+                    <img src="assets/lagalm.png" class="max-h-150px" alt="Logo Lagalm" />
                 </div>
                 <!--end::Login Header-->
                 <!--begin::Login Sign in form-->
                 <div class="login-signin">
                     <div class="mb-20">
                         <h3>Inicio de sesión</h3>
-                        <p class="opacity-60 font-weight-bold">Ingresa tu cuenta de empleado</p>
+                        <p class="opacity-60 font-weight-bold">
+                            Ingresa tu cuenta de empleado
+                        </p>
                     </div>
-                    <form class="form" #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+
+                    <form class="form" [formGroup]="loginForm" (ngSubmit)="login()">
                         <div class="form-group">
                             <input
-                                class="form-control h-auto  placeholder-white opacity-70 bg-dark-o-70 rounded-pill border-0 py-4 px-8 mb-5"
-                                type="text" placeholder="Correo" name="email" [(ngModel)]="user.email"
-                                autocomplete="off" required />
+                                formControlName="email"
+                                class="form-control h-auto placeholder-white opacity-70 bg-dark-o-70 rounded-pill border-0 py-4 px-8 mb-5"
+                                type="text" placeholder="Correo"/>
+                            <div *ngIf="loginControl['email'].touched">
+                                <p class="text-danger" *ngIf="loginControl['email'].hasError('required')">
+                                    El correo es requerido
+                                </p>
+                                <p class="text-danger" *ngIf="loginControl['email'].hasError('email')">
+                                    El correo es inválido
+                                </p>
+                            </div>
                         </div>
                         <div class="form-group">
                             <input
-                                class="form-control h-auto  placeholder-white opacity-70 bg-dark-o-70 rounded-pill border-0 py-4 px-8 mb-5"
-                                type="password" placeholder="Contraseña" name="password" [(ngModel)]="user.password"
-                                required />
+                                formControlName="password"
+                                class="form-control h-auto placeholder-white opacity-70 bg-dark-o-70 rounded-pill border-0 py-4 px-8 mb-5"
+                                type="password" placeholder="Contraseña" />
+                            <div *ngIf="loginControl['password'].touched">
+                                <p class="text-danger" *ngIf="loginControl['password'].hasError('required')">
+                                    La contraseña es requerida
+                                </p>
+                            </div>
                         </div>
 
                         <div class="form-group text-center mt-10">
-                            <button type="submit" id="kt_login_signin_submit"
-                                class="btn btn-pill btn-primary font-weight-bold opacity-90 px-15 py-3">Ingresar</button>
+                            <button [disabled]="loginForm.invalid" type="submit" class="btn btn-pill btn-primary font-weight-bold opacity-90 px-15 py-3">
+                                Ingresar
+                            </button>
                         </div>
                     </form>
 

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ErpComponent } from './erp.component';
+import { AuthGuard } from '@erp-guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -13,7 +14,8 @@ const routes: Routes = [
       },
       {
         path: '',
-        loadChildren: () => import('@erp-modules/dashboard/dashboard.module').then(m => m.DashboardModule)
+        loadChildren: () => import('@erp-modules/dashboard/dashboard.module').then(m => m.DashboardModule),
+        canActivate: [ AuthGuard ]
       }
     ]
   }
