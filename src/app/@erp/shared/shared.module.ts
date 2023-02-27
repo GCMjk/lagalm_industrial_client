@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
-import { SideBarComponent } from '@erp-shared/components/side-bar/side-bar.component';
-import { NavigationComponent } from '@erp-shared/components/navigation/navigation.component';
-import { HeaderComponent } from '@erp-shared/components/header/header.component';
-import { FooterComponent } from '@erp-shared/components/footer/footer.component';
-import { NotFoundComponent } from '@erp-shared/components/not-found/not-found.component';
+import { SideBarComponent } from '@erp-shared/side-bar/side-bar.component';
+import { NavigationComponent } from '@erp-shared/navigation/navigation.component';
+import { HeaderComponent } from '@erp-shared/header/header.component';
+import { FooterComponent } from '@erp-shared/footer/footer.component';
+import { NotFoundComponent } from '@erp-shared/not-found/not-found.component';
 
 @NgModule({
   declarations: [

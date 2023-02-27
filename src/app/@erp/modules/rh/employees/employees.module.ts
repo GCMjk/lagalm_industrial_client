@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from '@erp-shared/shared.module';
+import { SharedModule } from '@erp/shared/shared.module';
 
 import { EmployeesRoutingModule } from './employees-routing.module';
 import { EmployeesPageComponent } from './pages/employees-page/employees-page.component';

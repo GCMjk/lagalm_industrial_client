@@ -18,7 +18,7 @@
         "src/app/@erp/guards/*"
       ],
       "@erp-shared/*": [
-        "src/app/@erp/shared/*"
+        "src/app/@erp/shared/components/*"
       ],
     },
     "forceConsistentCasingInFileNames": true,
