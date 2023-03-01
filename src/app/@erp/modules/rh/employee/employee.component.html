@@ -11,7 +11,7 @@
         <div class="card-toolbar">
             <!--begin::Button-->
 
-            <a class="btn btn-info" [routerLink]="['..', 'new', 'create']">
+            <a class="btn btn-info" [routerLink]="['..', 'new']">
                 Nuevo empleado
             </a>
 
@@ -165,7 +165,7 @@
                                             </button>
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item"
-                                                    [routerLink]="['/employee', employee._id]">
+                                                    [routerLink]="['../edit', employee._id]">
                                                     <i
                                                         class="icon-1x text-info flaticon-edit"></i>
                                                     &nbsp; Editar

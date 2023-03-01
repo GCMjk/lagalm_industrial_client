@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenService } from '@erp-core/services/token.service';
-import { SwalService } from '@erp-core/services/swal.service';
 import { ILogged } from '@erp-core/interfaces/rrhh/employee.interface';
 
 @Component({
@@ -13,7 +12,6 @@ export class ErpComponent implements OnInit {
 
   constructor(
     private _router: Router,
-    private _swal: SwalService,
     private _tokenService: TokenService
   ) {}
 
@@ -24,10 +22,6 @@ export class ErpComponent implements OnInit {
           this._router.navigate(['app', 'auth', 'login']);
           localStorage.clear();
         }
-      },
-      (e) => {
-        this._router.navigate(['app', 'auth', 'login']);
-        localStorage.clear();
       }
     )
   }

@@ -1,0 +1,479 @@
+<div class="card card-custom card-shadowless rounded-top-0">
+    <!--begin::Body-->
+    <div class="card-header border-0 pt-5">
+        <h3 class="card-title align-items-start flex-column">
+            <span class="card-label font-weight-bolder text-dark">
+                Nuevo empleado
+            </span>
+            <span class="text-muted mt-3 font-weight-bold font-size-sm">
+                Formulario de un nuevo trabajador
+            </span>
+        </h3>
+        <div class="card-toolbar">
+            <a class="btn btn-primary" [routerLink]="['../', '1']">Regresar</a>
+        </div>
+    </div>
+    <div class="card-body p-0">
+        <div class="row justify-content-center py-8 px-8 py-lg-15 px-lg-10">
+            <div class="col-xl-12 col-xxl-10">
+                
+                <form class="form" id="kt_form" [formGroup]="form" (ngSubmit)="new()">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-9">
+
+                            <div class="my-5 step" data-wizard-type="step-content"
+                                data-wizard-state="current">
+                                <h5 class="text-dark font-weight-bold my-10">
+                                    Datos personales:
+                                </h5>
+
+                                <div class="form-group row">
+                                    <div class="col-6">
+                                        <label class="form-label" for="name">
+                                            Nombre <span class="text-danger">*</span>
+                                        </label>
+                                        <input class="form-control form-control-solid" id="name" formControlName="name" type="text" placeholder="Nombre" />
+                                        <div *ngIf="fc.get('name')?.touched && fc.get('name')?.errors">
+                                            <span class="text-danger my-1" *ngIf="fc.get('name')?.hasError('required')">
+                                                El campo es requerido
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="form-label" for="lastname">
+                                            Apellidos <span class="text-danger">*</span>
+                                        </label>
+                                        <input class="form-control form-control-solid" id="lastname" formControlName="lastname" type="text" placeholder="Apellidos" />
+                                        <div *ngIf="fc.get('lastname')?.touched && fc.get('lastname')?.errors">
+                                            <span class="text-danger my-1" *ngIf="fc.get('lastname')?.hasError('required')">
+                                                El campo es requerido
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-12">
+                                        <label class="form-label" for="birthday">
+                                            Fecha de Nacimiento <span class="text-danger">*</span>
+                                        </label>
+                                        <input class="form-control form-control-solid" id="birthday" formControlName="birthday" type="date" />
+                                        <div *ngIf="fc.get('birthday')?.touched && fc.get('birthday')?.errors">
+                                            <span class="text-danger my-1" *ngIf="fc.get('birthday')?.hasError('required')">
+                                                El campo es requerido
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-6">
+                                        <label class="form-label" for="gender">
+                                            Género <span class="text-danger">*</span>
+                                        </label>
+                                        <select class="form-control form-control-solid form-control-lg" id="gender" formControlName="gender">
+                                            <option value="">Seleccione una opción</option>
+                                            <option value="MALE">Hombre</option>
+                                            <option value="FEMALE">Mujer</option>
+                                        </select>
+                                        <div *ngIf="fc.get('gender')?.touched && fc.get('gender')?.errors">
+                                            <span class="text-danger my-1" *ngIf="fc.get('gender')?.hasError('required')">
+                                                El campo es requerido
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="form-label" for="maritalStatus">
+                                            Estado civil <span class="text-danger">*</span>
+                                        </label>
+                                        <select class="form-control form-control-solid form-control-lg" id="maritalStatus" formControlName="maritalStatus">
+                                            <option value="">Seleccione una opción</option>
+                                            <option value="SINGLE">Soltero/a</option>
+                                            <option value="MARRIED">Casado/a</option>
+                                            <option value="DIVORCED">Divorciado/a</option>
+                                            <option value="WIDOW">Viudo/a</option>
+                                        </select>
+                                        <div *ngIf="fc.get('maritalStatus')?.touched && fc.get('maritalStatus')?.errors">
+                                            <span class="text-danger my-1" *ngIf="fc.get('maritalStatus')?.hasError('required')">
+                                                El campo es requerido
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-12">
+                                        <label class="form-label" for="curp">
+                                            CURP <span class="text-danger">*</span>
+                                        </label>
+                                        <input class="form-control form-control-solid" id="curp" formControlName="curp" type="text" placeholder="CURP" />
+                                        <div *ngIf="fc.get('curp')?.touched && fc.get('curp')?.errors">
+                                            <span class="text-danger my-1" *ngIf="fc.get('curp')?.hasError('required')">
+                                                El campo es requerido
+                                            </span>
+                                            <span class="text-danger my-1" *ngIf="fc.get('curp')?.hasError('pattern')">
+                                                El campo no tiene un formato válido
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <ng-container formGroupName="address">
+                                    <div class="form-group row">
+                                        <div class="col-6">
+                                            <label class="form-label" for="street">
+                                                Calle <span class="text-danger">*</span>
+                                            </label>
+                                            <input class="form-control form-control-solid" id="street" formControlName="street" type="text" placeholder="Calle" />
+                                            <div *ngIf="fc.get('address.street')?.touched && fc.get('address.street')?.errors">
+                                                <span class="text-danger my-1" *ngIf="fc.get('address.street')?.hasError('required')">
+                                                    El campo es requerido
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <label class="form-label" for="exterior">
+                                                No. Exterior <span class="text-danger">*</span>
+                                            </label>
+                                            <input class="form-control form-control-solid" id="exterior" formControlName="exterior" type="text" placeholder="No. Exterior" />
+                                            <div *ngIf="fc.get('address.exterior')?.touched && fc.get('address.exterior')?.errors">
+                                                <span class="text-danger my-1" *ngIf="fc.get('address.exterior')?.hasError('required')">
+                                                    El campo es requerido
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <label class="form-label" for="interior">
+                                                No. Interior 
+                                            </label>
+                                            <input class="form-control form-control-solid" id="interior" formControlName="interior" type="text" placeholder="No. Interior" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-6">
+                                            <label class="form-label" for="neighborhood">
+                                                Colonia <span class="text-danger">*</span>
+                                            </label>
+                                            <input class="form-control form-control-solid" id="neighborhood" formControlName="neighborhood" type="text" placeholder="Colonia" />
+                                            <div *ngIf="fc.get('address.neighborhood')?.touched && fc.get('address.neighborhood')?.errors">
+                                                <span class="text-danger my-1" *ngIf="fc.get('address.neighborhood')?.hasError('required')">
+                                                    El campo es requerido
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <label class="form-label" for="city">
+                                                Ciudad <span class="text-danger">*</span>
+                                            </label>
+                                            <input class="form-control form-control-solid" id="city" formControlName="city" type="text" placeholder="Ciudad" />
+                                            <div *ngIf="fc.get('address.city')?.touched && fc.get('address.city')?.errors">
+                                                <span class="text-danger my-1" *ngIf="fc.get('address.city')?.hasError('required')">
+                                                    El campo es requerido
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-5">
+                                            <label class="form-label" for="municipality">
+                                                Municipio
+                                            </label>
+                                            <input class="form-control form-control-solid" id="municipality" formControlName="municipality" type="text" placeholder="Municipio" />
+                                        </div>
+                                        <div class="col-7">
+                                            <label class="form-label" for="state">
+                                                Estado
+                                            </label>
+                                            <select class="form-control form-control-solid form-control-lg" id="state" formControlName="state">
+                                                <option value="">Seleccione una opción</option>
+                                                <option value="AGU">Aguascalientes</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-7">
+                                            <label class="form-label" for="country">
+                                                País
+                                            </label>
+                                            <input class="form-control form-control-solid" id="country" formControlName="country" type="text" placeholder="País" />
+                                        </div>
+                                        <div class="col-5">
+                                            <label class="form-label" for="zip">
+                                                Codigo Postal <span class="text-danger">*</span>
+                                            </label>
+                                            <input class="form-control form-control-solid" id="zip" formControlName="zip" type="text" placeholder="Codigo Postal" />
+                                            <div *ngIf="fc.get('address.zip')?.touched && fc.get('address.zip')?.errors">
+                                                <span class="text-danger my-1" *ngIf="fc.get('address.zip')?.hasError('required')">
+                                                    El campo es requerido
+                                                </span>
+                                                <span class="text-danger my-1" *ngIf="fc.get('address.zip')?.hasError('pattern')">
+                                                    El campo no tiene un formato válido
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row" formGroupName="streets">
+                                        <div class="col-6">
+                                            <label class="form-label" for="a">
+                                                Entre la calle
+                                            </label>
+                                            <input class="form-control form-control-solid" id="a" formControlName="a" type="text" placeholder="(Opcional)" />
+                                        </div>
+                                        <div class="col-6">
+                                            <label class="form-label" for="b">
+                                                Y la calle
+                                            </label>
+                                            <input class="form-control form-control-solid" id="b" formControlName="b" type="text" placeholder="(Opcional)" />
+                                        </div>
+                                    </div>
+                                </ng-container>
+                            </div>
+
+                            <div class="my-5 step" data-wizard-type="step-content"
+                                data-wizard-state="current">
+                                <h5 class="text-dark font-weight-bold my-10">
+                                    Cuenta:
+                                </h5>
+
+                                <div class="form-group row">
+                                    <div class="col-6">
+                                        <label class="form-label" for="email">
+                                            Correo <span class="text-danger">*</span>
+                                        </label>
+                                        <input class="form-control form-control-solid" id="email" formControlName="email" type="email" placeholder="Correo" />
+                                        <div *ngIf="fc.get('email')?.touched && fc.get('email')?.errors">
+                                            <span class="text-danger my-1" *ngIf="fc.get('email')?.hasError('required')">
+                                                El campo es requerido
+                                            </span>
+                                            <span class="text-danger my-1" *ngIf="fc.get('email')?.hasError('pattern')">
+                                                El campo no tiene un formato válido
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="form-label" for="phone">
+                                            Teléfono <span class="text-danger">*</span>
+                                        </label>
+                                        <input class="form-control form-control-solid" id="phone" formControlName="phone" type="text" placeholder="Teléfono" />
+                                        <div *ngIf="fc.get('phone')?.touched && fc.get('phone')?.errors">
+                                            <span class="text-danger my-1" *ngIf="fc.get('phone')?.hasError('required')">
+                                                El campo es requerido
+                                            </span>
+                                            <span class="text-danger my-1" *ngIf="fc.get('phone')?.hasError('pattern')">
+                                                El campo no tiene un formato válido
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-12">
+                                        <label class="form-label" for="birthday">
+                                            Tipo de usuario
+                                        </label>
+                                        <select class="form-control form-control-solid form-control-lg" id="role" formControlName="role">
+                                            <option value="">Seleccione una opción</option>
+                                            <option value="USER">Usuario</option>
+                                            <option value="ADMIN">Administrador</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <ng-container formGroupName="job">
+                                    <div class="form-group row">
+                                        <div class="col-6">
+                                            <label class="form-label" for="employeeNumber">
+                                                Número de empleado <span class="text-danger">*</span>
+                                            </label>
+                                            <input class="form-control form-control-solid" id="employeeNumber" formControlName="employeeNumber" type="text" placeholder="Número de empleado" />
+                                            <div *ngIf="fc.get('job.employeeNumber')?.touched && fc.get('job.employeeNumber')?.errors">
+                                                <span class="text-danger my-1" *ngIf="fc.get('job.employeeNumber')?.hasError('required')">
+                                                    El campo es requerido
+                                                </span>
+                                                <span class="text-danger my-1" *ngIf="fc.get('job.employeeNumber')?.hasError('pattern')">
+                                                    El campo no tiene un formato válido
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <label class="form-label" for="nss">
+                                                Número de seguridad social <span class="text-danger">*</span>
+                                            </label>
+                                            <input class="form-control form-control-solid" id="nss" formControlName="nss" type="text" placeholder="Número de seguridad social" />
+                                            <div *ngIf="fc.get('job.nss')?.touched && fc.get('job.nss')?.errors">
+                                                <span class="text-danger my-1" *ngIf="fc.get('job.nss')?.hasError('required')">
+                                                    El campo es requerido
+                                                </span>
+                                                <span class="text-danger my-1" *ngIf="fc.get('job.nss')?.hasError('pattern')">
+                                                    El campo no tiene un formato válido
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-6">
+                                            <label class="form-label" for="rfc">
+                                                RFC <span class="text-danger">*</span>
+                                            </label>
+                                            <input class="form-control form-control-solid" id="rfc" formControlName="rfc" type="text" placeholder="RFC" />
+                                            <div *ngIf="fc.get('job.rfc')?.touched && fc.get('job.rfc')?.errors">
+                                                <span class="text-danger my-1" *ngIf="fc.get('job.rfc')?.hasError('required')">
+                                                    El campo es requerido
+                                                </span>
+                                                <span class="text-danger my-1" *ngIf="fc.get('job.rfc')?.hasError('pattern')">
+                                                    El campo no tiene un formato válido
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <label class="form-label" for="schooling">
+                                                Escolaridad <span class="text-danger">*</span>
+                                            </label>
+                                            <select class="form-control form-control-solid form-control-lg" id="schooling" formControlName="schooling">
+                                                <option value="">Seleccione una opción</option>
+                                                <option value="PRESCHOOL">Primaria</option>
+                                                <option value="MIDDLE SCHOOL">Secundaria</option>
+                                                <option value="HIGH SCHOOL">Preparatoria</option>
+                                                <option value="CAREER TECH">Carrera tecnica</option>
+                                                <option value="COLLAGE DEGREE">Licenciatura</option>
+                                                <option value="ENGINEERING">Ingenieria</option>
+                                                <option value="MASTERS DEGREE">Maestria</option>
+                                                <option value="DOCTORAL DEGREE">Doctorado</option>
+                                                <option value="UNSPECIFIED">Sin especificar</option>
+                                            </select>
+                                            <div *ngIf="fc.get('job.schooling')?.touched && fc.get('job.schooling')?.errors">
+                                                <span class="text-danger my-1" *ngIf="fc.get('job.schooling')?.hasError('required')">
+                                                    El campo es requerido
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">
+                                            Area de trabajo <span class="text-danger">*</span>
+                                        </label>
+                                        <div class="row form-group" formArrayName="workArea" *ngFor="let field of workAreaField.controls; index as i">
+                                            <ng-container [formGroupName]="i">
+                                                <div class="col-6">
+                                                    <input class="form-control form-control-solid" formControlName="area" type="text" placeholder="Area" />
+                                                    <div *ngIf="workAreaField.controls[i].get('area')?.touched && workAreaField.controls[i].get('area')?.errors">
+                                                        <span class="text-danger my-1" *ngIf="workAreaField.controls[i].get('area')?.hasError('required')">
+                                                            El campo es requerido
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <input class="form-control form-control-solid" formControlName="range" type="text" placeholder="Rango" />
+                                                    <div *ngIf="workAreaField.controls[i].get('range')?.touched && workAreaField.controls[i].get('range')?.errors">
+                                                        <span class="text-danger my-1" *ngIf="workAreaField.controls[i].get('range')?.hasError('required')">
+                                                            El campo es requerido
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                        <div class="d-flex justify-content-end">
+                                            <button type="button" (click)="addWorkArea()" class="btn btn-outline-success btn-sm">
+                                                Añadir
+                                            </button>
+                                            <button type="button" (click)="delWorkArea()" class="btn btn-outline-danger btn-sm ml-1" *ngIf="workAreaField.length !== 1">
+                                                Eliminar
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-12">
+                                            <label class="form-label" for="description">
+                                                Descripción <span class="text-danger">*</span>
+                                            </label>
+                                            <input class="form-control form-control-solid" id="description" formControlName="description" type="text" placeholder="Descriptión" />
+                                            <div *ngIf="fc.get('job.description')?.touched && fc.get('job.description')?.errors">
+                                                <span class="text-danger my-1" *ngIf="fc.get('job.description')?.hasError('required')">
+                                                    El campo es requerido
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <ng-container formGroupName="schedule">
+                                        <div class="form-group row">
+                                            <div class="col-6">
+                                                <label class="form-label" for="start">
+                                                    Horario de inicio <span class="text-danger">*</span>
+                                                </label>
+                                                <input class="form-control form-control-solid" id="start" formControlName="start" type="text" placeholder="hh:mm" />
+                                                <div *ngIf="fc.get('job.schedule.start')?.touched && fc.get('job.schedule.start')?.errors">
+                                                    <span class="text-danger my-1" *ngIf="fc.get('job.schedule.start')?.hasError('required')">
+                                                        El campo es requerido
+                                                    </span>
+                                                    <span class="text-danger my-1" *ngIf="fc.get('job.schedule.start')?.hasError('pattern')">
+                                                        El campo no tiene un formato válido
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <label class="form-label" for="end">
+                                                    Horario de termino <span class="text-danger">*</span>
+                                                </label>
+                                                <input class="form-control form-control-solid" id="end" formControlName="end" type="text" placeholder="hh:mm" />
+                                                <div *ngIf="fc.get('job.schedule.end')?.touched && fc.get('job.schedule.end')?.errors">
+                                                    <span class="text-danger my-1" *ngIf="fc.get('job.schedule.end')?.hasError('required')">
+                                                        El campo es requerido
+                                                    </span>
+                                                    <span class="text-danger my-1" *ngIf="fc.get('job.schedule.end')?.hasError('pattern')">
+                                                        El campo no tiene un formato válido
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                    <div class="form-group row">
+                                        <div class="col-5">
+                                            <label class="form-label" for="salary">
+                                                Salario <span class="text-danger">*</span>
+                                            </label>
+                                            <input class="form-control form-control-solid" id="salary" formControlName="salary" type="text" placeholder="Salario" />
+                                            <div *ngIf="fc.get('job.salary')?.touched && fc.get('job.salary')?.errors">
+                                                <span class="text-danger my-1" *ngIf="fc.get('job.salary')?.hasError('required')">
+                                                    El campo es requerido
+                                                </span>
+                                                <span class="text-danger my-1" *ngIf="fc.get('job.salary')?.hasError('pattern')">
+                                                    El campo no tiene un formato válido
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-7">
+                                            <label class="form-label" for="accountNumber">
+                                                Numero de cuenta <span class="text-danger">*</span>
+                                            </label>
+                                            <input class="form-control form-control-solid" id="accountNumber" formControlName="accountNumber" type="text" placeholder="Número de cuenta" />
+                                            <div *ngIf="fc.get('job.accountNumber')?.touched && fc.get('job.accountNumber')?.errors">
+                                                <span class="text-danger my-1" *ngIf="fc.get('job.accountNumber')?.hasError('required')">
+                                                    El campo es requerido
+                                                </span>
+                                                <span class="text-danger my-1" *ngIf="fc.get('job.accountNumber')?.hasError('pattern')">
+                                                    El campo no tiene un formato válido
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                            </div>
+
+                            <div class="d-flex justify-content-between border-top pt-10 mt-15">
+                                <div class="mr-2">
+                                    <a class="btn btn-light-primary font-weight-bolder px-9 py-4"
+                                        data-wizard-type="action-prev"
+                                        [routerLink]="['../', '1']">
+                                        Regresar
+                                    </a>
+                                </div>
+                                <div>
+                                    <button [ngClass]="{'disabled': form.invalid}" class="btn btn-success" type="submit">
+                                        Registrar empleado
+                                    </button>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+    
+</div>

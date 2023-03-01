@@ -40,7 +40,7 @@ export class SideBarComponent implements OnInit {
       {
         name: 'Empleados',
         icon: 'flaticon-network',
-        router: ['rh', 'employees', '1']
+        router: ['rh', 'employee', '1']
       },
       {
         name: 'Clientes',

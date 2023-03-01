@@ -7,11 +7,11 @@ import { IResult } from '@erp-core/interfaces/common/result.interface';
 declare var $: any;
 
 @Component({
-  selector: 'app-employees-page',
-  templateUrl: './employees-page.component.html',
-  styleUrls: ['./employees-page.component.scss']
+  selector: 'app-employee',
+  templateUrl: './employee.component.html',
+  styleUrls: ['./employee.component.scss']
 })
-export class EmployeesPageComponent implements OnInit  {
+export class EmployeeComponent implements OnInit {
 
   public token: string = localStorage.getItem('token')!;
   public employees: Array<IEmployee> = [];
