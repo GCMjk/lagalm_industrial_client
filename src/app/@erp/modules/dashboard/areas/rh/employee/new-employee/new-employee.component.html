@@ -33,8 +33,8 @@
                                             Nombre <span class="text-danger">*</span>
                                         </label>
                                         <input class="form-control form-control-solid" id="name" formControlName="name" type="text" placeholder="Nombre" />
-                                        <div *ngIf="fc.get('name')?.touched && fc.get('name')?.errors">
-                                            <span class="text-danger my-1" *ngIf="fc.get('name')?.hasError('required')">
+                                        <div *ngIf="ctrl['name'].touched">
+                                            <span class="text-danger my-1" *ngIf="ctrl['name'].hasError('required')">
                                                 El campo es requerido
                                             </span>
                                         </div>
@@ -44,8 +44,8 @@
                                             Apellidos <span class="text-danger">*</span>
                                         </label>
                                         <input class="form-control form-control-solid" id="lastname" formControlName="lastname" type="text" placeholder="Apellidos" />
-                                        <div *ngIf="fc.get('lastname')?.touched && fc.get('lastname')?.errors">
-                                            <span class="text-danger my-1" *ngIf="fc.get('lastname')?.hasError('required')">
+                                        <div *ngIf="ctrl['lastname'].touched && ctrl['lastname'].errors">
+                                            <span class="text-danger my-1" *ngIf="ctrl['lastname'].hasError('required')">
                                                 El campo es requerido
                                             </span>
                                         </div>
@@ -57,8 +57,8 @@
                                             Fecha de Nacimiento <span class="text-danger">*</span>
                                         </label>
                                         <input class="form-control form-control-solid" id="birthday" formControlName="birthday" type="date" />
-                                        <div *ngIf="fc.get('birthday')?.touched && fc.get('birthday')?.errors">
-                                            <span class="text-danger my-1" *ngIf="fc.get('birthday')?.hasError('required')">
+                                        <div *ngIf="ctrl['birthday'].touched && ctrl['birthday'].errors">
+                                            <span class="text-danger my-1" *ngIf="ctrl['birthday'].hasError('required')">
                                                 El campo es requerido
                                             </span>
                                         </div>
@@ -74,8 +74,8 @@
                                             <option value="MALE">Hombre</option>
                                             <option value="FEMALE">Mujer</option>
                                         </select>
-                                        <div *ngIf="fc.get('gender')?.touched && fc.get('gender')?.errors">
-                                            <span class="text-danger my-1" *ngIf="fc.get('gender')?.hasError('required')">
+                                        <div *ngIf="ctrl['gender'].touched && ctrl['gender'].errors">
+                                            <span class="text-danger my-1" *ngIf="ctrl['gender'].hasError('required')">
                                                 El campo es requerido
                                             </span>
                                         </div>
@@ -91,8 +91,8 @@
                                             <option value="DIVORCED">Divorciado/a</option>
                                             <option value="WIDOW">Viudo/a</option>
                                         </select>
-                                        <div *ngIf="fc.get('maritalStatus')?.touched && fc.get('maritalStatus')?.errors">
-                                            <span class="text-danger my-1" *ngIf="fc.get('maritalStatus')?.hasError('required')">
+                                        <div *ngIf="ctrl['maritalStatus'].touched && ctrl['maritalStatus'].errors">
+                                            <span class="text-danger my-1" *ngIf="ctrl['maritalStatus'].hasError('required')">
                                                 El campo es requerido
                                             </span>
                                         </div>
@@ -104,11 +104,11 @@
                                             CURP <span class="text-danger">*</span>
                                         </label>
                                         <input class="form-control form-control-solid" id="curp" formControlName="curp" type="text" placeholder="CURP" />
-                                        <div *ngIf="fc.get('curp')?.touched && fc.get('curp')?.errors">
-                                            <span class="text-danger my-1" *ngIf="fc.get('curp')?.hasError('required')">
+                                        <div *ngIf="ctrl['curp'].touched && ctrl['curp'].errors">
+                                            <span class="text-danger my-1" *ngIf="ctrl['curp'].hasError('required')">
                                                 El campo es requerido
                                             </span>
-                                            <span class="text-danger my-1" *ngIf="fc.get('curp')?.hasError('pattern')">
+                                            <span class="text-danger my-1" *ngIf="ctrl['curp'].hasError('pattern')">
                                                 El campo no tiene un formato válido
                                             </span>
                                         </div>
@@ -121,8 +121,8 @@
                                                 Calle <span class="text-danger">*</span>
                                             </label>
                                             <input class="form-control form-control-solid" id="street" formControlName="street" type="text" placeholder="Calle" />
-                                            <div *ngIf="fc.get('address.street')?.touched && fc.get('address.street')?.errors">
-                                                <span class="text-danger my-1" *ngIf="fc.get('address.street')?.hasError('required')">
+                                            <div *ngIf="ctrl['address'].get('street')?.touched && ctrl['address'].get('street')?.errors">
+                                                <span class="text-danger my-1" *ngIf="ctrl['address'].get('street')?.hasError('required')">
                                                     El campo es requerido
                                                 </span>
                                             </div>
@@ -132,8 +132,8 @@
                                                 No. Exterior <span class="text-danger">*</span>
                                             </label>
                                             <input class="form-control form-control-solid" id="exterior" formControlName="exterior" type="text" placeholder="No. Exterior" />
-                                            <div *ngIf="fc.get('address.exterior')?.touched && fc.get('address.exterior')?.errors">
-                                                <span class="text-danger my-1" *ngIf="fc.get('address.exterior')?.hasError('required')">
+                                            <div *ngIf="ctrl['address'].get('exterior')?.touched && ctrl['address'].get('exterior')?.errors">
+                                                <span class="text-danger my-1" *ngIf="ctrl['address'].get('exterior')?.hasError('required')">
                                                     El campo es requerido
                                                 </span>
                                             </div>
@@ -151,8 +151,8 @@
                                                 Colonia <span class="text-danger">*</span>
                                             </label>
                                             <input class="form-control form-control-solid" id="neighborhood" formControlName="neighborhood" type="text" placeholder="Colonia" />
-                                            <div *ngIf="fc.get('address.neighborhood')?.touched && fc.get('address.neighborhood')?.errors">
-                                                <span class="text-danger my-1" *ngIf="fc.get('address.neighborhood')?.hasError('required')">
+                                            <div *ngIf="ctrl['address'].get('neighborhood')?.touched && ctrl['address'].get('neighborhood')?.errors">
+                                                <span class="text-danger my-1" *ngIf="ctrl['address'].get('neighborhood')?.hasError('required')">
                                                     El campo es requerido
                                                 </span>
                                             </div>
@@ -162,8 +162,8 @@
                                                 Ciudad <span class="text-danger">*</span>
                                             </label>
                                             <input class="form-control form-control-solid" id="city" formControlName="city" type="text" placeholder="Ciudad" />
-                                            <div *ngIf="fc.get('address.city')?.touched && fc.get('address.city')?.errors">
-                                                <span class="text-danger my-1" *ngIf="fc.get('address.city')?.hasError('required')">
+                                            <div *ngIf="ctrl['address'].get('city')?.touched && ctrl['address'].get('city')?.errors">
+                                                <span class="text-danger my-1" *ngIf="ctrl['address'].get('city')?.hasError('required')">
                                                     El campo es requerido
                                                 </span>
                                             </div>
@@ -198,11 +198,11 @@
                                                 Codigo Postal <span class="text-danger">*</span>
                                             </label>
                                             <input class="form-control form-control-solid" id="zip" formControlName="zip" type="text" placeholder="Codigo Postal" />
-                                            <div *ngIf="fc.get('address.zip')?.touched && fc.get('address.zip')?.errors">
-                                                <span class="text-danger my-1" *ngIf="fc.get('address.zip')?.hasError('required')">
+                                            <div *ngIf="ctrl['address'].get('zip')?.touched && ctrl['address'].get('zip')?.errors">
+                                                <span class="text-danger my-1" *ngIf="ctrl['address'].get('zip')?.hasError('required')">
                                                     El campo es requerido
                                                 </span>
-                                                <span class="text-danger my-1" *ngIf="fc.get('address.zip')?.hasError('pattern')">
+                                                <span class="text-danger my-1" *ngIf="ctrl['address'].get('zip')?.hasError('pattern')">
                                                     El campo no tiene un formato válido
                                                 </span>
                                             </div>
@@ -237,11 +237,11 @@
                                             Correo <span class="text-danger">*</span>
                                         </label>
                                         <input class="form-control form-control-solid" id="email" formControlName="email" type="email" placeholder="Correo" />
-                                        <div *ngIf="fc.get('email')?.touched && fc.get('email')?.errors">
-                                            <span class="text-danger my-1" *ngIf="fc.get('email')?.hasError('required')">
+                                        <div *ngIf="ctrl['email'].touched && ctrl['email'].errors">
+                                            <span class="text-danger my-1" *ngIf="ctrl['email'].hasError('required')">
                                                 El campo es requerido
                                             </span>
-                                            <span class="text-danger my-1" *ngIf="fc.get('email')?.hasError('pattern')">
+                                            <span class="text-danger my-1" *ngIf="ctrl['email'].hasError('pattern')">
                                                 El campo no tiene un formato válido
                                             </span>
                                         </div>
@@ -251,11 +251,11 @@
                                             Teléfono <span class="text-danger">*</span>
                                         </label>
                                         <input class="form-control form-control-solid" id="phone" formControlName="phone" type="text" placeholder="Teléfono" />
-                                        <div *ngIf="fc.get('phone')?.touched && fc.get('phone')?.errors">
-                                            <span class="text-danger my-1" *ngIf="fc.get('phone')?.hasError('required')">
+                                        <div *ngIf="ctrl['phone'].touched && ctrl['phone'].errors">
+                                            <span class="text-danger my-1" *ngIf="ctrl['phone'].hasError('required')">
                                                 El campo es requerido
                                             </span>
-                                            <span class="text-danger my-1" *ngIf="fc.get('phone')?.hasError('pattern')">
+                                            <span class="text-danger my-1" *ngIf="ctrl['phone'].hasError('pattern')">
                                                 El campo no tiene un formato válido
                                             </span>
                                         </div>
@@ -280,11 +280,11 @@
                                                 Número de empleado <span class="text-danger">*</span>
                                             </label>
                                             <input class="form-control form-control-solid" id="employeeNumber" formControlName="employeeNumber" type="text" placeholder="Número de empleado" />
-                                            <div *ngIf="fc.get('job.employeeNumber')?.touched && fc.get('job.employeeNumber')?.errors">
-                                                <span class="text-danger my-1" *ngIf="fc.get('job.employeeNumber')?.hasError('required')">
+                                            <div *ngIf="ctrl['job'].get('employeeNumber')?.touched && ctrl['job'].get('employeeNumber')?.errors">
+                                                <span class="text-danger my-1" *ngIf="ctrl['job'].get('employeeNumber')?.hasError('required')">
                                                     El campo es requerido
                                                 </span>
-                                                <span class="text-danger my-1" *ngIf="fc.get('job.employeeNumber')?.hasError('pattern')">
+                                                <span class="text-danger my-1" *ngIf="ctrl['job'].get('employeeNumber')?.hasError('pattern')">
                                                     El campo no tiene un formato válido
                                                 </span>
                                             </div>
@@ -294,11 +294,11 @@
                                                 Número de seguridad social <span class="text-danger">*</span>
                                             </label>
                                             <input class="form-control form-control-solid" id="nss" formControlName="nss" type="text" placeholder="Número de seguridad social" />
-                                            <div *ngIf="fc.get('job.nss')?.touched && fc.get('job.nss')?.errors">
-                                                <span class="text-danger my-1" *ngIf="fc.get('job.nss')?.hasError('required')">
+                                            <div *ngIf="ctrl['job'].get('nss')?.touched && ctrl['job'].get('nss')?.errors">
+                                                <span class="text-danger my-1" *ngIf="ctrl['job'].get('nss')?.hasError('required')">
                                                     El campo es requerido
                                                 </span>
-                                                <span class="text-danger my-1" *ngIf="fc.get('job.nss')?.hasError('pattern')">
+                                                <span class="text-danger my-1" *ngIf="ctrl['job'].get('nss')?.hasError('pattern')">
                                                     El campo no tiene un formato válido
                                                 </span>
                                             </div>
@@ -310,11 +310,11 @@
                                                 RFC <span class="text-danger">*</span>
                                             </label>
                                             <input class="form-control form-control-solid" id="rfc" formControlName="rfc" type="text" placeholder="RFC" />
-                                            <div *ngIf="fc.get('job.rfc')?.touched && fc.get('job.rfc')?.errors">
-                                                <span class="text-danger my-1" *ngIf="fc.get('job.rfc')?.hasError('required')">
+                                            <div *ngIf="ctrl['job'].get('rfc')?.touched && ctrl['job'].get('rfc')?.errors">
+                                                <span class="text-danger my-1" *ngIf="ctrl['job'].get('rfc')?.hasError('required')">
                                                     El campo es requerido
                                                 </span>
-                                                <span class="text-danger my-1" *ngIf="fc.get('job.rfc')?.hasError('pattern')">
+                                                <span class="text-danger my-1" *ngIf="ctrl['job'].get('rfc')?.hasError('pattern')">
                                                     El campo no tiene un formato válido
                                                 </span>
                                             </div>
@@ -329,14 +329,14 @@
                                                 <option value="MIDDLE SCHOOL">Secundaria</option>
                                                 <option value="HIGH SCHOOL">Preparatoria</option>
                                                 <option value="CAREER TECH">Carrera tecnica</option>
-                                                <option value="COLLAGE DEGREE">Licenciatura</option>
+                                                <option value="COLLEGE DEGREE">Licenciatura</option>
                                                 <option value="ENGINEERING">Ingenieria</option>
                                                 <option value="MASTERS DEGREE">Maestria</option>
                                                 <option value="DOCTORAL DEGREE">Doctorado</option>
                                                 <option value="UNSPECIFIED">Sin especificar</option>
                                             </select>
-                                            <div *ngIf="fc.get('job.schooling')?.touched && fc.get('job.schooling')?.errors">
-                                                <span class="text-danger my-1" *ngIf="fc.get('job.schooling')?.hasError('required')">
+                                            <div *ngIf="ctrl['job'].get('schooling')?.touched && ctrl['job'].get('schooling')?.errors">
+                                                <span class="text-danger my-1" *ngIf="ctrl['job'].get('schooling')?.hasError('required')">
                                                     El campo es requerido
                                                 </span>
                                             </div>
@@ -381,8 +381,8 @@
                                                 Descripción <span class="text-danger">*</span>
                                             </label>
                                             <input class="form-control form-control-solid" id="description" formControlName="description" type="text" placeholder="Descriptión" />
-                                            <div *ngIf="fc.get('job.description')?.touched && fc.get('job.description')?.errors">
-                                                <span class="text-danger my-1" *ngIf="fc.get('job.description')?.hasError('required')">
+                                            <div *ngIf="ctrl['job'].get('description')?.touched && ctrl['job'].get('description')?.errors">
+                                                <span class="text-danger my-1" *ngIf="ctrl['job'].get('description')?.hasError('required')">
                                                     El campo es requerido
                                                 </span>
                                             </div>
@@ -394,12 +394,12 @@
                                                 <label class="form-label" for="start">
                                                     Horario de inicio <span class="text-danger">*</span>
                                                 </label>
-                                                <input class="form-control form-control-solid" id="start" formControlName="start" type="text" placeholder="hh:mm" />
-                                                <div *ngIf="fc.get('job.schedule.start')?.touched && fc.get('job.schedule.start')?.errors">
-                                                    <span class="text-danger my-1" *ngIf="fc.get('job.schedule.start')?.hasError('required')">
+                                                <input class="form-control form-control-solid" id="start" formControlName="start" type="text" placeholder="hh:mm (formato 24hrs)" />
+                                                <div *ngIf="ctrl['job'].get('schedule.start')?.touched && ctrl['job'].get('schedule.start')?.errors">
+                                                    <span class="text-danger my-1" *ngIf="ctrl['job'].get('schedule.start')?.hasError('required')">
                                                         El campo es requerido
                                                     </span>
-                                                    <span class="text-danger my-1" *ngIf="fc.get('job.schedule.start')?.hasError('pattern')">
+                                                    <span class="text-danger my-1" *ngIf="ctrl['job'].get('schedule.start')?.hasError('pattern')">
                                                         El campo no tiene un formato válido
                                                     </span>
                                                 </div>
@@ -408,12 +408,12 @@
                                                 <label class="form-label" for="end">
                                                     Horario de termino <span class="text-danger">*</span>
                                                 </label>
-                                                <input class="form-control form-control-solid" id="end" formControlName="end" type="text" placeholder="hh:mm" />
-                                                <div *ngIf="fc.get('job.schedule.end')?.touched && fc.get('job.schedule.end')?.errors">
-                                                    <span class="text-danger my-1" *ngIf="fc.get('job.schedule.end')?.hasError('required')">
+                                                <input class="form-control form-control-solid" id="end" formControlName="end" type="text" placeholder="hh:mm (formato 24hrs)" />
+                                                <div *ngIf="ctrl['job'].get('schedule.end')?.touched && ctrl['job'].get('schedule.end')?.errors">
+                                                    <span class="text-danger my-1" *ngIf="ctrl['job'].get('schedule.end')?.hasError('required')">
                                                         El campo es requerido
                                                     </span>
-                                                    <span class="text-danger my-1" *ngIf="fc.get('job.schedule.end')?.hasError('pattern')">
+                                                    <span class="text-danger my-1" *ngIf="ctrl['job'].get('schedule.end')?.hasError('pattern')">
                                                         El campo no tiene un formato válido
                                                     </span>
                                                 </div>
@@ -426,11 +426,11 @@
                                                 Salario <span class="text-danger">*</span>
                                             </label>
                                             <input class="form-control form-control-solid" id="salary" formControlName="salary" type="text" placeholder="Salario" />
-                                            <div *ngIf="fc.get('job.salary')?.touched && fc.get('job.salary')?.errors">
-                                                <span class="text-danger my-1" *ngIf="fc.get('job.salary')?.hasError('required')">
+                                            <div *ngIf="ctrl['job'].get('salary')?.touched && ctrl['job'].get('salary')?.errors">
+                                                <span class="text-danger my-1" *ngIf="ctrl['job'].get('salary')?.hasError('required')">
                                                     El campo es requerido
                                                 </span>
-                                                <span class="text-danger my-1" *ngIf="fc.get('job.salary')?.hasError('pattern')">
+                                                <span class="text-danger my-1" *ngIf="ctrl['job'].get('salary')?.hasError('pattern')">
                                                     El campo no tiene un formato válido
                                                 </span>
                                             </div>
@@ -440,15 +440,21 @@
                                                 Numero de cuenta <span class="text-danger">*</span>
                                             </label>
                                             <input class="form-control form-control-solid" id="accountNumber" formControlName="accountNumber" type="text" placeholder="Número de cuenta" />
-                                            <div *ngIf="fc.get('job.accountNumber')?.touched && fc.get('job.accountNumber')?.errors">
-                                                <span class="text-danger my-1" *ngIf="fc.get('job.accountNumber')?.hasError('required')">
+                                            <div *ngIf="ctrl['job'].get('accountNumber')?.touched && ctrl['job'].get('accountNumber')?.errors">
+                                                <span class="text-danger my-1" *ngIf="ctrl['job'].get('accountNumber')?.hasError('required')">
                                                     El campo es requerido
                                                 </span>
-                                                <span class="text-danger my-1" *ngIf="fc.get('job.accountNumber')?.hasError('pattern')">
+                                                <span class="text-danger my-1" *ngIf="ctrl['job'].get('accountNumber')?.hasError('pattern')">
                                                     El campo no tiene un formato válido
                                                 </span>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="form-check form-check-custom form-check-solid">
+                                        <input class="form-check-input" id="infonavitCredit" formControlName="infonavitCredit" type="checkbox"/>
+                                        <label class="form-check-label" for="infonavitCredit">
+                                            Credito infonavit
+                                        </label>
                                     </div>
                                 </ng-container>
                             </div>
@@ -462,8 +468,10 @@
                                     </a>
                                 </div>
                                 <div>
-                                    <button [ngClass]="{'disabled': form.invalid}" class="btn btn-success" type="submit">
+                                    <button [ngClass]="{'disabled': form.invalid}" class="btn btn-success d-flex align-items-center" type="submit">
                                         Registrar empleado
+                                        <div class="spinner-border spinner-border-sm m-2" *ngIf="loading">
+                                        </div>
                                     </button>
                                 </div>
                             </div>

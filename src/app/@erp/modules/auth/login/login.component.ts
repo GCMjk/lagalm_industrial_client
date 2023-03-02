@@ -4,7 +4,8 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 import { EmployeeService } from '@erp-core/services/employee.service';
 import { SwalService } from '@erp-core/services/swal.service';
-import { ILogged, ILogin } from '@erp-core/interfaces/rrhh/employee.interface';
+import { ILogged } from '@erp-core/interfaces/rrhh/employee.interface';
+import { email } from '@erp-core/constants';
 
 @Component({
   selector: 'app-login',
@@ -13,8 +14,9 @@ import { ILogged, ILogin } from '@erp-core/interfaces/rrhh/employee.interface';
 })
 export class LoginComponent implements OnInit {
 
-  loginForm: FormGroup;
-  public token: string = localStorage.getItem('token')!;
+  form: FormGroup;
+  loading = false;
+  token: string = localStorage.getItem('token')!;
 
   constructor(
     private _router: Router,
@@ -22,10 +24,10 @@ export class LoginComponent implements OnInit {
     private _swal: SwalService,
     private _employeeService: EmployeeService
   ) { 
-    this.loginForm = this._formBuilder.group({
+    this.form = this._formBuilder.group({
       email: ['', [
         Validators.required,
-        Validators.email
+        Validators.pattern(email)
       ]],
       password: ['', Validators.required]
     });
@@ -38,7 +40,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this._employeeService.login(this.loginForm.value).subscribe(
+    this._employeeService.login(this.form.value).subscribe(
       ({ message, token, data }: ILogged) => {
         this._swal.toast({ text: message, icon: 'success' });
         localStorage.setItem('token', token);
@@ -53,8 +55,8 @@ export class LoginComponent implements OnInit {
 
   }
 
-  get loginControl() {
-    return this.loginForm['controls'];
+  get ctrl() {
+    return this.form.controls;
   }
 
 }

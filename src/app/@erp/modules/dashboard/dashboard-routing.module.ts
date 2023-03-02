@@ -9,11 +9,11 @@ const routes: Routes = [
     children: [
       {
         path: 'rh',
-        loadChildren: () => import('@erp-modules/rh/rh.module').then(m => m.RhModule) 
+        loadChildren: () => import('@erp-areas/rh/rh.module').then(m => m.RhModule) 
       },
       {
         path: 'sales',
-        loadChildren: () => import('@erp-modules/sales/sales.module').then(m => m.SalesModule) 
+        loadChildren: () => import('@erp-areas/sales/sales.module').then(m => m.SalesModule) 
       }
     ]
   }

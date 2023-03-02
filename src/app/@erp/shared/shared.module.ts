@@ -9,6 +9,7 @@ import { HeaderComponent } from '@erp-shared/header/header.component';
 import { FooterComponent } from '@erp-shared/footer/footer.component';
 import { NotFoundComponent } from '@erp-shared/not-found/not-found.component';
 import { UiInputComponent } from './components/form/ui-input/ui-input.component';
+import { ButtonComponent } from './components/ui/button/button.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { UiInputComponent } from './components/form/ui-input/ui-input.component'
     HeaderComponent,
     FooterComponent,
     NotFoundComponent,
-    UiInputComponent
+    UiInputComponent,
+    ButtonComponent
   ],
   imports: [
     CommonModule,

@@ -7,7 +7,7 @@ const routes: Routes = [
     children: [
       {
         path: 'employee',
-        loadChildren: () => import('@erp-modules/rh/employee/employee.module').then(m => m.EmployeeModule)
+        loadChildren: () => import('@erp-areas/rh/employee/employee.module').then(m => m.EmployeeModule)
       }
     ]
   }

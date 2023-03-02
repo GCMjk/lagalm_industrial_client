@@ -14,6 +14,9 @@
       "@erp-modules/*": [
         "src/app/@erp/modules/*"
       ],
+      "@erp-areas/*": [
+        "src/app/@erp/modules/dashboard/areas/*"
+      ],
       "@erp-guards/*": [
         "src/app/@erp/guards/*"
       ],
