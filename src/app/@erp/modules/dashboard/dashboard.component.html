@@ -1,17 +1,17 @@
 <div class="flex h-full">
-    <!-- Narrow sidebar -->
-    <side-bar></side-bar>  
+    <erp-sidebar/>
+
     <!-- Content area -->
     <div class="flex flex-1 flex-col overflow-hidden">
-      <app-navigation></app-navigation>
-  
-      <!-- Main content -->
-      <div class="flex flex-1 items-stretch overflow-hidden">
-        <main class="flex-1 overflow-y-auto">
-          <div class="mx-auto max-w-7xl px-4 pt-8 sm:px-6 lg:px-8">
-            <router-outlet></router-outlet>
-          </div>
-        </main>
-      </div>
+        <erp-navigation/>
+
+        <!-- Main content -->
+        <div class="flex flex-1 items-stretch overflow-hidden">
+            <main class="flex-1 overflow-y-auto">
+                <div class="pt-6 px-2 max-w-full">
+                    <router-outlet></router-outlet>
+                </div>
+            </main>
+        </div>
     </div>
-  </div>
+</div>
