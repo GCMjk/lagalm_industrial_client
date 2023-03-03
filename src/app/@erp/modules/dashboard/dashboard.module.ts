@@ -13,7 +13,8 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
   imports: [
     CommonModule,
     SharedModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    
   ]
 })
 export class DashboardModule { }

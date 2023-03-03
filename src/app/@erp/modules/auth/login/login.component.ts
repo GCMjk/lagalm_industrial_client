@@ -9,13 +9,11 @@ import { email } from '@erp-core/constants';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  templateUrl: './login.component.html'
 })
 export class LoginComponent implements OnInit {
 
   form: FormGroup;
-  loading = false;
   token: string = localStorage.getItem('token')!;
 
   constructor(
@@ -40,19 +38,20 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this._employeeService.login(this.form.value).subscribe(
-      ({ message, token, data }: ILogged) => {
-        this._swal.toast({ text: message, icon: 'success' });
-        localStorage.setItem('token', token);
-        localStorage.setItem('user', JSON.stringify(data));
-        localStorage.setItem('_id', data._id!);
-        this._router.navigate(['app']);
-      },
-      ({ error: { message } }) => {
-        this._swal.toast({ text: message, icon: 'error' })
-      }
-    )
-
+    if(this.form.valid) {
+      this._employeeService.login(this.form.value).subscribe(
+        ({ message, token, data }: ILogged) => {
+          this._swal.toast({ text: message, icon: 'success' });
+          localStorage.setItem('token', token);
+          localStorage.setItem('user', JSON.stringify(data));
+          localStorage.setItem('_id', data._id!);
+          this._router.navigate(['app']);
+        },
+        ({ error: { message } }) => {
+          this._swal.toast({ text: message, icon: 'error' })
+        }
+      )
+    }
   }
 
   get ctrl() {

@@ -1,62 +1,56 @@
-<div class="d-flex flex-column flex-root" style="height: 100vh !important; background: #edfdff;">
-    <!--begin::Login-->
-    <div class="login login-signin-on login-2 d-flex flex-row-fluid" id="kt_login">
-        <div class="d-flex flex-center bgi-size-cover bgi-no-repeat flex-row-fluid">
-            <div class="login-form text-center  p-7 position-relative overflow-hidden"
-                style="min-width: 380px !important;">
-                <!--begin::Login Header-->
-                <div class="d-flex flex-center mb-15">
-                    <img src="assets/lagalm.png" class="max-h-150px" alt="Logo Lagalm" />
+<div class="mx-auto w-full max-w-sm lg:w-96">
+  <ng-container>
+      <img class="h-12 w-auto" src="/assets/lagalm.png" alt="Lagalm Industrial">
+      <h2 class="mt-6 text-3xl font-bold tracking-tight text-gray-900">
+          Iniciar sesión
+      </h2>
+      <p class="mt-2 text-sm text-gray-400">
+          Ingresa tus datos para iniciar sesión
+      </p>
+  </ng-container>
+
+  <div class="mt-8">  
+      <div class="mt-6">
+          <form [formGroup]="form" (ngSubmit)="login()" class="space-y-6" >
+              <div class="mt-2">
+                <label for="email" class="ml-px block pl-4 text-sm font-medium leading-6 text-gray-900">
+                  Correo <span class="text-red-400">*</span>
+                </label>
+                <input formControlName="email" id="email" name="email" type="email" placeholder="Ingresa tu correo"
+                    class="block w-full rounded-full border-0 mt-2 px-4 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                <div *ngIf="ctrl['email'].touched" class="text-sm text-red-600">
+                  <p *ngIf="ctrl['email'].hasError('required')">
+                    El correo es requerido
+                  </p>
+                  <p *ngIf="ctrl['email'].hasError('pattern')">
+                    El correo es inválido
+                  </p>
                 </div>
-                <!--end::Login Header-->
-                <!--begin::Login Sign in form-->
-                <div class="login-signin">
-                    <div class="mb-20">
-                        <h3>Inicio de sesión</h3>
-                        <p class="opacity-60 font-weight-bold">
-                            Ingresa tu cuenta de empleado
-                        </p>
-                    </div>
+              </div>
 
-                    <form class="form" [formGroup]="form" (ngSubmit)="login()">
-                        <div class="form-group">
-                            <input
-                                formControlName="email"
-                                class="form-control h-auto placeholder-white opacity-70 bg-dark-o-70 rounded-pill border-0 py-4 px-8 mb-5"
-                                type="text" placeholder="Correo"/>
-                            <div *ngIf="ctrl['email'].touched">
-                                <p class="text-danger" *ngIf="ctrl['email'].hasError('required')">
-                                    El correo es requerido
-                                </p>
-                                <p class="text-danger" *ngIf="ctrl['email'].hasError('email')">
-                                    El correo es inválido
-                                </p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <input
-                                formControlName="password"
-                                class="form-control h-auto placeholder-white opacity-70 bg-dark-o-70 rounded-pill border-0 py-4 px-8 mb-5"
-                                type="password" placeholder="Contraseña" />
-                            <div *ngIf="ctrl['password'].touched">
-                                <p class="text-danger" *ngIf="ctrl['password'].hasError('required')">
-                                    La contraseña es requerida
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="form-group text-center mt-10">
-                            <button [disabled]="form.invalid" type="submit" class="btn btn-pill btn-primary font-weight-bold opacity-90 px-15 py-3">
-                                Ingresar
-                            </button>
-                        </div>
-                    </form>
-
+              <div class="mt-2">
+                <label for="password" class="ml-px block pl-4 text-sm font-medium leading-6 text-gray-900">
+                  Contraseña <span class="text-red-400">*</span>
+                </label>
+                <input formControlName="password" id="password" name="password" type="password" placeholder="Ingresa la contraseña"
+                    class="block w-full rounded-full border-0 mt-2 px-4 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                <div *ngIf="ctrl['password'].touched" class="text-sm text-red-600">
+                  <p *ngIf="ctrl['password'].hasError('required')">
+                    El correo es requerido
+                  </p>
                 </div>
-                <!--end::Login Sign in form-->
+              </div>
 
-            </div>
-        </div>
-    </div>
-    <!--end::Login-->
+              <div class="text-sm flex justify-end">
+                  <a [routerLink]="['..', 'reset-pass']" class="font-medium text-indigo-800 hover:text-indigo-600">
+                      Recuperar contraseña
+                  </a>
+              </div>
+
+              <button type="submit" [disabled]="form.invalid" class="flex w-full justify-center rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:opacity-50">
+                  Iniciar sesión
+              </button>
+          </form>
+      </div>
+  </div>
 </div>

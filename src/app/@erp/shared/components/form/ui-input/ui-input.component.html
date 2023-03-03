@@ -1,9 +1,0 @@
-<div class="form-floating">
-    <label [for]="id" class="required form-label">
-        {{label}} <span *ngIf="required" class="text-danger">*</span>
-    </label>
-    <input [id]="id" [type]="type" [placeholder]="ph" class="form-control" [ngClass]="{'is-invalid': errors}"/>
-    <ng-container *ngIf="control.invalid && (control.dirty || control.touched)">
-        <span class="invalid-feedback">Error</span>
-    </ng-container>
-</div>

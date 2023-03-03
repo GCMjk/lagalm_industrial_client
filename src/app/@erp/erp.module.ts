@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ErpRoutingModule } from './erp-routing.module';
 import { ErpComponent } from './erp.component';
@@ -11,7 +12,8 @@ import { ErpComponent } from './erp.component';
   ],
   imports: [
     CommonModule,
-    ErpRoutingModule
+    ErpRoutingModule,
+    BrowserAnimationsModule
   ]
 })
 export class ErpModule { }

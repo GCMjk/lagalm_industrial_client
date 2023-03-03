@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { trigger, transition, style, animate } from '@angular/animations';
+
 import { EmployeeService } from '@erp-core/services/employee.service';
 import { SwalService } from '@erp-core/services/swal.service';
 import { IEmployee } from '@erp-core/interfaces/rrhh/employee.interface';
@@ -9,10 +11,23 @@ declare var $: any;
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
-  styleUrls: ['./employee.component.scss']
+  styleUrls: ['./employee.component.scss'],
+  animations: [ 
+    trigger('opacityScale', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'scale(.95)' }),
+        animate('100ms ease-out', style({  opacity: 1, transform: 'scale(1)' }))
+      ]),
+      transition(':leave', [
+        style({ opacity: 1, transform: 'scale(1)' }),
+        animate('75ms ease-in', style({ opacity: 0, transform: 'scale(.95)' }))
+      ])
+    ])
+  ]
 })
 export class EmployeeComponent implements OnInit {
 
+  isMenu = false;
   public token: string = localStorage.getItem('token')!;
   public employees: Array<IEmployee> = [];
   public employeesSearch: Array<IEmployee> = [];
@@ -41,6 +56,10 @@ export class EmployeeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getEmployees();
+  }
+
+  toggleMenu(){
+    this.isMenu = !this.isMenu;
   }
 
   getEmployees() {

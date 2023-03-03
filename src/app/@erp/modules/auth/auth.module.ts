@@ -6,12 +6,14 @@ import { SharedModule } from '@erp/shared/shared.module';
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
 import { ResetPassComponent } from './reset-pass/reset-pass.component';
+import { AuthComponent } from './auth.component';
 
 
 @NgModule({
   declarations: [
     LoginComponent,
-    ResetPassComponent
+    ResetPassComponent,
+    AuthComponent
   ],
   imports: [
     CommonModule,

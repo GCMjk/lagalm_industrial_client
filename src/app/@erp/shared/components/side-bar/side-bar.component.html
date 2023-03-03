@@ -1,70 +1,88 @@
-<div class="aside aside-left aside-fixed d-flex flex-column flex-row-auto" id="kt_aside">
-    <!--begin::Brand-->
-    <div class="brand flex-column-auto" id="kt_brand">
-        <!--begin::Logo-->
-        <a href="index.html" class="brand-logo">
-            <img alt="Logo" src="assets/media/logos/logo-light.png" />
-        </a>
-        <!--end::Logo-->
-        <!--begin::Toggle-->
-        <button class="brand-toggle btn btn-sm px-0" id="kt_aside_toggle">
-            <span class="svg-icon svg-icon svg-icon-xl">
-                <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Angle-double-left.svg-->
-                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
-                    height="24px" viewBox="0 0 24 24" version="1.1">
-                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                        <polygon points="0 0 24 0 24 24 0 24" />
-                        <path
-                            d="M5.29288961,6.70710318 C4.90236532,6.31657888 4.90236532,5.68341391 5.29288961,5.29288961 C5.68341391,4.90236532 6.31657888,4.90236532 6.70710318,5.29288961 L12.7071032,11.2928896 C13.0856821,11.6714686 13.0989277,12.281055 12.7371505,12.675721 L7.23715054,18.675721 C6.86395813,19.08284 6.23139076,19.1103429 5.82427177,18.7371505 C5.41715278,18.3639581 5.38964985,17.7313908 5.76284226,17.3242718 L10.6158586,12.0300721 L5.29288961,6.70710318 Z"
-                            fill="#000000" fill-rule="nonzero"
-                            transform="translate(8.999997, 11.999999) scale(-1, 1) translate(-8.999997, -11.999999)" />
-                        <path
-                            d="M10.7071009,15.7071068 C10.3165766,16.0976311 9.68341162,16.0976311 9.29288733,15.7071068 C8.90236304,15.3165825 8.90236304,14.6834175 9.29288733,14.2928932 L15.2928873,8.29289322 C15.6714663,7.91431428 16.2810527,7.90106866 16.6757187,8.26284586 L22.6757187,13.7628459 C23.0828377,14.1360383 23.1103407,14.7686056 22.7371482,15.1757246 C22.3639558,15.5828436 21.7313885,15.6103465 21.3242695,15.2371541 L16.0300699,10.3841378 L10.7071009,15.7071068 Z"
-                            fill="#000000" fill-rule="nonzero" opacity="0.3"
-                            transform="translate(15.999997, 11.999999) scale(-1, 1) rotate(-270.000000) translate(-15.999997, -11.999999)" />
-                    </g>
-                </svg>
-                <!--end::Svg Icon-->
-            </span>
-        </button>
-        <!--end::Toolbar-->
-    </div>
-    <!--end::Brand-->
-    <!--begin::Aside Menu-->
-    <div class="aside-menu-wrapper flex-column-fluid" id="kt_aside_menu_wrapper">
-        <!--begin::Menu Container-->
-        <div id="kt_aside_menu" class="aside-menu my-4" data-menu-vertical="1" data-menu-scroll="1"
-            data-menu-dropdown-timeout="500">
-            <!--begin::Menu Nav-->
-            <ul class="menu-nav">
-
-                <li *ngFor="let item of mainMenu.defaultOptions" class="menu-item" aria-haspopup="true">
-                    <a [routerLink]="item.router" routerLinkActive="menu-item-active" class="menu-link">
-                        <span class="svg-icon menu-icon">
-                            <i [ngClass]="[item.icon]"></i>
-                        </span>
-                        <span class="menu-text">{{item.name}}</span>
-                    </a>
-                </li>
-
-                <li class="menu-section">
-                    <h4 class="menu-text">Utilidades</h4>
-                    <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
-                </li>
-
-                <li *ngFor="let item of mainMenu.accessLink" class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true">
-                    <a [routerLink]="item.router" class="menu-link">
-                        <span class="svg-icon menu-icon">
-                            <i [ngClass]="[item.icon]"></i>
-                        </span>
-                        <span class="menu-text">{{item.name}}</span>
-                    </a>
-                </li>
-
-            </ul>
-            <!--end::Menu Nav-->
+<div class="hidden w-28 h-screen overflow-y-auto bg-indigo-700 md:block">
+    <div class="flex w-full flex-col items-center py-6">
+        <div class="flex flex-shrink-0 items-center">
+            <img class="h-10 w-auto" src="/assets/lagalm.png" alt="Your Company">
         </div>
-        <!--end::Menu Container-->
+        <div class="mt-6 w-full flex-1 space-y-1 px-2">
+            <ng-container  *ngFor="let link of links" >
+                <a [routerLink]="link.router" routerLinkActive="menu-item-active" class="text-indigo-100 hover:bg-indigo-800 hover:text-white group flex w-full flex-col items-center rounded-md p-3 text-xs font-medium">
+                    <span class="text-indigo-300 group-hover:text-white">
+                        <i [ngClass]="[link.icon]"></i>
+                    </span>
+                    <span class="mt-2">{{link.name}}</span>
+                </a>
+            </ng-container>
+        </div>
     </div>
-    <!--end::Aside Menu-->
+</div>
+
+<div class="relative z-40 md:hidden" role="dialog" aria-modal="true">
+    <!--
+        Off-canvas menu backdrop, show/hide based on off-canvas menu state.
+
+        Entering: "transition-opacity ease-linear duration-300"
+        From: "opacity-0"
+        To: "opacity-100"
+        Leaving: "transition-opacity ease-linear duration-300"
+        From: "opacity-100"
+        To: "opacity-0"
+    -->
+    <div class="fixed inset-0 bg-gray-600 bg-opacity-75"></div>
+
+    <div class="fixed inset-0 z-40 flex">
+        <!--
+        Off-canvas menu, show/hide based on off-canvas menu state.
+
+        Entering: "transition ease-in-out duration-300 transform"
+            From: "-translate-x-full"
+            To: "translate-x-0"
+        Leaving: "transition ease-in-out duration-300 transform"
+            From: "translate-x-0"
+            To: "-translate-x-full"
+        -->
+        <div class="relative flex w-full max-w-xs flex-1 flex-col bg-indigo-700 pt-5 pb-4">
+            <!--
+                Close button, show/hide based on off-canvas menu state.
+
+                Entering: "ease-in-out duration-300"
+                From: "opacity-0"
+                To: "opacity-100"
+                Leaving: "ease-in-out duration-300"
+                From: "opacity-100"
+                To: "opacity-0"
+            -->
+            <div class="absolute top-1 right-0 -mr-14 p-1">
+                <button type="button" class="flex h-12 w-12 items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-white">
+                <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+                <span class="sr-only">Close sidebar</span>
+                </button>
+            </div>
+
+            <div class="flex flex-shrink-0 items-center px-4">
+                <img class="h-10 w-auto" src="/assets/lagalm.png" alt="Lagalm Industrial">
+            </div>
+            <div class="mt-5 h-0 flex-1 overflow-y-auto px-2">
+                <nav class="flex h-full flex-col">
+                    <div class="space-y-1">
+                        <ng-container *ngFor="let link of links">
+                            <!-- Current: "bg-indigo-800 text-white", Default: "text-indigo-100 hover:bg-indigo-800 hover:text-white" -->
+                            <a [routerLink]="link.router" routerLinkActive="router-link-active" class="text-indigo-100 hover:bg-indigo-800 hover:text-white group flex items-center rounded-md py-2 px-3 text-sm font-medium">
+                                <!-- Current: "text-white", Default: "text-indigo-300 group-hover:text-white" -->
+                                <span class="text-indigo-300 group-hover:text-white mr-3 h-6 w-6">
+                                    <i [ngClass]="[link.icon]"></i>
+                                </span>
+                                <span>{{link.name}}</span>
+                            </a>
+                        </ng-container>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+        <div class="w-14 flex-shrink-0" aria-hidden="true">
+        <!-- Dummy element to force sidebar to shrink to fit close icon -->
+        </div>
+    </div>
 </div>
