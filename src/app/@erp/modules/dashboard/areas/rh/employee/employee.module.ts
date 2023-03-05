@@ -12,7 +12,7 @@ import { NewEmployeeComponent } from './new-employee/new-employee.component';
   declarations: [
     EmployeeComponent,
     EditEmployeeComponent,
-    NewEmployeeComponent
+    NewEmployeeComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,99 @@
+<div class="relative z-10" role="dialog" aria-modal="true">
+    
+    <div @opacity *ngIf='_viewService.isSlideOver' class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+
+    <div @translateX *ngIf='_viewService.isSlideOver' class="fixed inset-0 overflow-hidden">
+        <div class="absolute inset-0 overflow-hidden">
+        
+            <div @translateX *ngIf='_viewService.isSlideOver' (click)="_viewService.toggleSlideOver()" class="fixed inset-0"></div>
+            
+            <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 sm:pl-16">
+                
+                <div @translateX *ngIf='_viewService.isSlideOver' class="pointer-events-auto w-screen max-w-md">
+                    <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
+                        <div class="px-4 py-6 sm:px-6">
+                            <div class="flex items-start justify-between">
+                                <h2 id="slide-over-heading" class="text-md font-thin text-gray-800">
+                                    {{view.type}} No.{{view.id}}
+                                </h2>
+                                <div class="ml-3 flex h-7 items-center">
+                                    <button type="button" (click)="_viewService.toggleSlideOver()" class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:ring-2 focus:ring-indigo-500">
+                                        <span class="sr-only">Cerrar panel</span>
+                                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="pb-1 sm:pb-6">
+                                <div>
+                                    <div class="relative h-40 sm:h-56">
+                                        <img [src]="view.img" [alt]="view.name"
+                                            class="absolute h-full w-full object-cover" >
+                                    </div>
+                                    <div class="mt-6 px-4 sm:mt-8 sm:flex sm:items-end sm:px-6">
+                                        <div class="sm:flex-1">
+                                            <div>
+                                                <div class="flex items-center">
+                                                    <h3 class="text-xl font-bold text-gray-900 sm:text-2xl">
+                                                        {{view.name}}
+                                                    </h3>
+                                                    <span *ngIf="view.btnStatus" [ngClass]="{'bg-green-400': view.btnStatus.status, 'bg-red-400': !view.btnStatus.status}" class="ml-2.5 inline-block h-2 w-2 flex-shrink-0 rounded-full">
+                                                        <span class="sr-only">{{view.btnStatus.status}}</span>
+                                                    </span>
+                                                </div>
+                                                <p class="text-sm text-gray-500">
+                                                    {{view.description}}
+                                                </p>
+                                            </div>
+                                            <div class="mt-5 flex flex-wrap space-y-3 sm:space-y-0 sm:space-x-3">
+                                                <a *ngIf="view.btnEdit" [routerLink]="view.btnEdit" class="inline-flex w-full flex-1 items-center justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                                                    Editar
+                                                </a>
+                                                <button *ngIf="view.btnStatus" type="button" class="text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 inline-flex items-center"
+                                                    (click)="view.btnStatus.action"
+                                                    [ngClass]="{'bg-green-600 hover:bg-green-700': !view.btnStatus.status, 'bg-red-600 hover:bg-red-700': view.btnStatus.status}"
+                                                    >
+                                                        <i class="fa-solid fa-spinner animate-spin mr-2" *ngIf="loading"></i>
+                                                        {{view.btnStatus.status ? 'Desactivar' : 'Activar'}}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="px-4 pt-5 pb-5 sm:px-0 sm:pt-0">
+                                <dl class="space-y-8 px-4 sm:space-y-6 sm:px-6">
+                                    <div *ngFor="let section of view.sections">
+                                        <h3 class="font-medium text-gray-900 mb-2">
+                                            {{section.nameSection}}
+                                        </h3>
+                                        <ul role="list" class="divide-y divide-gray-200">
+                                            <li *ngFor="let element of section.elements">
+                                                <div class="px-2 py-4 sm:px-4">
+                                                    <div class="flex items-center justify-between">
+                                                        <p class="truncate text-sm font-medium text-indigo-800">
+                                                            {{element.key}}
+                                                        </p>
+                                                        <div class="ml-2 flex flex-shrink-0">
+                                                            <p class="truncate text-sm font-light">
+                                                                {{element.value}}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>          

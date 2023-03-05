@@ -1,35 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { trigger, transition, style, animate } from '@angular/animations';
 
 import { EmployeeService } from '@erp-core/services/employee.service';
+import { ViewService } from '@erp/core/services/common/view.service';
 import { SwalService } from '@erp-core/services/swal.service';
 import { IEmployee } from '@erp-core/interfaces/rrhh/employee.interface';
 import { IResult } from '@erp-core/interfaces/common/result.interface';
-declare var $: any;
 
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
-  styleUrls: ['./employee.component.scss'],
-  animations: [ 
-    trigger('opacityScale', [
-      transition(':enter', [
-        style({ opacity: 0, transform: 'scale(.95)' }),
-        animate('100ms ease-out', style({  opacity: 1, transform: 'scale(1)' }))
-      ]),
-      transition(':leave', [
-        style({ opacity: 1, transform: 'scale(1)' }),
-        animate('75ms ease-in', style({ opacity: 0, transform: 'scale(.95)' }))
-      ])
-    ])
-  ]
+  styleUrls: ['./employee.component.scss']
 })
 export class EmployeeComponent implements OnInit {
 
-  isMenu = false;
   public token: string = localStorage.getItem('token')!;
   public employees: Array<IEmployee> = [];
+  public employee!: IEmployee;
   public employeesSearch: Array<IEmployee> = [];
 
   public itemsPerPage: number = 1;
@@ -42,11 +29,12 @@ export class EmployeeComponent implements OnInit {
   public filter = '';
   public loadStatus = false;
   public loadData = false;
-
+  
   constructor(
-    private _employeeService: EmployeeService,
+    private _route: ActivatedRoute,
+    public _viewService: ViewService,
     private _swal: SwalService,
-    private _route: ActivatedRoute
+    private _employeeService: EmployeeService
   ) {
 
     this.nextPage = 1;
@@ -56,10 +44,6 @@ export class EmployeeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getEmployees();
-  }
-
-  toggleMenu(){
-    this.isMenu = !this.isMenu;
   }
 
   getEmployees() {
@@ -108,19 +92,104 @@ export class EmployeeComponent implements OnInit {
   }
 
   setStatus(id: IEmployee['_id'], status: IEmployee['status']) {
-    console.log(status)
-    this.loadStatus = true;
-    this._employeeService.editStatusEmployee(id, status, this.token).subscribe(
-      ({ message }: IResult) => {
-        this.loadStatus = false;
-        $('#delete-' + id).modal('hide');
-        this.getEmployees();
-        this._swal.toast({ text: message, icon: 'success' })
-      },
-      ({ error: { message } }) => {
-        this._swal.toast({ text: message, icon: 'error' })
+    /* this._employeeService.editStatusEmployee(id, status, this.token).subscribe(
+      () => {
+        this._employeeService.getEmployee(id, this.token).subscribe(
+          ({ data }: IResult) => {
+            this._viewService.getView.emit(data)
+          }
+        )
       }
-    );
+    ) */
+  }
+
+  getEmployee(id: IEmployee['_id']) {
+    this._employeeService.getEmployee(id, this.token).subscribe(
+      ({ data }: IResult) => {
+        this._viewService.getView.emit({
+          type: 'Empleado',
+          _id: data._id,
+          id: data.job.employeeNumber,
+          img: data.avatar,
+          name: data.fullnames,
+          description: data.email,
+          btnEdit: ['../edit', data._id],
+          btnStatus: {
+              action: this.setStatus(data._id, data.status)!,
+              status: data.status
+          },
+          sections: [
+            {
+              nameSection: 'Datos personales',
+              elements: [
+                {
+                  key: 'Fecha de nacimiento',
+                  value: data.birthday
+                },
+                {
+                  key: 'Género',
+                  value: data.gender
+                },
+                {
+                  key: 'Estado civil',
+                  value: data.maritalStatus
+                },
+                {
+                  key: 'CURP',
+                  value: data.curp
+                },
+                {
+                  key: 'RFC',
+                  value: data.job.rfc
+                },
+                {
+                  key: 'Dirección',
+                  value: data.address.street
+                },
+                {
+                  key: 'Télefono',
+                  value: data.phone
+                },
+                {
+                  key: 'Escolaridad',
+                  value: data.schooling
+                }
+              ]
+            },
+            {
+              nameSection: 'Datos laborales',
+              elements: [
+                {
+                  key: 'Numero de Seguridad Social',
+                  value: data.job.employeeNumber
+                },
+                {
+                  key: 'Salario',
+                  value: data.job.salary
+                },
+                {
+                  key: 'Horario',
+                  value: data.job.schedule.start
+                },
+                {
+                  key: 'Area de trabajo',
+                  value: data.job.workArea[0].area
+                },
+                {
+                  key: 'Descripción',
+                  value: data.job.description
+                },
+                {
+                  key: 'Ultimo inicio de sesión',
+                  value: data.lastSession ? data.lastSession : 'No ha iniciado sesión'
+                }
+              ]
+            }
+          ]
+        });
+        this._viewService.toggleSlideOver()
+      }
+    )
   }
 
 }
