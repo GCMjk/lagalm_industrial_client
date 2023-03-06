@@ -2,6 +2,15 @@ interface IElement {
     key: string;
     value: string;
 }
+
+interface IAction {
+    action: string;
+}
+
+interface IEdit {
+    route: Array<string>;
+    actions?: Array<IAction>;
+}
   
 interface ISection {
     nameSection: string;
@@ -15,10 +24,7 @@ export interface IView {
     img?: string;
     name: string;
     description: string;
-    btnEdit: Array<string>;
-    btnStatus?: {
-        action: Function,
-        status: boolean
-    };
-    sections: Array<ISection>;
+    status: boolean;
+    edit: IEdit;
+    sections?: Array<ISection>;
 }

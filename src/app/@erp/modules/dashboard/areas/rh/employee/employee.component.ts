@@ -106,17 +106,21 @@ export class EmployeeComponent implements OnInit {
   getEmployee(id: IEmployee['_id']) {
     this._employeeService.getEmployee(id, this.token).subscribe(
       ({ data }: IResult) => {
-        this._viewService.getView.emit({
+        this._viewService.viewObservableData({
           type: 'Empleado',
           _id: data._id,
           id: data.job.employeeNumber,
           img: data.avatar,
           name: data.fullnames,
           description: data.email,
-          btnEdit: ['../edit', data._id],
-          btnStatus: {
-              action: this.setStatus(data._id, data.status)!,
-              status: data.status
+          status: data.status,
+          edit: {
+            route: ['rh', 'employee', 'edit', data._id],
+            actions: [
+              {
+                action: 'Activar'
+              }
+            ]
           },
           sections: [
             {
