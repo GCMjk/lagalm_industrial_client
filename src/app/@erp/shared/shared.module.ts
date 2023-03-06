@@ -8,6 +8,7 @@ import { NavigationComponent } from '@erp-shared/navigation/navigation.component
 import { HeaderComponent } from '@erp-shared/header/header.component';
 import { NotFoundComponent } from '@erp-shared/not-found/not-found.component';
 import { ViewComponent } from './components/view/view.component';
+import { NotificationComponent } from './components/notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ViewComponent } from './components/view/view.component';
     NavigationComponent,
     HeaderComponent,
     NotFoundComponent,
-    ViewComponent
+    ViewComponent,
+    NotificationComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,8 @@ import { ViewComponent } from './components/view/view.component';
     NavigationComponent,
     HeaderComponent,
     NotFoundComponent,
-    ViewComponent
+    ViewComponent,
+    NotificationComponent
   ]
 })
 export class SharedModule { }

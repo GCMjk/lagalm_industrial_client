@@ -44,7 +44,6 @@ import { Observable } from 'rxjs';
 export class ViewComponent {
 
   public view$: Observable<IView>;
-  loading = false;
   isDropdown = false;
 
   constructor(
