@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 import { trigger, transition, style, animate } from '@angular/animations';
 
+import { INotification } from '@erp-core/interfaces/common/notification.interface';
 import { NotificationService } from '@erp-core/services/common/notification.service';
 
 @Component({
@@ -21,16 +23,12 @@ import { NotificationService } from '@erp-core/services/common/notification.serv
 })
 export class NotificationComponent {
 
-  isNotification: boolean;
+  notification: Observable<INotification>;
 
   constructor(
-    private _notificationService: NotificationService
+    public _notificationService: NotificationService
   ) {
-    this.isNotification = _notificationService.isNotification;
-  }
-  
-  close(){
-    this.isNotification = false
+    this.notification = _notificationService.notificationObservable;
   }
 
 }

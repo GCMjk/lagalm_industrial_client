@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { SwalService } from '@erp-core/services/swal.service';
+import { NotificationService } from '@erp/core/services/common/notification.service';
 import { EmployeeService } from '@erp-core/services/employee.service';
 import { ILogged } from '@erp-core/interfaces/rrhh/employee.interface';
 import { states, email, curp, zip, phone, employeeNumber, rfc, nss, time24, salary, cardNumber } from '@erp-core/constants';
@@ -21,7 +21,7 @@ export class NewEmployeeComponent {
   constructor(
     private _router: Router,
     private _fb: FormBuilder,
-    private _swal: SwalService,
+    private _notificationService: NotificationService,
     private _employeeService: EmployeeService
   ) {
     this.form = _fb.group({
@@ -40,7 +40,7 @@ export class NewEmployeeComponent {
         exterior: ['', Validators.required],
         neighborhood: ['', Validators.required],
         city: ['', Validators.required],
-        municipality: '',
+        municipality: ['', Validators.required],
         state: ['', Validators.required],
         country: ['', Validators.required],
         zip: ['', [
@@ -60,7 +60,7 @@ export class NewEmployeeComponent {
         Validators.required,
         Validators.pattern(phone)
       ]],
-      role: 'USER',
+      role: ['USER', Validators.required],
       avatar: '',
       job: this._fb.group({
         employeeNumber: ['', [
@@ -109,21 +109,26 @@ export class NewEmployeeComponent {
   new() {
 
     if (this.form.valid) {
+      console.log(this.form)
       this.loading = true;
-      this._employeeService.registerEmployee(this.form.value, this.token).subscribe(
+      /* this._employeeService.registerEmployee(this.form.value, this.token).subscribe(
         ({ message }: ILogged) => {
           this._swal.toast({ text: message, icon: 'success' });
           // FIX Route
-          this._router.navigate(['..', '1']);
+          this._router.navigate(['../']);
           this.loading = false;
         },
         ({ error: { message } }) => {
           this._swal.toast({ text: message, icon: 'error' });
           this.loading = false;
         }
-      )
+      ) */
     } else {
-      this._swal.toast({ text: 'Completa el formulario', icon: 'info' });
+      this._notificationService.notificationObservableData({
+        title: 'Complete los datos del formulario', 
+        text: 'Verifique que todos los campos hayan sido resuletos', 
+        icon: 'warning'
+      })
     }
   }
 
