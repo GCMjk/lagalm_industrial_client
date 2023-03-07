@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenService } from '@erp-core/services/token.service';
-import { ILogged } from '@erp-core/interfaces/rrhh/employee.interface';
+import { ILogged } from '@erp/core/interfaces/rh/employee.interface';
 
 @Component({
   selector: 'app-erp',

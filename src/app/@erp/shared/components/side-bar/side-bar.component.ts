@@ -57,7 +57,7 @@ export class SideBarComponent {
       {
         name: 'Clientes',
         icon: 'fa-solid fa-briefcase',
-        route: ['sales', 'clients', '1']
+        route: ['sales', 'client', '1']
       },
       {
         name: 'Productos',

@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
 import { environment } from "src/environments/environment";
-import { ILogged } from '@erp-core/interfaces/rrhh/employee.interface';
+import { ILogged } from '@erp/core/interfaces/rh/employee.interface';
 
 @Injectable({
   providedIn: 'root'

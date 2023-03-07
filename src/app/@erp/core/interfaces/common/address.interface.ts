@@ -1,14 +1,14 @@
 export interface IAddress {
     street: string;
-    interior: string;
-    exterior?: string;
+    exterior: string;
+    interior?: string;
     neighborhood: string;
     city: string;
     municipality: string;
     state: string;
     country: string;
     zip: string;
-    streets: {
+    streets?: {
         a: string;
         b: string;
     }

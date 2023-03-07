@@ -6,8 +6,8 @@ const routes: Routes = [
     path: '',
     children: [
       {
-        path: 'clients',
-        loadChildren: () => import('@erp-areas/sales/clients/clients.module').then(m => m.ClientsModule)
+        path: 'client',
+        loadChildren: () => import('@erp-areas/sales/client/client.module').then(m => m.ClientModule)
       },
       {
         path: 'products',

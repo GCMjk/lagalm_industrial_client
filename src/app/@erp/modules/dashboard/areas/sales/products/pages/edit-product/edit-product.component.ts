@@ -30,12 +30,9 @@ export class EditProductComponent implements OnInit {
     client: {
       legalName: '',
       bussinessActivity: {
-        activity: '',
+        activity: 'COMMERCIAL',
         description: ''
       },
-      taxId: '',
-      taxSystem: '',
-      taxEmail: '',
       contact: {
         email: '',
         phone: '',
@@ -56,7 +53,8 @@ export class EditProductComponent implements OnInit {
           b: ''
         },
       },
-      type: ''
+      type: 'CLIENT',
+      status: true
     }
   }
 

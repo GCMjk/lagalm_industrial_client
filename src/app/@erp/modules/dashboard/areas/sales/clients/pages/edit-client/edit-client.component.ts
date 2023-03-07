@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ClientService } from '@erp-core/services/client.service';
-import { IClient } from '@erp-core/interfaces/client.interface';
+import { ClientService } from '@erp/core/services/sales/client.service';
+import { IClient } from '@erp/core/interfaces/sales/client.interface';
 
 import { SwalService } from '@erp-core/services/swal.service';
 

@@ -1,4 +1,4 @@
-import { IClient } from '@erp-core/interfaces/client.interface';
+import { IClient } from '@erp/core/interfaces/sales/client.interface';
 
 export interface IProduct {
     _id?: string;

@@ -4,7 +4,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 import { EmployeeService } from '@erp/core/services/rh/employee.service';
 import { SwalService } from '@erp-core/services/swal.service';
-import { ILogged } from '@erp-core/interfaces/rrhh/employee.interface';
+import { ILogged } from '@erp/core/interfaces/rh/employee.interface';
 import { email } from '@erp-core/constants';
 
 @Component({

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { ClientService } from '@erp-core/services/client.service';
-import { IClient } from '@erp-core/interfaces/client.interface';
+import { ClientService } from '@erp/core/services/sales/client.service';
+import { IClient } from '@erp/core/interfaces/sales/client.interface';
 import { IResult } from '@erp-core/interfaces/common/result.interface';
 declare var $: any;
 

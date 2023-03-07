@@ -29,12 +29,9 @@ export class CreateProductComponent {
     client: {
       legalName: '',
       bussinessActivity: {
-        activity: '',
+        activity: 'COMMERCIAL',
         description: ''
       },
-      taxId: '',
-      taxSystem: '',
-      taxEmail: '',
       contact: {
         email: '',
         phone: '',
@@ -55,7 +52,8 @@ export class CreateProductComponent {
           b: ''
         },
       },
-      type: ''
+      type: 'CLIENT',
+      status: true
     }
   }
 

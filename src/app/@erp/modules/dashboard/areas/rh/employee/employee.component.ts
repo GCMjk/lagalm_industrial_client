@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
 
 import { SwalService } from '@erp-core/services/swal.service';
 import { ViewService } from '@erp-core/services/common/view.service';
 import { EmployeeService } from '@erp-core/services/rh/employee.service';
 
-import { IEmployee } from '@erp-core/interfaces/rrhh/employee.interface';
+import { IEmployee } from '@erp/core/interfaces/rh/employee.interface';
 import { IResult } from '@erp-core/interfaces/common/result.interface';
 
 @Component({
@@ -15,10 +14,8 @@ import { IResult } from '@erp-core/interfaces/common/result.interface';
 export class EmployeeComponent implements OnInit {
 
   public employees: Array<IEmployee> = [];
-  public employee!: IEmployee;
   
   constructor(
-    private _route: ActivatedRoute,
     private _swal: SwalService,
     private _viewService: ViewService,
     private _employeeService: EmployeeService
@@ -50,7 +47,7 @@ export class EmployeeComponent implements OnInit {
     this._employeeService.getEmployee(id).subscribe(
       ({ data }: IResult) => {
         this._viewService.viewObservableData({
-          type: 'Empleado',
+          type: 'Empleado No.',
           _id: data._id,
           id: data.job.employeeNumber,
           img: data.avatar,

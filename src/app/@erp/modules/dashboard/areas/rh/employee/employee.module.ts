@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@erp/shared/shared.module';
 
 import { EmployeeRoutingModule } from './employee-routing.module';
@@ -16,7 +16,6 @@ import { NewEmployeeComponent } from './new-employee/new-employee.component';
   ],
   imports: [
     CommonModule,
-    FormsModule,
     ReactiveFormsModule,
     SharedModule,
     EmployeeRoutingModule

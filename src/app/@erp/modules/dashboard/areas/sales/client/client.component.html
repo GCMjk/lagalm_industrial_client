@@ -1,14 +1,14 @@
 <div class="px-4 sm:px-6 lg:px-8">
     <div class="sm:flex sm:items-center">
         <div class="sm:flex-auto">
-            <erp-header [title]="['Empleados', 'Listado de empleados']" />
+            <erp-header [title]="['Clientes', 'Listado de clientes']" />
         </div>
         <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
             <input type="text" class="block w-full rounded-full border-0 px-4 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Buscar">
         </div>
         <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
             <a [routerLink]="['../new']" class="block rounded-md bg-indigo-600 py-2 px-3 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                Agregar empleado
+                Agregar cliente
             </a>
         </div>
     </div>
@@ -19,13 +19,13 @@
                     <thead>
                         <tr>
                             <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
-                                Nombre
+                                Nombre de la empresa
                             </th>
                             <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
                                 Contacto
                             </th>
                             <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
-                                Area
+                                Tipo
                             </th>
                             <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
                                 Estado
@@ -38,47 +38,44 @@
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200">
-                        <tr *ngFor="let employee of employees" (click)="getEmployee(employee._id)" class="cursor-pointer">
+                        <tr *ngFor="let client of clients" (click)="getClient(client._id)" class="cursor-pointer">
                             <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-0">
                                 <div class="flex items-center">
                                     <div class="h-10 w-10 flex-shrink-0">
-                                        <img class="h-10 w-10 rounded-full object-cover" src="{{employee.avatar}}" alt="{{employee.fullnames}}">
+                                        <img class="h-10 w-10 rounded-full object-cover" src="{{client.logo}}" alt="{{client.legalName}}">
                                     </div>
                                     <div class="ml-4">
                                         <p class="font-medium cursor-pointer text-blue-800 hover:text-blue-600 transition-all duration-200">
-                                            {{employee.fullnames}}
+                                            {{client.legalName}}
                                         </p>
                                         <p class="text-gray-400">
-                                            # {{employee.job.employeeNumber}}
+                                            {{client.tax?.taxID ? client.tax?.taxID : 'No hay RFC registrado'}}
                                         </p>
                                     </div>
                                 </div>
                             </td>
                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                 <p class="font-medium text-gray-900">
-                                    {{employee.email}}
+                                    {{client.contact.email}}
                                 </p>
                                 <p class="text-gray-400">
-                                    {{employee.phone}}
+                                    {{client.contact.phone}}
                                 </p>
                             </td>
                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                <p class="font-medium text-gray-900">
-                                    {{employee.job.workArea[0].area}}
-                                </p>
-                                <p class="text-gray-400">
-                                    {{employee.job.workArea[0].range}}
-                                </p>
+                                <span [ngClass]="{'bg-blue-100 text-blue-800': client.type === 'CLIENT', 'bg-yellow-100 text-yellow-800': client.type === 'PROSPECT'}" class="inline-flex rounded-full px-2 text-xs font-semibold leading-5">
+                                    {{client.type === 'CLIENT' ? 'Cliente' : 'Prospecto' }}
+                                </span>
                             </td>
                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                <span [ngClass]="{'bg-green-100 text-green-800': employee.status, 'bg-red-100 text-red-800': !employee.status}" class="inline-flex rounded-full px-2 text-xs font-semibold leading-5">
-                                    {{employee.status ? 'Activo' : 'Inactivo' }}
+                                <span [ngClass]="{'bg-green-100 text-green-800': client.status, 'bg-red-100 text-red-800': !client.status}" class="inline-flex rounded-full px-2 text-xs font-semibold leading-5">
+                                    {{client.status ? 'Activo' : 'Inactivo' }}
                                 </span>
                             </td>
                             <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                                 <div class="relative inline-block text-left">
-                                    <a [routerLink]="['../edit', employee._id]" class="text-indigo-600 hover:text-indigo-900">
-                                        Editar<span class="sr-only">, {{employee.fullnames}}</span>
+                                    <a [routerLink]="['../edit', client._id]" class="text-indigo-600 hover:text-indigo-900">
+                                        Editar<span class="sr-only">, {{client.legalName}}</span>
                                     </a>                          
                                 </div>
                             </td>
