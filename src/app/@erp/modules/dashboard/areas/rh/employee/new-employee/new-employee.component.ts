@@ -2,20 +2,19 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { NotificationService } from '@erp/core/services/common/notification.service';
-import { EmployeeService } from '@erp-core/services/employee.service';
+import { NotificationService } from '@erp-core/services/common/notification.service';
+import { EmployeeService } from '@erp-core/services/rh/employee.service';
+
+import { IResult } from '@erp-core/interfaces/common/result.interface';
 import { states, email, curp, zip, phone, employeeNumber, rfc, nss, time24, salary, cardNumber } from '@erp-core/constants';
 
 @Component({
   selector: 'app-new-employee',
-  templateUrl: './new-employee.component.html',
-  styleUrls: ['./new-employee.component.scss']
+  templateUrl: './new-employee.component.html'
 })
 export class NewEmployeeComponent {
 
   public form: FormGroup;
-  public loading = false;
-  public token: any = localStorage.getItem('token');
 
   constructor(
     private _router: Router,
@@ -108,26 +107,29 @@ export class NewEmployeeComponent {
   new() {
 
     if (this.form.valid) {
-      console.log(this.form)
-      this.loading = true;
-      /* this._employeeService.registerEmployee(this.form.value, this.token).subscribe(
+      this._employeeService.registerEmployee(this.form.value).subscribe(
         ({ message }: IResult) => {
-          this._swal.toast({ text: message, icon: 'success' });
-          // FIX Route
           this._router.navigate(['../']);
-          this.loading = false;
+          this._notificationService.notificationObservableData({
+            title: 'Empleado creado',
+            text: message,
+            icon: 'success'
+          });
         },
         ({ error: { message } }) => {
-          this._swal.toast({ text: message, icon: 'error' });
-          this.loading = false;
+          this._notificationService.notificationObservableData({
+            title: 'Error',
+            text: message,
+            icon: 'error'
+          })
         }
-      ) */
+      )
     } else {
       this._notificationService.notificationObservableData({
         title: 'Complete los datos del formulario', 
         text: 'Verifique que todos los campos hayan sido resuletos', 
         icon: 'warning'
-      })
+      });
     }
   }
 
@@ -149,6 +151,5 @@ export class NewEmployeeComponent {
   delWorkArea() {
     this.workAreaField.removeAt(-1);
   }
-
 
 }

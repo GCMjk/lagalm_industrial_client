@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { IView } from '@erp-core/interfaces/common/view.interface';
 import { BehaviorSubject } from 'rxjs';
+
+import { IView } from '@erp-core/interfaces/common/view.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class ViewService {
     }
   });
   public isSlideOver = false;
-  isDropdown = false;
+  public isDropdown = false;
   
   constructor() { }
 
@@ -34,7 +35,7 @@ export class ViewService {
 
   public toggleSlideOver(){
     this.isSlideOver = !this.isSlideOver;
-    this.isDropdown = false
+    this.isDropdown = false;
   }
 
   toggleDropdown(){

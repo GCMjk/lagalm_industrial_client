@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ErpComponent } from './erp.component';
-import { AuthGuard } from '@erp-guards/auth.guard';
+import { AuthGuard } from '@erp/core/guards/auth.guard';
 
 const routes: Routes = [
   {

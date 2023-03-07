@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
-import { EmployeeService } from '@erp-core/services/employee.service';
+import { EmployeeService } from '@erp/core/services/rh/employee.service';
 import { SwalService } from '@erp-core/services/swal.service';
 import { ILogged } from '@erp-core/interfaces/rrhh/employee.interface';
 import { email } from '@erp-core/constants';

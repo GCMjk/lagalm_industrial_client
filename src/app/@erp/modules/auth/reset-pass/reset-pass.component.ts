@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { SwalService } from '@erp-core/services/swal.service';
-import { EmployeeService } from '@erp/core/services/employee.service';
+import { EmployeeService } from '@erp/core/services/rh/employee.service';
 import { email } from '@erp/core/constants';
 
 @Component({

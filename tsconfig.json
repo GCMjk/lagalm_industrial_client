@@ -18,7 +18,7 @@
         "src/app/@erp/modules/dashboard/areas/*"
       ],
       "@erp-guards/*": [
-        "src/app/@erp/guards/*"
+        "src/app/@erp/core/guards/*"
       ],
       "@erp-shared/*": [
         "src/app/@erp/shared/components/*"
