@@ -42,7 +42,6 @@ export class EmployeeService {
 
   editStatusEmployee(id: IEmployee['_id'], status: IEmployee['status'], token: ILogged['token']): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': token });
-    console.log(status)
     return this._http.put(this.url + 'employee/status/' + id, { status }, { headers })
   }
 

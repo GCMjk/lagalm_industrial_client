@@ -92,15 +92,13 @@ export class EmployeeComponent implements OnInit {
   }
 
   setStatus(id: IEmployee['_id'], status: IEmployee['status']) {
-    /* this._employeeService.editStatusEmployee(id, status, this.token).subscribe(
-      () => {
-        this._employeeService.getEmployee(id, this.token).subscribe(
-          ({ data }: IResult) => {
-            this._viewService.getView.emit(data)
-          }
-        )
+    this._employeeService.editStatusEmployee(id, status, this.token).subscribe(
+      ({ message }: IResult) => {
+        this._swal.toast({ text: message, icon: 'success' })
+        this.getEmployees();
+        this.getEmployee(id);
       }
-    ) */
+    )
   }
 
   getEmployee(id: IEmployee['_id']) {
@@ -118,7 +116,10 @@ export class EmployeeComponent implements OnInit {
             route: ['rh', 'employee', 'edit', data._id],
             actions: [
               {
-                action: 'Activar'
+                action: data.status ? 'Desactivar' : 'Activar',
+                handleAction: () => this.setStatus(data._id, data.status),
+                textColor: data.status ? 'text-red-500' : 'text-green-500',
+                icon: data.status ? 'fa-solid fa-ban' : 'fa-solid fa-check'
               }
             ]
           },

@@ -20,7 +20,8 @@ export class ViewService {
     }
   });
   public isSlideOver = false;
-
+  isDropdown = false;
+  
   constructor() { }
 
   get viewObservable() {
@@ -33,6 +34,11 @@ export class ViewService {
 
   public toggleSlideOver(){
     this.isSlideOver = !this.isSlideOver;
+    this.isDropdown = false
+  }
+
+  toggleDropdown(){
+    this.isDropdown = !this.isDropdown;
   }
 
 }

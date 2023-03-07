@@ -5,6 +5,9 @@ interface IElement {
 
 interface IAction {
     action: string;
+    handleAction: Function;
+    textColor?: string;
+    icon?: string;
 }
 
 interface IEdit {

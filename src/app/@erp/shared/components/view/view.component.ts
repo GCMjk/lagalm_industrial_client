@@ -44,16 +44,11 @@ import { Observable } from 'rxjs';
 export class ViewComponent {
 
   public view$: Observable<IView>;
-  isDropdown = false;
 
   constructor(
     public _viewService: ViewService
   ) {
     this.view$ = _viewService.viewObservable;
-  }
-
-  toggleDropdown(){
-    this.isDropdown = !this.isDropdown;
   }
 
 }

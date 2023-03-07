@@ -4,7 +4,6 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { NotificationService } from '@erp/core/services/common/notification.service';
 import { EmployeeService } from '@erp-core/services/employee.service';
-import { ILogged } from '@erp-core/interfaces/rrhh/employee.interface';
 import { states, email, curp, zip, phone, employeeNumber, rfc, nss, time24, salary, cardNumber } from '@erp-core/constants';
 
 @Component({
@@ -112,7 +111,7 @@ export class NewEmployeeComponent {
       console.log(this.form)
       this.loading = true;
       /* this._employeeService.registerEmployee(this.form.value, this.token).subscribe(
-        ({ message }: ILogged) => {
+        ({ message }: IResult) => {
           this._swal.toast({ text: message, icon: 'success' });
           // FIX Route
           this._router.navigate(['../']);
