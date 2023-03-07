@@ -10,8 +10,8 @@ const routes: Routes = [
         loadChildren: () => import('@erp-areas/sales/client/client.module').then(m => m.ClientModule)
       },
       {
-        path: 'products',
-        loadChildren: () => import('@erp-areas/sales/products/products.module').then(m => m.ProductsModule)
+        path: 'product',
+        loadChildren: () => import('@erp-areas/sales/product/product.module').then(m => m.ProductModule)
       }
     ]
   }

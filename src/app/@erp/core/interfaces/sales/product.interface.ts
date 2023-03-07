@@ -2,20 +2,18 @@ import { IClient } from '@erp/core/interfaces/sales/client.interface';
 
 export interface IProduct {
     _id?: string;
-    facturapiId?: string;
+    facturapiID?: string;
     description: string;
     customerPart: string;
-    productKey?: string;
-    price: {
-        currency: "" | "USD" | "MXN";
-        price: number;
-    },
+    productKey?: "31141501" | "84111506"
+    price?: number,
     taxIncluded?: boolean;
-    taxability?: "" | "01" | "02" | "03";
-    unitKey?: string;
-    unitName?: string;
+    taxability?: "01" | "02" | "03";
+    unitKey?: "H87" | "EA";
+    unitName?: "Pieza" | "Elemento";
     sku: string;
     assigned: boolean;
     client: IClient;
-    status?: boolean;
+    img: string;
+    status: boolean;
 }

@@ -62,7 +62,7 @@ export class SideBarComponent {
       {
         name: 'Productos',
         icon: 'fa-solid fa-tag',
-        route: ['sales', 'products', '1']
+        route: ['sales', 'product', '1']
       },
       {
         name: 'Ordenes',
