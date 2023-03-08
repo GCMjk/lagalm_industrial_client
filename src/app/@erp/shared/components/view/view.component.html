@@ -64,9 +64,16 @@
                             
                                                         <div @opacityScale *ngIf='_viewService.isDropdown' class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu-button" tabindex="-1">
                                                             <div class="py-1" role="none">
-                                                                <button *ngFor="let action of (view$ | async)?.edit?.actions" (click)="action.handleAction()" class="text-gray-700 w-full px-4 py-2 text-sm text-left" [class]="action.textColor" role="menuitem" tabindex="-1" id="options-menu-item-0">
-                                                                    <i [class]="action.icon" class="mr-2"></i>{{action.action}}
-                                                                </button>
+                                                                <ng-container *ngFor="let action of (view$ | async)?.edit?.actions">
+                                                                    <button [class]="action.textColor" class="text-gray-700 w-full px-4 py-2 text-sm text-left disabled:opacity-40" [disabled]="action.disabled">
+                                                                        <a *ngIf="action.type === 'link'" [routerLink]="action.link">
+                                                                            {{action.action}}
+                                                                        </a>
+                                                                        <button *ngIf="action.type === 'button'" (click)="action.handleAction()">
+                                                                            {{action.action}}
+                                                                        </button>
+                                                                    </button>
+                                                                </ng-container>
                                                             </div>
                                                         </div>
                                                     </div>

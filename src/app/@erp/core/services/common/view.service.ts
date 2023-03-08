@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-import { IView } from '@erp-core/interfaces/common/view.interface';
+import { IView } from '@erp/core/interfaces/common/view/view.interface';
 
 @Injectable({
   providedIn: 'root'

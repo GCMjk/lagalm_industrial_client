@@ -67,7 +67,7 @@ export class SideBarComponent {
       {
         name: 'Ordenes',
         icon: 'fa-solid fa-boxes-stacked',
-        route: ['cs', 'orders', '1']
+        route: ['production', 'order', '1']
       }
     ];
   }

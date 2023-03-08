@@ -5,7 +5,6 @@ import { ViewService } from '@erp-core/services/common/view.service';
 import { ProductService } from '@erp/core/services/sales/product.service';
 
 import { IProduct } from '@erp-core/interfaces/sales/product.interface';
-import { IClient } from '@erp-core/interfaces/sales/client.interface';
 import { IResult } from '@erp-core/interfaces/common/result.interface';
 
 @Component({
@@ -34,16 +33,6 @@ export class ProductComponent implements OnInit {
     )
   }
 
-  setStatus(id: IProduct['_id'], status: IProduct['status']) {
-    this._productService.editStatusProduct(id, status).subscribe(
-      ({ message }: IResult) => {
-        this._swal.toast({ text: message, icon: 'success' })
-        this.getProducts();
-        this.getProduct(id);
-      }
-    )
-  }
-
   setAssign(id: IProduct['_id'], assigned: IProduct['assigned']) {
     this._productService.editAssignedProduct(id, assigned).subscribe(
       ({ message }: IResult) => {
@@ -54,7 +43,17 @@ export class ProductComponent implements OnInit {
     )
   }
 
-  getProduct(id: IClient['_id']) {
+  setStatus(id: IProduct['_id'], status: IProduct['status']) {
+    this._productService.editStatusProduct(id, status).subscribe(
+      ({ message }: IResult) => {
+        this._swal.toast({ text: message, icon: 'success' })
+        this.getProducts();
+        this.getProduct(id);
+      }
+    )
+  }
+
+  getProduct(id: IProduct['_id']) {
     this._productService.getProduct(id).subscribe(
       ({ data }: IResult) => {
         this._viewService.viewObservableData({
@@ -69,14 +68,15 @@ export class ProductComponent implements OnInit {
             route: ['sales', 'product', 'edit', data._id],
             actions: [
               {
+                type: 'button',
                 action: data.assigned ? 'Desasignar' : 'Asignar',
                 handleAction: () => this.setAssign(data._id, data.assigned)
               },
               {
+                type: 'button',
                 action: data.status ? 'Desactivar' : 'Activar',
                 handleAction: () => this.setStatus(data._id, data.status),
-                textColor: data.status ? 'text-red-500' : 'text-green-500',
-                icon: data.status ? 'fa-solid fa-ban' : 'fa-solid fa-check'
+                textColor: data.status ? 'text-red-500' : 'text-green-500'
               }
             ]
           },

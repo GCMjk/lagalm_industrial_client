@@ -14,6 +14,10 @@ const routes: Routes = [
       {
         path: 'sales',
         loadChildren: () => import('@erp-areas/sales/sales.module').then(m => m.SalesModule) 
+      },
+      {
+        path: 'production',
+        loadChildren: () => import('@erp-areas/production/production.module').then(m => m.ProductionModule) 
       }
     ]
   }

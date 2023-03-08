@@ -17,7 +17,7 @@ export interface IEmployee {
     name: string;
     lastname: string;
     fullnames?: string;
-    birthday: string;
+    birthday: Date;
     gender: "FEMALE" | "MALE";
     maritalStatus?: "SINGLE" | "MARRIED" | "DIVORCED" | "WIDOW";
     curp: string;

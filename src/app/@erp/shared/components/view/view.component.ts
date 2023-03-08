@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
 
 import { ViewService } from '@erp-core/services/common/view.service';
-import { IView } from '@erp-core/interfaces/common/view.interface';
+import { IView } from '@erp/core/interfaces/common/view/view.interface';
 import { Observable } from 'rxjs';
 
 @Component({

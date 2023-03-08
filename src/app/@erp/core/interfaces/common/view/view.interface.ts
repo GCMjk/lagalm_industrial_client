@@ -1,18 +1,13 @@
+import { ILink, IButton } from "./action.interface";
+
 interface IElement {
     key: string;
     value: string;
 }
 
-interface IAction {
-    action: string;
-    handleAction: Function;
-    textColor?: string;
-    icon?: string;
-}
-
 interface IEdit {
     route: Array<string>;
-    actions?: Array<IAction>;
+    actions?: Array<ILink | IButton>;
 }
   
 interface ISection {

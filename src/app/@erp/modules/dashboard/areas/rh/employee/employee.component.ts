@@ -58,10 +58,10 @@ export class EmployeeComponent implements OnInit {
             route: ['rh', 'employee', 'edit', data._id],
             actions: [
               {
+                type: 'button',
                 action: data.status ? 'Desactivar' : 'Activar',
                 handleAction: () => this.setStatus(data._id, data.status),
-                textColor: data.status ? 'text-red-500' : 'text-green-500',
-                icon: data.status ? 'fa-solid fa-ban' : 'fa-solid fa-check'
+                textColor: data.status ? 'text-red-500' : 'text-green-500'
               }
             ]
           },
