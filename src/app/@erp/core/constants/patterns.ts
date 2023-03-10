@@ -8,3 +8,4 @@ export const nss = /^(\d{2})(\d{2})(\d{2})\d{5}$/;
 export const time24 = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
 export const salary = /^\d{1,3}(?:,\d{3})*(?:\.\d+)?$/;
 export const cardNumber = /[0-9]{15,16}|(([0-9]{4}\s){3}[0-9]{3,4})/;
+export const number = /^\d+$/;

@@ -127,7 +127,7 @@ export class NewEmployeeComponent {
     } else {
       this._notificationService.notificationObservableData({
         title: 'Complete los datos del formulario', 
-        text: 'Verifique que todos los campos hayan sido resuletos', 
+        text: 'Verifique que todos los campos hayan sido resueltos', 
         icon: 'warning'
       });
     }
