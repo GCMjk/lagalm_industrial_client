@@ -13,6 +13,45 @@ export class EmployeeService {
   public url = environment.url;
   private token: ILogged['token'];
 
+  public schoolings = [
+    { key: 'PRESCHOOL', value: 'Primaria'},
+    { key: 'MIDDLE SCHOOL', value: 'Secundaria'},
+    { key: 'HIGH SCHOOL', value: 'Preparatoria'},
+    { key: 'CAREER TECH', value: 'Carrera tecnica'},
+    { key: 'COLLEGE DEGREE', value: 'Licenciatura'},
+    { key: 'ENGINEERING', value: 'Ingenieria'},
+    { key: 'MASTERS DEGREE', value: 'Maestria'},
+    { key: 'DOCTORAL DEGREE', value: 'Doctorado'},
+    { key: 'UNSPECIFIED', value: 'Sin especificar'}
+  ];
+
+  public genders = [
+      { key: 'MALE', value: 'Hombre'},
+      { key: 'FEMALE', value: 'Mujer'}
+  ];
+
+  public maritalStatuses = [
+      { key: 'SINGLE', value: 'Soltero/a'},
+      { key: 'MARRIED', value: 'Casado/a'},
+      { key: 'DIVORCED', value: 'Divorciado/a'},
+      { key: 'WIDOW', value: 'Viudo/a'},
+  ];
+
+  public roles = [
+      { key: 'USER', value: 'Usuario'},
+      { key: 'ADMIN', value: 'Admin'}
+  ];
+
+  public areas = [
+      { key: 'IT', value: 'Sistemas'},
+      { key: 'QUALITY', value: 'Calidad'}
+  ];
+
+  public areaRoles = [
+      { key: 'MANAGER', value: 'Gerente'},
+      { key: 'AUX', value: 'Auxiliar'}
+  ];
+
   constructor(
     private _http: HttpClient
   ) {

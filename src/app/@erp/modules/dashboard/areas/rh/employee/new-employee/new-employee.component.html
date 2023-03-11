@@ -25,245 +25,207 @@
                 </div>
                 <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
                     
-                    <div class="sm:col-span-3 relative">
-                        <label for="name"
-                            class="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900">
-                                Nombre <span class="text-red-400">*</span>
+                    <div class="sm:col-span-3 relative input-group">
+                        <label for="name">
+                            Nombre <span>*</span>
                         </label>
-                        <input type="text" name="name" id="name" formControlName="name" placeholder="Nombre" 
-                            class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        <input type="text" name="name" id="name" formControlName="name" placeholder="Nombre">
                         <ng-container *ngIf="ctrl['name'].touched && ctrl['name'].errors">
-                            <p id="name-required-error" *ngIf="ctrl['name'].hasError('required')" class="mt-1 text-xs text-red-400">
+                            <p id="name-required-error" *ngIf="ctrl['name'].hasError('required')">
                                 El campo es obligatorio
                             </p>
                         </ng-container>
                     </div>
 
-                    <div class="sm:col-span-3 relative">
-                        <label for="lastname"
-                            class="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900">
-                                Apellidos <span class="text-red-400">*</span>
+                    <div class="sm:col-span-3 relative input-group">
+                        <label for="lastname">
+                            Apellidos <span>*</span>
                         </label>
-                        <input type="text" name="lastname" id="lastname" formControlName="lastname" placeholder="Apellidos" 
-                            class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        <input type="text" name="lastname" id="lastname" formControlName="lastname" placeholder="Apellidos">
                         <ng-container *ngIf="ctrl['lastname'].touched && ctrl['lastname'].errors">
-                            <p id="lastname-required-error" *ngIf="ctrl['lastname'].hasError('required')" class="mt-1 text-xs text-red-400">
+                            <p id="lastname-required-error" *ngIf="ctrl['lastname'].hasError('required')">
                                 El campo es obligatorio
                             </p>
                         </ng-container>
                     </div>
 
-                    <div class="sm:col-span-6 relative">
-                        <label for="birthday"
-                            class="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900">
-                                Fecha de nacimiento <span class="text-red-400">*</span>
+                    <div class="sm:col-span-6 relative input-group">
+                        <label for="birthday">
+                            Fecha de nacimiento <span>*</span>
                         </label>
-                        <input type="date" name="birthday" id="birthday" formControlName="birthday" placeholder="Fecha de nacimiento" 
-                            class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        <input type="date" name="birthday" id="birthday" formControlName="birthday" placeholder="Fecha de nacimiento">
                         <ng-container *ngIf="ctrl['birthday'].touched && ctrl['birthday'].errors">
-                            <p id="birthday-required-error" *ngIf="ctrl['birthday'].hasError('required')" class="mt-1 text-xs text-red-400">
+                            <p id="birthday-required-error" *ngIf="ctrl['birthday'].hasError('required')">
                                 El campo es obligatorio
                             </p>
                         </ng-container>
                     </div>
 
-                    <div class="sm:col-span-3 relative">
-                        <label for="gender"
-                            class="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900">
-                                Género <span class="text-red-400">*</span>
+                    <div class="sm:col-span-3 relative input-group">
+                        <label for="gender">
+                            Género <span>*</span>
                         </label>
-                        <select name="gender" id="gender" formControlName="gender"
-                            class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                                <option value="">Seleccione una opción</option>
-                                <option value="MALE">Hombre</option>
-                                <option value="FEMALE">Mujer</option>
+                        <select name="gender" id="gender" formControlName="gender">
+                            <option value="">Seleccione una opción</option>
+                            <option *ngFor="let gender of genders" [value]="gender.key">{{gender.value}}</option>
                         </select>
                         <ng-container *ngIf="ctrl['gender'].touched && ctrl['gender'].errors">
-                            <p id="gender-required-error" *ngIf="ctrl['gender'].hasError('required')" class="mt-1 text-xs text-red-400">
+                            <p id="gender-required-error" *ngIf="ctrl['gender'].hasError('required')">
                                 El campo es obligatorio
                             </p>
                         </ng-container>
                     </div>
 
-                    <div class="sm:col-span-3 relative">
-                        <label for="maritalStatus"
-                            class="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900">
-                                Estado civil <span class="text-red-400">*</span>
+                    <div class="sm:col-span-3 relative input-group">
+                        <label for="maritalStatus">
+                            Estado civil <span>*</span>
                         </label>
-                        <select name="maritalStatus" id="maritalStatus" formControlName="maritalStatus"
-                            class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" id="maritalStatus" formControlName="maritalStatus">
-                                <option value="">Seleccione una opción</option>
-                                <option value="SINGLE">Soltero/a</option>
-                                <option value="MARRIED">Casado/a</option>
-                                <option value="DIVORCED">Divorciado/a</option>
-                                <option value="WIDOW">Viudo/a</option>
+                        <select name="maritalStatus" id="maritalStatus" formControlName="maritalStatus">
+                            <option value="">Seleccione una opción</option>
+                            <option *ngFor="let maritalStatus of maritalStatuses" [value]="maritalStatus.key">{{maritalStatus.value}}</option>
                         </select>
                         <ng-container *ngIf="ctrl['maritalStatus'].touched && ctrl['maritalStatus'].errors">
-                            <p id="maritalStatus-required-error" *ngIf="ctrl['maritalStatus'].hasError('required')" class="mt-1 text-xs text-red-400">
+                            <p id="maritalStatus-required-error" *ngIf="ctrl['maritalStatus'].hasError('required')">
                                 El campo es obligatorio
                             </p>
                         </ng-container>
                     </div>
 
-                    <div class="sm:col-span-6 relative">
-                        <label for="curp"
-                            class="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900">
-                                CURP <span class="text-red-400">*</span>
+                    <div class="sm:col-span-6 relative input-group">
+                        <label for="curp">
+                            CURP <span>*</span>
                         </label>
-                        <input type="text" name="curp" id="curp" formControlName="curp" placeholder="CURP" 
-                            class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        <input type="text" name="curp" id="curp" formControlName="curp" placeholder="CURP">
                         <ng-container *ngIf="ctrl['curp'].touched && ctrl['curp'].errors">
-                            <p id="curp-required-error" *ngIf="ctrl['curp'].hasError('required')" class="mt-1 text-xs text-red-400">
+                            <p id="curp-required-error" *ngIf="ctrl['curp'].hasError('required')">
                                 El campo es obligatorio
                             </p>
-                            <p id="curp-pattern-error" *ngIf="ctrl['curp'].hasError('pattern')" class="mt-1 text-xs text-red-400">
+                            <p id="curp-pattern-error" *ngIf="ctrl['curp'].hasError('pattern')">
                                 El campo es inválido
                             </p>
                         </ng-container>
                     </div>
 
                     <ng-container formGroupName="address">
-                        <div class="sm:col-span-3 relative">
-                            <label for="street"
-                                class="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900">
-                                    Calle <span class="text-red-400">*</span>
+                        <div class="sm:col-span-3 relative input-group">
+                            <label for="street">
+                                Calle <span>*</span>
                             </label>
-                            <input type="text" name="street" id="street" formControlName="street" placeholder="Calle" 
-                                class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            <input type="text" name="street" id="street" formControlName="street" placeholder="Calle">
                             <ng-container *ngIf="ctrl['address'].get('street')?.touched && ctrl['address'].get('street')?.errors">
-                                <p id="street-required-error" *ngIf="ctrl['address'].get('street')?.hasError('required')" class="mt-1 text-xs text-red-400">
+                                <p id="street-required-error" *ngIf="ctrl['address'].get('street')?.hasError('required')">
                                     El campo es obligatorio
                                 </p>
                             </ng-container>
                         </div>
 
-                        <div class="sm:col-span-2 relative">
-                            <label for="exterior"
-                                class="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900">
-                                    No. exterior <span class="text-red-400">*</span>
+                        <div class="sm:col-span-2 relative input-group">
+                            <label for="exterior">
+                                No. exterior <span>*</span>
                             </label>
-                            <input type="text" name="exterior" id="exterior" formControlName="exterior" placeholder="No. exterior" 
-                                class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            <input type="text" name="exterior" id="exterior" formControlName="exterior" placeholder="No. exterior">
                             <ng-container *ngIf="ctrl['address'].get('exterior')?.touched && ctrl['address'].get('exterior')?.errors">
-                                <p id="exterior-required-error" *ngIf="ctrl['address'].get('exterior')?.hasError('required')" class="mt-1 text-xs text-red-400">
+                                <p id="exterior-required-error" *ngIf="ctrl['address'].get('exterior')?.hasError('required')">
                                     El campo es obligatorio
                                 </p>
                             </ng-container>
                         </div>
 
-                        <div class="sm:col-span-1 relative">
-                            <label for="interior"
-                                class="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900">
-                                    No. interior
+                        <div class="sm:col-span-1 relative input-group">
+                            <label for="interior">
+                                No. interior
                             </label>
-                            <input type="text" name="interior" id="interior" formControlName="interior" placeholder="No. interior" 
-                                class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            <input type="text" name="interior" id="interior" formControlName="interior" placeholder="No. interior">
                         </div>
 
-                        <div class="sm:col-span-2 relative">
-                            <label for="neighborhood"
-                                class="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900">
-                                    Colonia <span class="text-red-400">*</span>
+                        <div class="sm:col-span-2 relative input-group">
+                            <label for="neighborhood">
+                                Colonia <span>*</span>
                             </label>
-                            <input type="text" name="neighborhood" id="neighborhood" formControlName="neighborhood" placeholder="Colonia" 
-                                class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            <input type="text" name="neighborhood" id="neighborhood" formControlName="neighborhood" placeholder="Colonia">
                             <ng-container *ngIf="ctrl['address'].get('neighborhood')?.touched && ctrl['address'].get('neighborhood')?.errors">
-                                <p id="neighborhood-required-error" *ngIf="ctrl['address'].get('neighborhood')?.hasError('required')" class="mt-1 text-xs text-red-400">
+                                <p id="neighborhood-required-error" *ngIf="ctrl['address'].get('neighborhood')?.hasError('required')">
                                     El campo es obligatorio
                                 </p>
                             </ng-container>
                         </div>
 
-                        <div class="sm:col-span-2 relative">
-                            <label for="city"
-                                class="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900">
-                                    Ciudad <span class="text-red-400">*</span>
+                        <div class="sm:col-span-2 relative input-group">
+                            <label for="city">
+                                Ciudad <span>*</span>
                             </label>
-                            <input type="text" name="city" id="city" formControlName="city" placeholder="Ciudad" 
-                                class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            <input type="text" name="city" id="city" formControlName="city" placeholder="Ciudad">
                             <ng-container *ngIf="ctrl['address'].get('city')?.touched && ctrl['address'].get('city')?.errors">
-                                <p id="city-required-error" *ngIf="ctrl['address'].get('city')?.hasError('required')" class="mt-1 text-xs text-red-400">
+                                <p id="city-required-error" *ngIf="ctrl['address'].get('city')?.hasError('required')">
                                     El campo es obligatorio
                                 </p>
                             </ng-container>
                         </div>
 
-                        <div class="sm:col-span-2 relative">
-                            <label for="municipality"
-                                class="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900">
-                                    Municipio <span class="text-red-400">*</span>
+                        <div class="sm:col-span-2 relative input-group">
+                            <label for="municipality">
+                                Municipio <span>*</span>
                             </label>
-                            <input type="text" name="municipality" id="municipality" formControlName="municipality" placeholder="Municipio" 
-                                class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            <input type="text" name="municipality" id="municipality" formControlName="municipality" placeholder="Municipio">
                             <ng-container *ngIf="ctrl['address'].get('municipality')?.touched && ctrl['address'].get('municipality')?.errors">
-                                <p id="municipality-required-error" *ngIf="ctrl['address'].get('municipality')?.hasError('required')" class="mt-1 text-xs text-red-400">
+                                <p id="municipality-required-error" *ngIf="ctrl['address'].get('municipality')?.hasError('required')">
                                     El campo es obligatorio
                                 </p>
                             </ng-container>
                         </div>
 
-                        <div class="sm:col-span-3 relative">
-                            <label for="state"
-                                class="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900">
-                                    Estado <span class="text-red-400">*</span>
+                        <div class="sm:col-span-3 relative input-group">
+                            <label for="state">
+                                Estado <span>*</span>
                             </label>
-                            <input type="text" name="state" id="state" formControlName="state" placeholder="Estado" 
-                                class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            <input type="text" name="state" id="state" formControlName="state" placeholder="Estado">
                             <ng-container *ngIf="ctrl['address'].get('state')?.touched && ctrl['address'].get('state')?.errors">
-                                <p id="state-required-error" *ngIf="ctrl['address'].get('state')?.hasError('required')" class="mt-1 text-xs text-red-400">
+                                <p id="state-required-error" *ngIf="ctrl['address'].get('state')?.hasError('required')">
                                     El campo es obligatorio
                                 </p>
                             </ng-container>
                         </div>
 
-                        <div class="sm:col-span-2 relative">
-                            <label for="country"
-                                class="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900">
-                                    País <span class="text-red-400">*</span>
+                        <div class="sm:col-span-2 relative input-group">
+                            <label for="country">
+                                País <span>*</span>
                             </label>
-                            <input type="text" name="country" id="country" formControlName="country" placeholder="País" 
-                                class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            <input type="text" name="country" id="country" formControlName="country" placeholder="País">
                             <ng-container *ngIf="ctrl['address'].get('country')?.touched && ctrl['address'].get('country')?.errors">
-                                <p id="country-required-error" *ngIf="ctrl['address'].get('country')?.hasError('required')" class="mt-1 text-xs text-red-400">
+                                <p id="country-required-error" *ngIf="ctrl['address'].get('country')?.hasError('required')">
                                     El campo es obligatorio
                                 </p>
                             </ng-container>
                         </div>
 
-                        <div class="sm:col-span-1 relative">
-                            <label for="zip"
-                                class="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900">
-                                    Codigo postal <span class="text-red-400">*</span>
+                        <div class="sm:col-span-1 relative input-group">
+                            <label for="zip">
+                                Codigo postal <span>*</span>
                             </label>
-                            <input type="text" name="zip" id="zip" formControlName="zip" placeholder="Codigo postal" 
-                                class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            <input type="text" name="zip" id="zip" formControlName="zip" placeholder="Codigo postal">
                             <ng-container *ngIf="ctrl['address'].get('zip')?.touched && ctrl['address'].get('zip')?.errors">
-                                <p id="zip-required-error" *ngIf="ctrl['address'].get('zip')?.hasError('required')" class="mt-1 text-xs text-red-400">
+                                <p id="zip-required-error" *ngIf="ctrl['address'].get('zip')?.hasError('required')">
                                     El campo es obligatorio
                                 </p>
-                                <p id="zip-pattern-error" *ngIf="ctrl['address'].get('zip')?.hasError('pattern')" class="mt-1 text-xs text-red-400">
+                                <p id="zip-pattern-error" *ngIf="ctrl['address'].get('zip')?.hasError('pattern')">
                                     El campo no es válido
                                 </p>
                             </ng-container>
                         </div>
 
                         <ng-container formGroupName="streets">
-                            <div class="sm:col-span-3 relative">
-                                <label for="a"
-                                    class="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900">
-                                        Entre calle
+                            <div class="sm:col-span-3 relative input-group">
+                                <label for="a">
+                                    Entre calle
                                 </label>
-                                <input type="text" name="a" id="a" formControlName="a" placeholder="Entre calle" 
-                                    class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                <input type="text" name="a" id="a" formControlName="a" placeholder="Entre calle">
                             </div>
 
-                            <div class="sm:col-span-3 relative">
-                                <label for="b"
-                                    class="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900">
-                                        Y calle
+                            <div class="sm:col-span-3 relative input-group">
+                                <label for="b">
+                                    Y calle
                                 </label>
-                                <input type="text" name="b" id="b" formControlName="b" placeholder="Y calle" 
-                                    class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                <input type="text" name="b" id="b" formControlName="b" placeholder="Y calle">
                             </div>
                         </ng-container>
                     </ng-container>
@@ -284,130 +246,107 @@
                 </div>
                 <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
                     
-                    <div class="sm:col-span-2 relative">
-                        <label for="email"
-                            class="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900">
-                                Correo <span class="text-red-400">*</span>
+                    <div class="sm:col-span-2 relative input-group">
+                        <label for="email">
+                            Correo <span>*</span>
                         </label>
-                        <input type="email" name="email" id="email" formControlName="email" placeholder="Correo" 
-                            class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        <input type="email" name="email" id="email" formControlName="email" placeholder="Correo">
                         <ng-container *ngIf="ctrl['email'].touched && ctrl['email'].errors">
-                            <p id="email-required-error" *ngIf="ctrl['email'].hasError('required')" class="mt-1 text-xs text-red-400">
+                            <p id="email-required-error" *ngIf="ctrl['email'].hasError('required')">
                                 El campo es obligatorio
                             </p>
-                            <p id="email-pattern-error" *ngIf="ctrl['email'].hasError('pattern')" class="mt-1 text-xs text-red-400">
+                            <p id="email-pattern-error" *ngIf="ctrl['email'].hasError('pattern')">
                                 El campo no es válido
                             </p>
                         </ng-container>
                     </div>
 
-                    <div class="sm:col-span-2 relative">
-                        <label for="phone"
-                            class="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900">
-                                Télefono <span class="text-red-400">*</span>
+                    <div class="sm:col-span-2 relative input-group">
+                        <label for="phone">
+                            Télefono <span>*</span>
                         </label>
-                        <input type="email" name="phone" id="phone" formControlName="phone" placeholder="Télefono" 
-                            class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        <input type="email" name="phone" id="phone" formControlName="phone" placeholder="Télefono">
                         <ng-container *ngIf="ctrl['phone'].touched && ctrl['phone'].errors">
-                            <p id="phone-required-error" *ngIf="ctrl['phone'].hasError('required')" class="mt-1 text-xs text-red-400">
+                            <p id="phone-required-error" *ngIf="ctrl['phone'].hasError('required')">
                                 El campo es obligatorio
                             </p>
-                            <p id="phone-pattern-error" *ngIf="ctrl['phone'].hasError('pattern')" class="mt-1 text-xs text-red-400">
+                            <p id="phone-pattern-error" *ngIf="ctrl['phone'].hasError('pattern')">
                                 El campo no es válido
                             </p>
                         </ng-container>
                     </div>
 
-                    <div class="sm:col-span-2 relative">
-                        <label for="role"
-                            class="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900">
-                                Role <span class="text-red-400">*</span>
+                    <div class="sm:col-span-2 relative input-group">
+                        <label for="role">
+                            Role <span>*</span>
                         </label>
-                        <select name="role" id="role" formControlName="role" 
-                            class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                                <option value="">Seleccione una opción</option>
-                                <option value="USER">Usuario</option>
-                                <option value="ADMIN">Administrador</option>
+                        <select name="role" id="role" formControlName="role">
+                            <option value="">Seleccione una opción</option>
+                            <option *ngFor="let rol of roles" [value]="rol.key">{{rol.value}}</option>
                         </select>
                         <ng-container *ngIf="ctrl['role'].touched && ctrl['role'].errors">
-                            <p id="role-required-error" *ngIf="ctrl['role'].hasError('required')" class="mt-1 text-xs text-red-400">
+                            <p id="role-required-error" *ngIf="ctrl['role'].hasError('required')">
                                 El campo es obligatorio
                             </p>
                         </ng-container>
                     </div>
 
                     <ng-container formGroupName="job">
-                        <div class="sm:col-span-3 relative">
-                            <label for="employeeNumber"
-                                class="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900">
-                                    Numero de empleado <span class="text-red-400">*</span>
+                        <div class="sm:col-span-3 relative input-group">
+                            <label for="employeeNumber">
+                                Numero de empleado <span>*</span>
                             </label>
-                            <input type="email" name="employeeNumber" id="employeeNumber" formControlName="employeeNumber" placeholder="Numero de empleado" 
-                                class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            <input type="email" name="employeeNumber" id="employeeNumber" formControlName="employeeNumber" placeholder="Numero de empleado">
                             <ng-container *ngIf="ctrl['job'].get('employeeNumber')?.touched && ctrl['job'].get('employeeNumber')?.errors">
-                                <p id="employeeNumber-required-error" *ngIf="ctrl['job'].get('employeeNumber')?.hasError('required')" class="mt-1 text-xs text-red-400">
+                                <p id="employeeNumber-required-error" *ngIf="ctrl['job'].get('employeeNumber')?.hasError('required')">
                                     El campo es obligatorio
                                 </p>
-                                <p id="employeeNumber-pattern-error" *ngIf="ctrl['job'].get('employeeNumber')?.hasError('pattern')" class="mt-1 text-xs text-red-400">
+                                <p id="employeeNumber-pattern-error" *ngIf="ctrl['job'].get('employeeNumber')?.hasError('pattern')">
                                     El campo no es válido
                                 </p>
                             </ng-container>
                         </div>
 
-                        <div class="sm:col-span-3 relative">
-                            <label for="nss"
-                                class="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900">
-                                    Numero de seguridad social <span class="text-red-400">*</span>
+                        <div class="sm:col-span-3 relative input-group">
+                            <label for="nss">
+                                Numero de seguridad social <span>*</span>
                             </label>
-                            <input type="email" name="nss" id="nss" formControlName="nss" placeholder="NSS" 
-                                class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            <input type="email" name="nss" id="nss" formControlName="nss" placeholder="NSS">
                             <ng-container *ngIf="ctrl['job'].get('nss')?.touched && ctrl['job'].get('nss')?.errors">
-                                <p id="nss-required-error" *ngIf="ctrl['job'].get('nss')?.hasError('required')" class="mt-1 text-xs text-red-400">
+                                <p id="nss-required-error" *ngIf="ctrl['job'].get('nss')?.hasError('required')">
                                     El campo es obligatorio
                                 </p>
-                                <p id="nss-required-error" *ngIf="ctrl['job'].get('nss')?.hasError('pattern')" class="mt-1 text-xs text-red-400">
+                                <p id="nss-required-error" *ngIf="ctrl['job'].get('nss')?.hasError('pattern')">
                                     El campo no es válido
                                 </p>
                             </ng-container>
                         </div>
 
-                        <div class="sm:col-span-3 relative">
-                            <label for="rfc"
-                                class="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900">
-                                    RFC <span class="text-red-400">*</span>
+                        <div class="sm:col-span-3 relative input-group">
+                            <label for="rfc">
+                                RFC <span>*</span>
                             </label>
-                            <input type="email" name="rfc" id="rfc" formControlName="rfc" placeholder="RFC" 
-                                class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            <input type="email" name="rfc" id="rfc" formControlName="rfc" placeholder="RFC">
                             <ng-container *ngIf="ctrl['job'].get('rfc')?.touched && ctrl['job'].get('rfc')?.errors">
-                                <p id="rfc-required-error" *ngIf="ctrl['job'].get('rfc')?.hasError('required')" class="mt-1 text-xs text-red-400">
+                                <p id="rfc-required-error" *ngIf="ctrl['job'].get('rfc')?.hasError('required')">
                                     El campo es obligatorio
                                 </p>
-                                <p id="rfc-required-error" *ngIf="ctrl['job'].get('rfc')?.hasError('pattern')" class="mt-1 text-xs text-red-400">
+                                <p id="rfc-required-error" *ngIf="ctrl['job'].get('rfc')?.hasError('pattern')">
                                     El campo no es válido
                                 </p>
                             </ng-container>
                         </div>
 
-                        <div class="sm:col-span-3 relative">
-                            <label for="schooling"
-                                class="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900">
-                                    Escolaridad <span class="text-red-400">*</span>
+                        <div class="sm:col-span-3 relative input-group">
+                            <label for="schooling">
+                                Escolaridad <span>*</span>
                             </label>
-                            <select name="schooling" id="schooling" formControlName="schooling"
-                                class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                                    <option value="">Seleccione una opción</option>
-                                    <option value="PRESCHOOL">Primaria</option>
-                                    <option value="MIDDLE SCHOOL">Secundaria</option>
-                                    <option value="HIGH SCHOOL">Preparatoria</option>
-                                    <option value="CAREER TECH">Carrera tecnica</option>
-                                    <option value="COLLEGE DEGREE">Licenciatura</option>
-                                    <option value="ENGINEERING">Ingenieria</option>
-                                    <option value="MASTERS DEGREE">Maestria</option>
-                                    <option value="DOCTORAL DEGREE">Doctorado</option>
-                                    <option value="UNSPECIFIED">Sin especificar</option>
+                            <select name="schooling" id="schooling" formControlName="schooling">
+                                <option value="">Seleccione una opción</option>
+                                <option *ngFor="let schooling of schoolings" [value]="schooling.key">{{schooling.value}}</option>
                             </select>
                             <ng-container *ngIf="ctrl['job'].get('schooling')?.touched && ctrl['job'].get('schooling')?.errors">
-                                <p id="schooling-required-error" *ngIf="ctrl['job'].get('schooling')?.hasError('required')" class="mt-1 text-xs text-red-400">
+                                <p id="schooling-required-error" *ngIf="ctrl['job'].get('schooling')?.hasError('required')">
                                     El campo es obligatorio
                                 </p>
                             </ng-container>
@@ -415,35 +354,31 @@
 
                         <ng-container formArrayName="workArea" *ngFor="let field of workAreaField.controls; index as i">
                             <ng-container [formGroupName]="i">
-                                <div class="sm:col-span-3 relative">
-                                    <label for="area"
-                                        class="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900">
-                                            Area <span class="text-red-400">*</span>
+                                <div class="sm:col-span-3 relative input-group">
+                                    <label for="area">
+                                        Area <span>*</span>
                                     </label>
-                                    <select name="area" id="area" formControlName="area"
-                                        class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                                            <option value="">Seleccione una opción</option>
-                                            <option value="IT">Sistemas IT</option>
+                                    <select name="area" id="area" formControlName="area">
+                                        <option value="">Seleccione una opción</option>
+                                        <option *ngFor="let area of areas" [value]="area.key">{{area.value}}</option>
                                     </select>
                                     <ng-container *ngIf="workAreaField.controls[i].get('area')?.touched && workAreaField.controls[i].get('area')?.errors">
-                                        <p id="area-required-error" *ngIf="workAreaField.controls[i].get('area')?.hasError('required')" class="mt-1 text-xs text-red-400">
+                                        <p id="area-required-error" *ngIf="workAreaField.controls[i].get('area')?.hasError('required')">
                                             El campo es obligatorio
                                         </p>
                                     </ng-container>
                                 </div>
 
-                                <div class="sm:col-span-3 relative">
-                                    <label for="range"
-                                        class="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900">
-                                            Rango <span class="text-red-400">*</span>
+                                <div class="sm:col-span-3 relative input-group">
+                                    <label for="range">
+                                        Rango <span>*</span>
                                     </label>
-                                    <select name="range" id="range" formControlName="range"
-                                        class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                                            <option value="">Seleccione una opción</option>
-                                            <option value="MANAGER">Gerente</option>
+                                    <select name="range" id="range" formControlName="range">
+                                        <option value="">Seleccione una opción</option>
+                                        <option *ngFor="let rol of areaRoles" [value]="rol.key">{{rol.value}}</option>
                                     </select>
                                     <ng-container *ngIf="workAreaField.controls[i].get('range')?.touched && workAreaField.controls[i].get('range')?.errors">
-                                        <p id="range-required-error" *ngIf="workAreaField.controls[i].get('range')?.hasError('required')" class="mt-1 text-xs text-red-400">
+                                        <p id="range-required-error" *ngIf="workAreaField.controls[i].get('range')?.hasError('required')">
                                             El campo es obligatorio
                                         </p>
                                     </ng-container>
@@ -464,85 +399,75 @@
                             </span>
                         </div>
 
-                        <div class="sm:col-span-6 relative">
-                            <label for="description"
-                                class="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900">
-                                    Descripción <span class="text-red-400">*</span>
+                        <div class="sm:col-span-6 relative input-group">
+                            <label for="description">
+                                Descripción <span>*</span>
                             </label>
-                            <input type="email" name="description" id="description" formControlName="description" placeholder="Descripción" 
-                                class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            <input type="email" name="description" id="description" formControlName="description" placeholder="Descripción">
                             <ng-container *ngIf="ctrl['job'].get('description')?.touched && ctrl['job'].get('description')?.errors">
-                                <p id="description-required-error" *ngIf="ctrl['job'].get('description')?.hasError('required')" class="mt-1 text-xs text-red-400">
+                                <p id="description-required-error" *ngIf="ctrl['job'].get('description')?.hasError('required')">
                                     El campo es obligatorio
                                 </p>
                             </ng-container>
                         </div>
 
                         <ng-container formGroupName="schedule">
-                            <div class="sm:col-span-3 relative">
-                                <label for="start"
-                                    class="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900">
-                                        Horara de inicio <span class="text-red-400">*</span>
+                            <div class="sm:col-span-3 relative input-group">
+                                <label for="start">
+                                    Horara de inicio <span>*</span>
                                 </label>
-                                <input type="email" name="start" id="start" formControlName="start" placeholder="HH:mm" 
-                                    class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                <input type="email" name="start" id="start" formControlName="start" placeholder="HH:mm">
                                 <ng-container *ngIf="ctrl['job'].get('schedule.start')?.touched && ctrl['job'].get('schedule.start')?.errors">
-                                    <p id="start-required-error" *ngIf="ctrl['job'].get('schedule.start')?.hasError('required')" class="mt-1 text-xs text-red-400">
+                                    <p id="start-required-error" *ngIf="ctrl['job'].get('schedule.start')?.hasError('required')">
                                         El campo es obligatorio
                                     </p>
-                                    <p id="start-required-error" *ngIf="ctrl['job'].get('schedule.start')?.hasError('pattern')" class="mt-1 text-xs text-red-400">
+                                    <p id="start-required-error" *ngIf="ctrl['job'].get('schedule.start')?.hasError('pattern')">
                                         El campo no es válido
                                     </p>
                                 </ng-container>
                             </div>
 
-                            <div class="sm:col-span-3 relative">
-                                <label for="end"
-                                    class="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900">
-                                        Hora de termino <span class="text-red-400">*</span>
+                            <div class="sm:col-span-3 relative input-group">
+                                <label for="end">
+                                    Hora de termino <span>*</span>
                                 </label>
-                                <input type="email" name="end" id="end" formControlName="end" placeholder="HH:mm" 
-                                    class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                <input type="email" name="end" id="end" formControlName="end" placeholder="HH:mm">
                                 <ng-container *ngIf="ctrl['job'].get('schedule.end')?.touched && ctrl['job'].get('schedule.end')?.errors">
-                                    <p id="end-required-error" *ngIf="ctrl['job'].get('schedule.end')?.hasError('required')" class="mt-1 text-xs text-red-400">
+                                    <p id="end-required-error" *ngIf="ctrl['job'].get('schedule.end')?.hasError('required')">
                                         El campo es obligatorio
                                     </p>
-                                    <p id="start-required-error" *ngIf="ctrl['job'].get('schedule.end')?.hasError('pattern')" class="mt-1 text-xs text-red-400">
+                                    <p id="start-required-error" *ngIf="ctrl['job'].get('schedule.end')?.hasError('pattern')">
                                         El campo no es válido
                                     </p>
                                 </ng-container>
                             </div>
                         </ng-container>
 
-                        <div class="sm:col-span-3 relative">
-                            <label for="salary"
-                                class="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900">
-                                    Salario <span class="text-red-400">*</span>
+                        <div class="sm:col-span-3 relative input-group">
+                            <label for="salary">
+                                Salario <span>*</span>
                             </label>
-                            <input type="email" name="salary" id="salary" formControlName="salary" placeholder="Salario" 
-                                class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            <input type="email" name="salary" id="salary" formControlName="salary" placeholder="Salario">
                             <ng-container *ngIf="ctrl['job'].get('salary')?.touched && ctrl['job'].get('salary')?.errors">
-                                <p id="salary-required-error" *ngIf="ctrl['job'].get('salary')?.hasError('required')" class="mt-1 text-xs text-red-400">
+                                <p id="salary-required-error" *ngIf="ctrl['job'].get('salary')?.hasError('required')">
                                     El campo es obligatorio
                                 </p>
-                                <p id="start-pattern-error" *ngIf="ctrl['job'].get('salary')?.hasError('pattern')" class="mt-1 text-xs text-red-400">
+                                <p id="start-pattern-error" *ngIf="ctrl['job'].get('salary')?.hasError('pattern')">
                                     El campo no es válido
                                 </p>
                             </ng-container>
                         </div>
 
-                        <div class="sm:col-span-3 relative">
-                            <label for="accountNumber"
-                                class="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900">
-                                    Numero de cuenta <span class="text-red-400">*</span>
+                        <div class="sm:col-span-3 relative input-group">
+                            <label for="accountNumber">
+                                Numero de cuenta <span>*</span>
                             </label>
-                            <input type="email" name="accountNumber" id="accountNumber" formControlName="accountNumber" placeholder="0000 0000 0000 0000" 
-                                class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            <input type="email" name="accountNumber" id="accountNumber" formControlName="accountNumber" placeholder="0000 0000 0000 0000">
                             <ng-container *ngIf="ctrl['job'].get('accountNumber')?.touched && ctrl['job'].get('accountNumber')?.errors">
-                                <p id="accountNumber-required-error" *ngIf="ctrl['job'].get('accountNumber')?.hasError('required')" class="mt-1 text-xs text-red-400">
+                                <p id="accountNumber-required-error" *ngIf="ctrl['job'].get('accountNumber')?.hasError('required')">
                                     El campo es obligatorio
                                 </p>
-                                <p id="start-pattern-error" *ngIf="ctrl['job'].get('accountNumber')?.hasError('pattern')" class="mt-1 text-xs text-red-400">
+                                <p id="start-pattern-error" *ngIf="ctrl['job'].get('accountNumber')?.hasError('pattern')">
                                     El campo no es válido
                                 </p>
                             </ng-container>

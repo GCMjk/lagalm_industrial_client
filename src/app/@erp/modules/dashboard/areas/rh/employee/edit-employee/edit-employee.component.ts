@@ -16,6 +16,12 @@ export class EditEmployeeComponent implements OnInit {
 
   public id = '';
   public form: FormGroup;
+  public genders;
+  public maritalStatuses;
+  public schoolings;
+  public roles;
+  public areas;
+  public areaRoles;
 
   constructor(
     private _route: ActivatedRoute,
@@ -103,6 +109,12 @@ export class EditEmployeeComponent implements OnInit {
         ]]
       })
     });
+    this.genders = this._employeeService.genders;
+    this.maritalStatuses = this._employeeService.maritalStatuses;
+    this.schoolings = this._employeeService.schoolings;
+    this.roles = this._employeeService.roles;
+    this.areas = this._employeeService.areas;
+    this.areaRoles = this._employeeService.areaRoles;
   }
 
   ngOnInit(): void {
